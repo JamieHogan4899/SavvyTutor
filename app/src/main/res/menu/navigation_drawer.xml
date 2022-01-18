@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+<!--    Navigation Drawer Menu-->
+
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_message"
