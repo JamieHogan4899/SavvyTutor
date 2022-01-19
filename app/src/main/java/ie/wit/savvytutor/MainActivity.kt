@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        //toolbar.setTitleTextColor(Color.BLACK);
         setSupportActionBar(toolbar)
 
         drawer = findViewById(R.id.drawer_layout)
