@@ -15,6 +15,7 @@ class AboutFragment : Fragment() {
         @Nullable container: ViewGroup?,
         @Nullable savedInstanceState: Bundle?
     ): View {
+        //inflate the fragment layout
         return inflater.inflate(ie.wit.savvytutor.R.layout.about_fragment, container, false)
     }
 }
