@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_baseline_home_24"
             android:title="Home" />
         <item
+            android:id="@+id/createAPost"
+            android:icon="@drawable/ic_baseline_create_24"
+            android:title="Create A Post" />
+        <item
             android:id="@+id/chat"
             android:icon="@drawable/ic_baseline_chat_24"
             android:title="Chat" />
