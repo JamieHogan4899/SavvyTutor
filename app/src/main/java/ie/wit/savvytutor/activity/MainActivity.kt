@@ -13,7 +13,7 @@ import com.codinginflow.navigationdrawerexample.MessageFragment
 import com.google.android.material.navigation.NavigationView
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.fragments.AboutFragment
-
+import ie.wit.savvytutor.fragments.CreateAPostFragment
 
 lateinit var drawer: DrawerLayout
 
@@ -67,6 +67,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.aboutSavvyTutor -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
                 AboutFragment()
+            ).commit()
+            R.id.createapost -> supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_container,
+                CreateAPostFragment()
             ).commit()
 
         }
