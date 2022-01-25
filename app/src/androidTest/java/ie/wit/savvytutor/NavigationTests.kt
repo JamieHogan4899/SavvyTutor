@@ -25,14 +25,21 @@ class NavigationTests {
     }
 
     @Test
-    fun useNavDrawer() {
+    fun usingNavDrawer(){
         ActivityScenario.launch(MainActivity::class.java) //Open the app
         onView(withId(R.id.drawer_layout)).check(matches(isDisplayed())) //Check the home page is correct
-            .perform(DrawerActions.open()); // Open Nav Drawer
-        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.chat)); //select chat option
+            .perform(DrawerActions.open()) // Open Nav Drawer
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.chat))
         onView(withId(R.id.chat_fragment)).check(matches(isDisplayed())) //check chat fragment opens
+
+
+        onView(withId(R.id.drawer_layout)).check(matches(isDisplayed()))
+            .perform(DrawerActions.open()) //open nav drawer
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.aboutSavvyTutor)) //go to about
+        onView(withId(R.id.about_fragment)).check(matches(isDisplayed()))
+
 
 
     }
 
-}
+    }
