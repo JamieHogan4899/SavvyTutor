@@ -6,6 +6,9 @@
         <item name="android:statusBarColor">@color/blackText</item>
     </style>
 
+    <style name="spinnerTheme" parent="android:Theme">
+        <item name="android:textColor">@color/hintColor</item>
+    </style>
 
 
 

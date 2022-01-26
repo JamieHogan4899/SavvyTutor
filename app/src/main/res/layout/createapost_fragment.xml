@@ -29,21 +29,116 @@
         android:layout_width="360sp"
         android:layout_height="35sp"
         android:layout_marginLeft="15sp"
-        android:layout_marginTop="88sp"
+        android:layout_marginTop="90sp"
         android:background="@drawable/rounded_corner"
-        android:hint="Title"
+        android:hint=" Title"
         android:inputType="text"
         />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
         android:layout_marginLeft="15sp"
-        android:layout_marginTop="130sp"
+        android:layout_marginTop="135sp"
         android:text="Select Subject"
         android:textColor="@color/blackText"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/chooseSubject"
+        android:layout_width="360sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="160sp"
+        android:entries = "@array/SubjectArrary"
+        android:background="@drawable/rounded_corner"
+        android:theme="@style/spinnerTheme"
+
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="205sp"
+        android:text="Location"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="360sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="235sp"
+        android:background="@drawable/rounded_corner"
+        android:hint="Location"
+        android:inputType="text"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="275sp"
+        android:text="Select Level"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/chooseLevel"
+        android:layout_width="360sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="310sp"
+        android:entries = "@array/LevelArrary"
+        android:background="@drawable/rounded_corner"
+        android:theme="@style/spinnerTheme"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="350sp"
+        android:text="Description"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="360sp"
+        android:layout_height="175sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="380sp"
+        android:background="@drawable/rounded_corner"
+        android:inputType="text"
+        />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="580sp"
+        android:text="Post"
+        android:textColor="@color/blackText"
+        android:backgroundTint="@color/main"
+
+
+        />
+
+
+
+
+
+
+
+
 
 
 

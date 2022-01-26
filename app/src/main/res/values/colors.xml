@@ -5,6 +5,7 @@
     <color name= "blackText">#FF000000</color>
     <color name="whiteText">#FFFFFFFF</color>
     <color name="grey">#ebebeb</color>
+    <color name="hintColor">#808080</color>
 
 
 
