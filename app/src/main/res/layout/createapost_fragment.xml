@@ -112,6 +112,7 @@
         android:textStyle="bold" />
 
     <EditText
+        android:id="@+id/description"
         android:layout_width="360sp"
         android:layout_height="175sp"
         android:layout_marginLeft="15sp"
