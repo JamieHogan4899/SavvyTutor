@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/whiteText">
 
     <TextView
@@ -11,6 +12,17 @@
         android:text="Home Screen"
         android:textSize="30sp" />
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/displayPost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        android:padding="4dp"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/displaypost_view"
+
+        />
 
     
 
