@@ -42,21 +42,19 @@ class CreateAPostFragment : Fragment() {
 
 
     fun setAddButtonListener(layout: View) {
+        //assign
         val addBtn = layout.findViewById<Button>(R.id.createapostbtn)
         val title = layout.findViewById<EditText>(R.id.postTitle)
         val subject =layout.findViewById<Spinner>(R.id.chooseSubject)
         val location = layout.findViewById<EditText>(R.id.chooseLocation)
         val level = layout.findViewById<Spinner>(R.id.chooseSubject)
+
         addBtn.setOnClickListener {
 
             post.title = title.text.toString()
             post.subject = subject.selectedItem.toString()
             post.location = location.text.toString()
-            post.level = subject.selectedItem.toString()
-
-
-
-
+            post.level = level.selectedItem.toString()
 
         println(post)
             Toast.makeText(getActivity(), "Post Created" , Toast.LENGTH_LONG).show();
