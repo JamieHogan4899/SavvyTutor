@@ -11,16 +11,22 @@ import androidx.drawerlayout.widget.DrawerLayout
 import ie.wit.savvytutor.fragments.ChatFragment
 import com.codinginflow.navigationdrawerexample.MessageFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.fragments.AboutFragment
 import ie.wit.savvytutor.fragments.CreateAPostFragment
 
 lateinit var drawer: DrawerLayout
 
+
+
+
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar) //use the new toolbar
         setSupportActionBar(toolbar) //set the new action bar to be my toolbar
