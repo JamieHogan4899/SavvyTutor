@@ -1,7 +1,6 @@
 package ie.wit.savvytutor.fragments
 
 
-import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

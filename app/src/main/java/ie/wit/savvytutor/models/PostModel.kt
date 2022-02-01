@@ -8,8 +8,5 @@ data class PostModel(var title: String = "",
                      var location: String = "",
                      var level: String = "",
                      var description: String =  ""
-
-
-
-
 )
+

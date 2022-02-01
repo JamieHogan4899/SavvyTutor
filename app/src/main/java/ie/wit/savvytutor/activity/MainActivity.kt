@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import ie.wit.savvytutor.fragments.ChatFragment
-import com.codinginflow.navigationdrawerexample.MessageFragment
+import ie.wit.savvytutor.fragments.HomeFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import ie.wit.savvytutor.R
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
-                MessageFragment()
+                HomeFragment()
             ).commit()
             navigationView.setCheckedItem(R.id.home)
         }
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.home -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
-                MessageFragment()
+                HomeFragment()
             ).commit()
             R.id.chat -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
