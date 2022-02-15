@@ -1,7 +1,9 @@
 package ie.wit.savvytutor.fragments
 
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,16 +22,14 @@ import com.google.firebase.ktx.Firebase
 class CreateAPostFragment : Fragment() {
 
     var post = PostModel()
+    // Write a message to the database
+    val database = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
+  
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Write a message to the database
-        val database = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
-        val myRef = database.getReference("message")
-
-        myRef.setValue("Back to Jamie ")
-        println(myRef)
+        
     }
 
     override fun onCreateView(
@@ -72,11 +72,40 @@ class CreateAPostFragment : Fragment() {
             post.level = level.selectedItem.toString()
             post.description = description.text.toString()
 
-        println(post)
+
+            writeNewPost(PostModel(title = post.title, subject = post.subject, location = post.location, level = post.level, description = post.description))
+
+            println(post)
             Toast.makeText(getActivity(), "Post Created" , Toast.LENGTH_LONG).show();
+
+
         }
 
     }
+
+
+    private fun writeNewPost(postModel: PostModel) {
+        // Create new post at /user-posts/$userid/$postid and at
+        // /posts/$postid simultaneously
+        val uid = post.uid
+        val key = database.child("posts").push().key
+        if (key == null) {
+            Log.w(TAG, "Couldn't get push key for posts")
+            return
+        }
+
+        post.uid = key
+        val postValues = post.toMap()
+
+        val childUpdates = hashMapOf<String, Any>(
+            "/ParentPosts/$key" to postValues,
+
+        )
+
+        database.updateChildren(childUpdates)
+    }
+
+
 
 
 
