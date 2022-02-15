@@ -60,7 +60,7 @@ class CreateAPostFragment : Fragment() {
         val title = layout.findViewById<EditText>(R.id.postTitle)
         val subject =layout.findViewById<Spinner>(R.id.chooseSubject)
         val location = layout.findViewById<EditText>(R.id.chooseLocation)
-        val level = layout.findViewById<Spinner>(R.id.chooseSubject)
+        val level = layout.findViewById<Spinner>(R.id.chooseLevel)
         val description = layout.findViewById<EditText>(R.id.description)
 
         //take in user input and store in the model
