@@ -51,6 +51,7 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.3'
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1'
     testImplementation 'junit:junit:4.+'
 
 

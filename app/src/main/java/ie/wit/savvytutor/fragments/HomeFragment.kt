@@ -1,5 +1,6 @@
 package ie.wit.savvytutor.fragments
 
+import DisplayPostAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +9,28 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ie.wit.savvytutor.adapters.DisplayPostAdapter
+import com.firebase.ui.database.FirebaseListAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.*
+import ie.wit.savvytutor.R
+import ie.wit.savvytutor.models.PostModel
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.home_fragment.*
 
-private var layoutManager: RecyclerView.LayoutManager? = null
-private var adapter: RecyclerView.Adapter<DisplayPostAdapter.ViewHolder>? = null
+private lateinit var dbRef: DatabaseReference
+private lateinit var  postRecyclerView: RecyclerView
+private lateinit var  postArrayList : ArrayList<PostModel>
 
 
 class HomeFragment : Fragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,22 +38,45 @@ class HomeFragment : Fragment() {
         @Nullable savedInstanceState: Bundle?
     ): View {
         //inflate the fragment layout
-        val root = inflater.inflate(ie.wit.savvytutor.R.layout.home_fragment, container, false)
+        val root = inflater.inflate(R.layout.home_fragment, container, false)
+        postRecyclerView = root.findViewById(R.id.displayPosts)
+        postRecyclerView.layoutManager = LinearLayoutManager(context)
+        postRecyclerView.setHasFixedSize(true)
+
+        postArrayList = arrayListOf<PostModel>()
+        getUserData()
+
+
         return root
 
     }
 
+    private fun getUserData(){
 
-    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(itemView, savedInstanceState)
-        displayPosts.apply {
-            // set a LinearLayoutManager to handle Android
-            // RecyclerView behavior
-            layoutManager = LinearLayoutManager(activity)
-            // set the custom adapter to the RecyclerView
-            adapter = DisplayPostAdapter()
-        }
+        dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference("ParentPosts")
+
+        dbRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+
+
+                    for(postSnapshot in snapshot.children){
+
+                        val post = postSnapshot.getValue(PostModel::class.java)
+                        postArrayList.add(post!!)
+                    }
+
+                    postRecyclerView.adapter = DisplayPostAdapter(postArrayList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
+
 
 }
 
