@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "987809193149",
-    "project_id": "savvytutor-548c6",
-    "storage_bucket": "savvytutor-548c6.appspot.com"
+    "project_number": "77640674374",
+    "firebase_url": "https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "savvytutor-ab3d2",
+    "storage_bucket": "savvytutor-ab3d2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:987809193149:android:6750ea3d855a0748bdabd4",
+        "mobilesdk_app_id": "1:77640674374:android:4626e477a56028c8c92e47",
         "android_client_info": {
           "package_name": "ie.wit.savvytutor"
         }
       },
       "oauth_client": [
         {
-          "client_id": "987809193149-kjvnvi72mvt58ik9u9uu1ct5fcujhie5.apps.googleusercontent.com",
+          "client_id": "77640674374-jnlkiv7e20dafg9239v4q392q0ffmd4a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBK2JmOSY8tof2b-2sgM2QT_t0hOQB5-W0"
+          "current_key": "AIzaSyCpLodiSUIvW98ai7mQAJ1kia59xM6ydP0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "987809193149-kjvnvi72mvt58ik9u9uu1ct5fcujhie5.apps.googleusercontent.com",
+              "client_id": "77640674374-jnlkiv7e20dafg9239v4q392q0ffmd4a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

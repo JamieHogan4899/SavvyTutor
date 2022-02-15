@@ -12,11 +12,25 @@ import ie.wit.savvytutor.R
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.R.layout.createapost_fragment
 import android.widget.Toast
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 
 class CreateAPostFragment : Fragment() {
 
     var post = PostModel()
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Write a message to the database
+        val database = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
+        val myRef = database.getReference("message")
+
+        myRef.setValue("Back to Jamie ")
+        println(myRef)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
