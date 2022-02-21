@@ -79,6 +79,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.fragment_container,
                 LoginFragment()
             ).commit()
+            R.id.register -> supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_container,
+                RegisterFragment()
+            ).commit()
 
         }
         drawer.closeDrawer(GravityCompat.START) //closer nav drawer when item clicked

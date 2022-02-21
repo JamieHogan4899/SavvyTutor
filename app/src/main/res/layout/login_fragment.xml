@@ -87,26 +87,6 @@
         android:textColor="@color/blackText"/>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="190sp"
-        android:layout_marginTop="470sp"
-        android:text="Or"
-        android:textColor="@color/blackText"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/goToRegister"
-        android:layout_width="325sp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15sp"
-        android:layout_marginTop="520sp"
-        android:backgroundTint="@color/whiteText"
-        android:text="Sign Up "
-        android:textColor="@color/blackText"/>
 
 
 </RelativeLayout>
