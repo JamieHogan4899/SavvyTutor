@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseListAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.models.PostModel
 import kotlinx.android.synthetic.*
@@ -23,13 +26,13 @@ private lateinit var  postRecyclerView: RecyclerView
 private lateinit var  postArrayList : ArrayList<PostModel>
 
 
+
 class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
+        
     }
 
     override fun onCreateView(

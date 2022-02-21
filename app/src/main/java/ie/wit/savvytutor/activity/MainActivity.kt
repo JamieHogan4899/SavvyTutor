@@ -8,13 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import ie.wit.savvytutor.fragments.ChatFragment
-import ie.wit.savvytutor.fragments.HomeFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import ie.wit.savvytutor.R
-import ie.wit.savvytutor.fragments.AboutFragment
-import ie.wit.savvytutor.fragments.CreateAPostFragment
+import ie.wit.savvytutor.fragments.*
 
 lateinit var drawer: DrawerLayout
 
@@ -77,6 +74,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.createAPost -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
                 CreateAPostFragment()
+            ).commit()
+            R.id.login -> supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_container,
+                LoginFragment()
             ).commit()
 
         }

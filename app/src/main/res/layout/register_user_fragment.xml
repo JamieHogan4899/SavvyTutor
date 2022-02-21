@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
->
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,10 +26,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="175sp"
+        android:layout_marginLeft="75sp"
         android:layout_marginTop="175sp"
         android:singleLine="false"
-        android:text="@string/login"
+        android:text="@string/registerUser"
         android:textColor="@color/blackText"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -76,36 +76,14 @@
         android:inputType="text" />
 
     <Button
-        android:id="@+id/loginbtn"
+        android:id="@+id/registerbtn"
         android:layout_width="325sp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15sp"
         android:layout_marginTop="400sp"
         android:backgroundTint="@color/whiteText"
-        android:text="Login"
-        android:textColor="@color/blackText"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="190sp"
-        android:layout_marginTop="470sp"
-        android:text="Or"
-        android:textColor="@color/blackText"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/goToRegister"
-        android:layout_width="325sp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15sp"
-        android:layout_marginTop="520sp"
-        android:backgroundTint="@color/whiteText"
-        android:text="Sign Up "
+        android:text="Register"
         android:textColor="@color/blackText"/>
 
 
