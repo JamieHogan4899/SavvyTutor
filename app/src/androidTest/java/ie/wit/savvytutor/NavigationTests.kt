@@ -36,57 +36,14 @@ class NavigationTests {
 
        TimeUnit.SECONDS.sleep(3)
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()) //open nav drawer
-        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.aboutSavvyTutor)) //click into create a post
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.aboutSavvyTutor)) //click into about
         onView(withId(R.id.about_fragment)).check(matches(isDisplayed())) //check does it display correct fragment
 
         TimeUnit.SECONDS.sleep(3)
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()) //open nav drawer
-        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.chat)) //click into create a post
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.chat)) //click into chat
         onView(withId(R.id.chat_fragment)).check(matches(isDisplayed())) //check does it display correct fragment
-
         TimeUnit.SECONDS.sleep(3)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 
