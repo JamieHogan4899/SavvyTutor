@@ -14,6 +14,7 @@ import androidx.test.espresso.contrib.NavigationViewActions
 import ie.wit.savvytutor.activity.MainActivity
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.concurrent.TimeUnit
 
 
 @RunWith(AndroidJUnit4ClassRunner::class)
@@ -24,19 +25,40 @@ class NavigationTests {
         onView(withId(R.id.drawer_layout)).check(matches(isDisplayed())) //Check the home page is correct
     }
 
+
+
     @Test
     fun usingNavDrawer(){
         ActivityScenario.launch(MainActivity::class.java) //Open the app
-        onView(withId(R.id.drawer_layout)).check(matches(isDisplayed())) //Check the home page is correct
-            .perform(DrawerActions.open()) // Open Nav Drawer
-        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.chat))
-        onView(withId(R.id.chat_fragment)).check(matches(isDisplayed())) //check chat fragment opens
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()) //open nav drawer
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.createAPost)) //click into create a post
+        onView(withId(R.id.createapost_fragment)).check(matches(isDisplayed())) //check does it display correct fragment
+
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()) //open nav drawer
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.chat)) //click into chat
+        onView(withId(R.id.chat_fragment)).check(matches(isDisplayed())) //check does it display correct fragment
+
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()) //open nav drawer
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.aboutSavvyTutor)) //click into chat
+        onView(withId(R.id.about_fragment)).check(matches(isDisplayed())) //check does it display correct fragment
 
 
-        onView(withId(R.id.drawer_layout)).check(matches(isDisplayed()))
-            .perform(DrawerActions.open()) //open nav drawer
-        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.aboutSavvyTutor)) //go to about
-        onView(withId(R.id.about_fragment)).check(matches(isDisplayed()))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
