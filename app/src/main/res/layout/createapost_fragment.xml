@@ -134,8 +134,6 @@
             android:text="Post"
             android:textColor="@color/blackText"
             android:backgroundTint="@color/main"
-
-
             />
 
 

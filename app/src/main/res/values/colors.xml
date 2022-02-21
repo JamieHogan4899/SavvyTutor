@@ -4,8 +4,10 @@
     <color name= "main">#00E6FF</color>
     <color name= "blackText">#FF000000</color>
     <color name="whiteText">#FFFFFFFF</color>
-    <color name="grey">#ebebeb</color>
+    <color name="grey">#f0f0f0</color>
     <color name="hintColor">#808080</color>
+    <color name="loginGradinet">#89f3ff</color>
+
 
 
 

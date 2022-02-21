@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loginFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="175sp"
+        android:layout_marginTop="100sp"
+        android:text="SavvyTutor"
+        android:textColor="@color/blackText"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80sp"
+        android:layout_marginTop="80sp"
+        android:src="@mipmap/ic_logo_round" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="175sp"
+        android:layout_marginTop="175sp"
+        android:singleLine="false"
+        android:text="@string/login"
+        android:textColor="@color/blackText"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60sp"
+        android:layout_marginTop="240sp"
+        android:text="E-Mail"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/loginEmail"
+        android:layout_width="290sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="60sp"
+        android:layout_marginTop="270sp"
+        android:background="@drawable/rounded_corner"
+        android:hint="Enter E-Mail Here"
+        android:inputType="text" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60sp"
+        android:layout_marginTop="310sp"
+        android:text="Password"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/loginPassword"
+        android:layout_width="290sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="60sp"
+        android:layout_marginTop="337sp"
+        android:background="@drawable/rounded_corner"
+        android:hint="Enter Password Here"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/createapostbtn"
+        android:layout_width="325sp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="400sp"
+        android:backgroundTint="@color/whiteText"
+        android:text="Login"
+        android:textColor="@color/blackText"/>
+
+
+</RelativeLayout>
