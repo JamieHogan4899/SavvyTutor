@@ -1,6 +1,6 @@
 package ie.wit.savvytutor.fragments
 
-<<<<<<< HEAD
+
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
@@ -21,39 +21,18 @@ import com.google.firebase.ktx.Firebase
 import ie.wit.savvytutor.main.SavvyTutor
 
 
-class CreateAPostFragment : Fragment() {
-
-    var post = PostModel()
-    // Write a message to the database
-    val database = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
-
-
-  
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        
-    }
-
-=======
-import android.R
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.annotation.Nullable
-import androidx.fragment.app.Fragment
+var post = PostModel()
+// Write a message to the database
+val database = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
 class CreateAPostFragment : Fragment() {
     @Nullable
->>>>>>> NavigationDrawer
+
     override fun onCreateView(
         inflater: LayoutInflater,
         @Nullable container: ViewGroup?,
         @Nullable savedInstanceState: Bundle?
     ): View {
-<<<<<<< HEAD
         //inflate the fragment layout
 
         val root = inflater.inflate(createapost_fragment, container, false)
@@ -62,6 +41,7 @@ class CreateAPostFragment : Fragment() {
 
 
     }
+
     companion object {
         @JvmStatic
         fun newInstance() =
@@ -75,7 +55,7 @@ class CreateAPostFragment : Fragment() {
         //assign the user input fields
         val addBtn = layout.findViewById<Button>(R.id.createapostbtn)
         val title = layout.findViewById<EditText>(R.id.postTitle)
-        val subject =layout.findViewById<Spinner>(R.id.chooseSubject)
+        val subject = layout.findViewById<Spinner>(R.id.chooseSubject)
         val location = layout.findViewById<EditText>(R.id.chooseLocation)
         val level = layout.findViewById<Spinner>(R.id.chooseLevel)
         val description = layout.findViewById<EditText>(R.id.description)
@@ -90,10 +70,18 @@ class CreateAPostFragment : Fragment() {
             post.description = description.text.toString()
 
 
-            writeNewPost(PostModel(title = post.title, subject = post.subject, location = post.location, level = post.level, description = post.description))
+            writeNewPost(
+                PostModel(
+                    title = post.title,
+                    subject = post.subject,
+                    location = post.location,
+                    level = post.level,
+                    description = post.description
+                )
+            )
 
             println(post)
-            Toast.makeText(getActivity(), "Post Created" , Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
 
 
         }
@@ -117,24 +105,8 @@ class CreateAPostFragment : Fragment() {
         val childUpdates = hashMapOf<String, Any>(
             "/ParentPosts/$key" to postValues,
 
-        )
+            )
 
         database.updateChildren(childUpdates)
     }
-
-
-
-
-
-    }
-
-
-
-
-
-
-=======
-        return inflater.inflate(ie.wit.savvytutor.R.layout.createapost_fragment, container, false)
-    }
 }
->>>>>>> NavigationDrawer
