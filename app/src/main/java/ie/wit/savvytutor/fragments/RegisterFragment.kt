@@ -42,7 +42,7 @@ class RegisterFragment : Fragment() {
     ): View {
         //inflate the fragment layout
         val root =
-            inflater.inflate(ie.wit.savvytutor.R.layout.register_user_fragment, container, false)
+            inflater.inflate(R.layout.register_user_fragment, container, false)
 
         setRegisterButtonListener(root)
 

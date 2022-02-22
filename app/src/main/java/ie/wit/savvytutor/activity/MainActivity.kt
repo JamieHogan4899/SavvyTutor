@@ -3,15 +3,16 @@ package ie.wit.savvytutor.activity
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.fragments.*
+
 
 lateinit var drawer: DrawerLayout
 
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val toolbar = findViewById<Toolbar>(R.id.toolbar) //use the new toolbar
         setSupportActionBar(toolbar) //set the new action bar to be my toolbar
 
@@ -34,8 +34,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         val toggle = ActionBarDrawerToggle(
-            this, drawer, toolbar,
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close //toolbar message when held
+            this,
+            drawer,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close //toolbar message when held
 
         )
 
@@ -54,6 +57,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     }
+
+
 
 
     //listener to check for item id that was clicked
@@ -83,6 +88,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.fragment_container,
                 RegisterFragment()
             ).commit()
+
+
 
         }
         drawer.closeDrawer(GravityCompat.START) //closer nav drawer when item clicked
