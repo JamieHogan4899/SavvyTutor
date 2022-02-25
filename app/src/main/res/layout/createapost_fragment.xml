@@ -46,7 +46,8 @@
             android:text="Select Subject"
             android:textColor="@color/blackText"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <Spinner
             android:id="@+id/chooseSubject"

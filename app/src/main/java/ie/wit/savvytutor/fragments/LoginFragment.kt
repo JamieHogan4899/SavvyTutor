@@ -72,7 +72,6 @@ class LoginFragment : Fragment() {
                         Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show()
                     }
 
-
                     }
 
                 }
