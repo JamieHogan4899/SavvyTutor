@@ -45,6 +45,7 @@ class LoginFragment : Fragment() {
         val root = inflater.inflate(ie.wit.savvytutor.R.layout.login_fragment, container, false)
         setLoginButtonListener(root)
         return root
+
     }
 
 

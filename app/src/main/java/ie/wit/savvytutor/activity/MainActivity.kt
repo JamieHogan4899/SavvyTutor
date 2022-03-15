@@ -1,35 +1,35 @@
 package ie.wit.savvytutor.activity
 
 
+import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.fragments.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.login_fragment.*
+import kotlinx.android.synthetic.main.login_fragment.view.*
 
 
 lateinit var drawer: DrawerLayout
 
 
-
-
-
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar) //use the new toolbar
         setSupportActionBar(toolbar) //set the new action bar to be my toolbar
-
-        val loginBtn = findViewById<Button>(R.id.loginbtn)
 
         drawer = findViewById(R.id.drawer_layout)
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
@@ -59,9 +59,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
+        setLoginButtonListener()
     }
-
-
 
 
     //listener to check for item id that was clicked
@@ -93,7 +92,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ).commit()
 
 
-
         }
         drawer.closeDrawer(GravityCompat.START) //closer nav drawer when item clicked
         return true //return selected item
@@ -109,6 +107,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
+    fun setLoginButtonListener() {
+        val loginBtn = findViewById<Button>(R.id.LoginToolbarBtn)
+        val fragment = LoginFragment()
+
+
+
+        loginBtn.setOnClickListener {
+
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+                .commit()
+            
+
+        }
+
+
+    }
 
 
 }
