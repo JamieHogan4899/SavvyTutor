@@ -75,16 +75,42 @@
         android:hint="Enter Password Here"
         android:inputType="text" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60sp"
+        android:layout_marginTop="380sp"
+        android:text="Select Role"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/chooseRole"
+        android:layout_width="290sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="60sp"
+        android:layout_marginTop="410sp"
+        android:entries = "@array/RoleArrary"
+        android:background="@drawable/rounded_corner"
+        android:theme="@style/spinnerTheme"
+        android:paddingLeft="2sp"
+        />
+
+
     <Button
         android:id="@+id/registerbtn"
         android:layout_width="325sp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15sp"
-        android:layout_marginTop="400sp"
+        android:layout_marginTop="450sp"
         android:backgroundTint="@color/whiteText"
         android:text="Register"
         android:textColor="@color/blackText"/>
+
+
 
 
 </RelativeLayout>

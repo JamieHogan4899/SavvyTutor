@@ -26,4 +26,10 @@
         <item>Other</item>
     </string-array>
 
+    <string-array name= "RoleArrary">
+        <item>Choose Role</item>
+        <item>Parent</item>
+        <item>Tutor</item>
+    </string-array>
+
 </resources>

@@ -15,7 +15,7 @@ import ie.wit.savvytutor.fragments.HomeFragment
 import ie.wit.savvytutor.main.SavvyTutor
 
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener{
+class LoginActivity : AppCompatActivity(){
     lateinit var app: SavvyTutor
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,10 +46,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
 
     }
 
-
-    override fun onClick(v: View?) {
-        TODO("Not yet implemented")
-    }
 
 
 }
