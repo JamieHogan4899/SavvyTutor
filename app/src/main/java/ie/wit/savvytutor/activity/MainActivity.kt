@@ -1,7 +1,6 @@
 package ie.wit.savvytutor.activity
 
 
-import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
@@ -10,14 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.fragments.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.login_fragment.*
-import kotlinx.android.synthetic.main.login_fragment.view.*
+
 
 
 lateinit var drawer: DrawerLayout
@@ -53,7 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
-                HomeFragment()
+                LoginFragment()
             ).commit()
             navigationView.setCheckedItem(R.id.home)
         }
@@ -115,8 +110,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         loginBtn.setOnClickListener {
 
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
-                .commit()
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+
             
 
         }

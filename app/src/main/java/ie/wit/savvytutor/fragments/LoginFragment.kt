@@ -1,7 +1,5 @@
 package ie.wit.savvytutor.fragments
 
-import android.R
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -13,19 +11,15 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.login_fragment.*
+
 
 private lateinit var mAuth: FirebaseAuth
-val realtimeDatabase = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
-
 
 
 class LoginFragment : Fragment() {
@@ -54,6 +48,8 @@ class LoginFragment : Fragment() {
 
     fun setLoginButtonListener(layout: View) {
 
+
+
         val email = layout.findViewById<EditText>(ie.wit.savvytutor.R.id.loginEmail)
         val password = layout.findViewById<EditText>(ie.wit.savvytutor.R.id.loginPassword)
         val loginbtn = layout.findViewById<Button>(ie.wit.savvytutor.R.id.loginbtn)
@@ -69,6 +65,12 @@ class LoginFragment : Fragment() {
                         val Fuser: FirebaseUser? = mAuth.currentUser
                         Toast.makeText(getActivity(), "Signed In", Toast.LENGTH_LONG).show()
                         println(Fuser)
+
+
+                        val fragment = HomeFragment()
+                        activity?.supportFragmentManager?.beginTransaction()
+                            ?.replace(ie.wit.savvytutor.R.id.fragment_container, fragment)?.commit()
+
 
                     }else{
 
