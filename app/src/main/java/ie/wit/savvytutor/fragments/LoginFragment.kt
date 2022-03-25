@@ -15,13 +15,14 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 
 
 private lateinit var mAuth: FirebaseAuth
-val userDatabase = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference(
-    "Users").child("-MyC8ojjKwlZZfswu9uS")
+
+
+
 
 
 class LoginFragment : Fragment() {
@@ -44,6 +45,7 @@ class LoginFragment : Fragment() {
         val root = inflater.inflate(ie.wit.savvytutor.R.layout.login_fragment, container, false)
         setLoginButtonListener(root)
         setOnCreateAccount(root)
+
         return root
 
 
@@ -69,6 +71,7 @@ class LoginFragment : Fragment() {
 
         loginbtn.setOnClickListener {
 
+
             user.email = email.text.toString()
             user.password = password.text.toString()
 
@@ -78,14 +81,20 @@ class LoginFragment : Fragment() {
                         val Fuser: FirebaseUser? = mAuth.currentUser
                         println(Fuser)
 
+
                        if(mAuth.currentUser?.isEmailVerified == true){
 
-                           val fragment = HomeFragment()
-                           activity?.supportFragmentManager?.beginTransaction()
-                               ?.replace(ie.wit.savvytutor.R.id.fragment_container, fragment)?.commit()
+                           checkUid(layout)
+                           checkRole()
+
+
 
                        } else (
-                               Toast.makeText(getActivity(), "You Must Verify Your Email Address Before Logging In", Toast.LENGTH_LONG).show()
+                               Toast.makeText(
+                                   getActivity(),
+                                   "You Must Verify Your Email Address Before Logging In",
+                                   Toast.LENGTH_LONG
+                               ).show()
                        )
 
                     }else{
@@ -110,6 +119,67 @@ class LoginFragment : Fragment() {
                 ?.replace(ie.wit.savvytutor.R.id.fragment_container, fragment)?.commit()
         }
 
+    }
+
+
+    fun checkUid(layout: View) {
+        val email = layout.findViewById<EditText>(ie.wit.savvytutor.R.id.loginEmail).text.toString()
+        val userDatabase =
+            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference(
+                    "Users"
+                )
+
+        val emailCheck = userDatabase.equalTo(email)
+
+        val eventListener: ValueEventListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    //get The Uid for that user
+                    
+                    println("yay")
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("no!")
+            }
+        }
+        emailCheck.addListenerForSingleValueEvent(eventListener)
+
+
+    }
+
+
+
+    fun checkRole() {
+
+        val userDatabase =
+            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference(
+                    "Users"
+                ).child("-Mz1FR2jJnrBa1Ws-aVU")
+
+        userDatabase.child("role").get().addOnSuccessListener {
+
+            if (it.exists()) {
+                val usersRole = it.value
+
+                if (usersRole == "Parent") {
+
+                    val fragment = HomeFragment()
+                    activity?.supportFragmentManager?.beginTransaction()
+                        ?.replace(ie.wit.savvytutor.R.id.fragment_container, fragment)?.commit()
+
+                } else {
+                    Toast.makeText(
+                        getActivity(),
+                        "Error",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+            }
+        }
     }
 
 
