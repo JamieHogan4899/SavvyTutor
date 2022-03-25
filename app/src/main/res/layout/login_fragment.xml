@@ -88,5 +88,28 @@
 
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="620sp"
+        android:text="Dont have a account? Create one here!"
+        android:textColor="@color/blackText"
+        android:textSize="15sp"
+         />
+
+    <Button
+        android:id="@+id/createAccountBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="650sp"
+        android:backgroundTint="@color/whiteText"
+        android:text="Create Account"
+        android:textColor="@color/blackText"/>
+
+
+
 
 </RelativeLayout>

@@ -10,7 +10,8 @@ data class UserModel(
     var uid: String? = "",
     var email: String = "",
     var password: String = "",
-    var role: String = ""
+    var role: String = "",
+    var profilepic: String = ""
 
 ){
 
@@ -22,6 +23,7 @@ fun toMap(): Map<String, Any?> {
         "email" to email,
         "password" to password,
         "role" to role,
+        "profilepic" to profilepic
 
     )
 }

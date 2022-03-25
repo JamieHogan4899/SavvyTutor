@@ -22,6 +22,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         holder.location.text = currentItem.location
         holder.level.text = currentItem.level
         holder.description.text = currentItem.description
+
     }
 
     override fun getItemCount(): Int {

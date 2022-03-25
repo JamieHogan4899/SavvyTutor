@@ -3,8 +3,7 @@
     android:id="@+id/registerFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    >
+    android:background="@drawable/gradient">
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,6 +75,19 @@
         android:inputType="text" />
 
 
+
+
+    <Spinner
+        android:id="@+id/chooseRole"
+        android:layout_width="290sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="60sp"
+        android:layout_marginTop="410sp"
+        android:background="@drawable/rounded_corner"
+        android:entries="@array/RoleArrary"
+        android:paddingLeft="2sp"
+        android:theme="@style/spinnerTheme" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,18 +98,24 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <Spinner
-        android:id="@+id/chooseRole"
-        android:layout_width="290sp"
-        android:layout_height="35sp"
-        android:layout_marginLeft="60sp"
-        android:layout_marginTop="410sp"
-        android:entries = "@array/RoleArrary"
-        android:background="@drawable/rounded_corner"
-        android:theme="@style/spinnerTheme"
-        android:paddingLeft="2sp"
+    <ImageView
+        android:id="@+id/registershowprofilepic"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_marginLeft="125sp"
+        android:layout_marginTop="375sp"
         />
 
+    <Button
+        android:id="@+id/addprofilepic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="460sp"
+        android:backgroundTint="@color/whiteText"
+        android:text="Select Profile Picture "
+        android:textColor="@color/blackText" />
 
     <Button
         android:id="@+id/registerbtn"
@@ -105,12 +123,32 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15sp"
-        android:layout_marginTop="450sp"
+        android:layout_marginTop="510sp"
         android:backgroundTint="@color/whiteText"
         android:text="Register"
+        android:textColor="@color/blackText" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="620sp"
+        android:text="Already Have An Account? Sign in here!"
+        android:textColor="@color/blackText"
+        android:textSize="15sp"
+        />
+
+    <Button
+        android:id="@+id/BackToLoginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="650sp"
+        android:backgroundTint="@color/whiteText"
+        android:text="Sign in Here"
         android:textColor="@color/blackText"/>
-
-
 
 
 </RelativeLayout>
