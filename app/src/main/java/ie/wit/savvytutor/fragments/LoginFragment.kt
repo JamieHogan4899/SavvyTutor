@@ -1,6 +1,7 @@
 package ie.wit.savvytutor.fragments
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,9 +21,6 @@ import com.google.firebase.ktx.Firebase
 
 
 private lateinit var mAuth: FirebaseAuth
-
-
-
 
 
 class LoginFragment : Fragment() {
@@ -62,7 +60,6 @@ class LoginFragment : Fragment() {
     }
 
 
-
     fun setLoginButtonListener(layout: View) {
 
         val email = layout.findViewById<EditText>(ie.wit.savvytutor.R.id.loginEmail)
@@ -82,34 +79,38 @@ class LoginFragment : Fragment() {
                         println(Fuser)
 
 
-                       if(mAuth.currentUser?.isEmailVerified == true){
+                        if (mAuth.currentUser?.isEmailVerified == true) {
 
-                           checkUid(layout)
-                           checkRole()
-
+                            checkUserRole(layout)
 
 
-                       } else (
-                               Toast.makeText(
-                                   getActivity(),
-                                   "You Must Verify Your Email Address Before Logging In",
-                                   Toast.LENGTH_LONG
-                               ).show()
-                       )
+                        } else (
+                                Toast.makeText(
+                                    getActivity(),
+                                    "You Must Verify Your Email Address Before Logging In",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                )
 
-                    }else{
+                    } else {
 
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(getActivity(), "Error, ", Toast.LENGTH_LONG).show()
-                    }
+                        Toast.makeText(
+                            getActivity(),
+                            "Error, Please check all details are filled in correctly",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        checkUserRole(layout)
 
                     }
 
                 }
+
         }
+    }
 
 
-    fun setOnCreateAccount(layout: View){
+    fun setOnCreateAccount(layout: View) {
         val createAccountBtn = layout.findViewById<Button>(ie.wit.savvytutor.R.id.createAccountBtn)
 
         createAccountBtn.setOnClickListener {
@@ -122,69 +123,64 @@ class LoginFragment : Fragment() {
     }
 
 
-    fun checkUid(layout: View) {
+    fun checkUserRole(layout: View) {
         val email = layout.findViewById<EditText>(ie.wit.savvytutor.R.id.loginEmail).text.toString()
         val userDatabase =
-            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
-                .getReference(
-                    "Users"
-                )
+            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
-        val emailCheck = userDatabase.equalTo(email)
-
+        val check = userDatabase.child("Users").orderByChild("email").equalTo(email)
         val eventListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (!dataSnapshot.exists()) {
+                if (dataSnapshot.exists()) {
                     //get The Uid for that user
-                    
-                    println("yay")
-                }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                println("no!")
-            }
-        }
-        emailCheck.addListenerForSingleValueEvent(eventListener)
+
+                    println(dataSnapshot)
+                    val uid = dataSnapshot.children.first().key
+                    println(uid)
 
 
-    }
+                    val individualDb = uid?.let { userDatabase.child("Users").child(it) }
+                    println(individualDb)
 
+                    if (individualDb != null) {
+                        individualDb.child("role").get().addOnSuccessListener {
+                            if (it.exists()) {
+                                val usersRole = it.value
 
+                                if (usersRole == "Parent") {
+                                    val fragment = HomeFragment()
+                                    activity?.supportFragmentManager?.beginTransaction()
+                                        ?.replace(
+                                            ie.wit.savvytutor.R.id.fragment_container,
+                                            fragment
+                                        )?.commit()
 
-    fun checkRole() {
+                                } else {
 
-        val userDatabase =
-            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
-                .getReference(
-                    "Users"
-                ).child("-Mz1FR2jJnrBa1Ws-aVU")
+                                    val fragment = ChatFragment()
+                                    activity?.supportFragmentManager?.beginTransaction()
+                                        ?.replace(
+                                            ie.wit.savvytutor.R.id.fragment_container,
+                                            fragment
+                                        )?.commit()
 
-        userDatabase.child("role").get().addOnSuccessListener {
+                                }
+                            }
 
-            if (it.exists()) {
-                val usersRole = it.value
-
-                if (usersRole == "Parent") {
-
-                    val fragment = HomeFragment()
-                    activity?.supportFragmentManager?.beginTransaction()
-                        ?.replace(ie.wit.savvytutor.R.id.fragment_container, fragment)?.commit()
+                        }
+                    }
 
                 } else {
-                    Toast.makeText(
-                        getActivity(),
-                        "Error",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    println("error")
                 }
+            }
 
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("Operation Cancelled due to Error")
             }
         }
+        check.addListenerForSingleValueEvent(eventListener)
     }
-
-
-
-
 
 }
 

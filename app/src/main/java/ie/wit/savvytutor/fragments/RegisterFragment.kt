@@ -80,7 +80,7 @@ class RegisterFragment : Fragment() {
             user.password = password.text.toString()
             user.role = role.selectedItem.toString()
 
-            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty()) {
+            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty()  || user.role == "Choose Role") {
                 Toast.makeText(getActivity(), "Please fill in all the details", Toast.LENGTH_SHORT)
                     .show()
             } else {
@@ -177,7 +177,6 @@ class RegisterFragment : Fragment() {
 
         }
     }
-
 
 
     fun setBackToLogin(layout: View){
