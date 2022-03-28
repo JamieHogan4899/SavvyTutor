@@ -68,9 +68,13 @@ class LoginFragment : Fragment() {
 
         loginbtn.setOnClickListener {
 
-
             user.email = email.text.toString()
             user.password = password.text.toString()
+
+            if (user.email.isEmpty() || user.password.isEmpty()) {
+                Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
 
             mAuth.signInWithEmailAndPassword(user.email, user.password)
                 .addOnCompleteListener() { task ->
@@ -103,6 +107,7 @@ class LoginFragment : Fragment() {
                         checkUserRole(layout)
 
                     }
+                }
 
                 }
 
@@ -148,7 +153,7 @@ class LoginFragment : Fragment() {
                                 val usersRole = it.value
 
                                 if (usersRole == "Parent") {
-                                    val fragment = HomeFragment()
+                                    val fragment = ChatFragment()
                                     activity?.supportFragmentManager?.beginTransaction()
                                         ?.replace(
                                             ie.wit.savvytutor.R.id.fragment_container,
@@ -157,7 +162,7 @@ class LoginFragment : Fragment() {
 
                                 } else {
 
-                                    val fragment = ChatFragment()
+                                    val fragment = HomeFragment()
                                     activity?.supportFragmentManager?.beginTransaction()
                                         ?.replace(
                                             ie.wit.savvytutor.R.id.fragment_container,
