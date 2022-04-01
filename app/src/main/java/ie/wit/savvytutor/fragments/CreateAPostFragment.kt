@@ -53,10 +53,6 @@ class CreateAPostFragment : Fragment() {
 
     fun setAddButtonListener(layout: View) {
 
-        if (post.title.isEmpty() || post.subject.isEmpty()){
-            Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
-                .show()
-        } else {
 
             //assign the user input fields
             val addBtn = layout.findViewById<Button>(R.id.createapostbtn)
@@ -68,6 +64,11 @@ class CreateAPostFragment : Fragment() {
 
             //take in user input and store in the model
             addBtn.setOnClickListener {
+
+                if (post.title.isEmpty() || post.subject.isEmpty()|| post.location.isEmpty()|| post.level.isEmpty() || post.description.isEmpty()){
+                    Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
 
                 post.title = title.text.toString()
                 post.subject = subject.selectedItem.toString()

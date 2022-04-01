@@ -56,6 +56,9 @@ class TutorCreatePostFragment : Fragment() {
 
 
         addBtn.setOnClickListener {
+            if(tutorPosts.title.isEmpty() || tutorPosts.subject.isEmpty() || tutorPosts.location.isEmpty()||
+                tutorPosts.level.isEmpty() || tutorPosts.availability.isEmpty()|| tutorPosts.description.isEmpty())
+
             tutorPosts.title = title.text.toString()
             tutorPosts.subject = subject.selectedItem.toString()
             tutorPosts.location = location.text.toString()
