@@ -22,7 +22,7 @@ data class TutorPostModel(
             "subject" to subject,
             "location" to location,
             "level" to level,
-            "availabilty" to availability,
+            "availability" to availability,
             "description" to description
         )
     }

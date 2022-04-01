@@ -52,39 +52,46 @@ class CreateAPostFragment : Fragment() {
 
 
     fun setAddButtonListener(layout: View) {
-        //assign the user input fields
-        val addBtn = layout.findViewById<Button>(R.id.createapostbtn)
-        val title = layout.findViewById<EditText>(R.id.postTitle)
-        val subject = layout.findViewById<Spinner>(R.id.chooseSubject)
-        val location = layout.findViewById<EditText>(R.id.chooseLocation)
-        val level = layout.findViewById<Spinner>(R.id.chooseLevel)
-        val description = layout.findViewById<EditText>(R.id.description)
 
-        //take in user input and store in the model
-        addBtn.setOnClickListener {
+        if (post.title.isEmpty() || post.subject.isEmpty()){
+            Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
+                .show()
+        } else {
 
-            post.title = title.text.toString()
-            post.subject = subject.selectedItem.toString()
-            post.location = location.text.toString()
-            post.level = level.selectedItem.toString()
-            post.description = description.text.toString()
+            //assign the user input fields
+            val addBtn = layout.findViewById<Button>(R.id.createapostbtn)
+            val title = layout.findViewById<EditText>(R.id.postTitle)
+            val subject = layout.findViewById<Spinner>(R.id.chooseSubject)
+            val location = layout.findViewById<EditText>(R.id.chooseLocation)
+            val level = layout.findViewById<Spinner>(R.id.chooseLevel)
+            val description = layout.findViewById<EditText>(R.id.description)
+
+            //take in user input and store in the model
+            addBtn.setOnClickListener {
+
+                post.title = title.text.toString()
+                post.subject = subject.selectedItem.toString()
+                post.location = location.text.toString()
+                post.level = level.selectedItem.toString()
+                post.description = description.text.toString()
 
 
 
-            writeNewPost(
-                PostModel(
-                    title = post.title,
-                    subject = post.subject,
-                    location = post.location,
-                    level = post.level,
-                    description = post.description
+                writeNewPost(
+                    PostModel(
+                        title = post.title,
+                        subject = post.subject,
+                        location = post.location,
+                        level = post.level,
+                        description = post.description
+                    )
                 )
-            )
 
-            println(post)
-            Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
+                println(post)
+                Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
 
 
+            }
         }
 
     }

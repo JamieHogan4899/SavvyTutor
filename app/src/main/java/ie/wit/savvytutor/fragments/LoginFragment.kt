@@ -165,7 +165,7 @@ class LoginFragment : Fragment() {
 
                                 } else {
 
-                                    val fragment = HomeFragment()
+                                    val fragment = TutorHomeFragment()
                                     activity?.supportFragmentManager?.beginTransaction()
                                         ?.replace(
                                             ie.wit.savvytutor.R.id.fragment_container,

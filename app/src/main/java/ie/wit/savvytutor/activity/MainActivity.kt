@@ -1,6 +1,7 @@
 package ie.wit.savvytutor.activity
 
 
+import ParentHomeFragment
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.home -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
-                HomeFragment()
+                ParentHomeFragment()
             ).commit()
             R.id.chat -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
@@ -74,6 +75,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.createAPost -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
                 CreateAPostFragment()
+            ).commit()
+            R.id.tutorHome -> supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_container,
+                TutorHomeFragment()
             ).commit()
             R.id.tutorCreate -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,

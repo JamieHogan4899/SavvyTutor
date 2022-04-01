@@ -28,9 +28,14 @@
     <item android:title="Tutors">
         <menu>
             <item
+                android:id="@+id/tutorHome"
+                android:icon="@drawable/ic_baseline_home_24"
+                android:title="Tutor Home" />
+
+            <item
                 android:id="@+id/tutorCreate"
                 android:icon="@drawable/ic_baseline_post_add_24"
-                android:title="Login" />
+                android:title="Tutor Create Post" />
 
 
         </menu>

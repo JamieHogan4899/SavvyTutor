@@ -24,7 +24,7 @@ private lateinit var  postArrayList : ArrayList<PostModel>
 
 
 
-class HomeFragment : Fragment() {
+class TutorHomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
         postRecyclerView.setHasFixedSize(true)
 
         postArrayList = arrayListOf<PostModel>()
-        getUserData()
+        getParentPosts()
         //changeToolbar(root)
 
 
@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
 //    }
 
 
-    private fun getUserData(){
+    private fun getParentPosts(){
 
         dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference(
             "ParentPosts"
