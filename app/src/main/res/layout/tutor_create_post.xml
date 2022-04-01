@@ -1,0 +1,165 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/createapost_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="10sp"
+        android:text="Create A Post"
+        android:textColor="@color/blackText"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="60sp"
+        android:text="Title"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/tutorPostTitle"
+        android:layout_width="360sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="90sp"
+        android:background="@drawable/rounded_corner"
+        android:hint=" Title"
+        android:inputType="text"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="135sp"
+        android:text="Select Subject"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <Spinner
+        android:id="@+id/tutorchooseSubject"
+        android:layout_width="360sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="160sp"
+        android:entries = "@array/SubjectArrary"
+        android:background="@drawable/rounded_corner"
+        android:theme="@style/spinnerTheme"
+
+        />
+
+    <Button
+        android:id="@+id/tutorcreateapostbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="630sp"
+        android:text="Post"
+        android:textColor="@color/blackText"
+        android:backgroundTint="@color/main"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="205sp"
+        android:text="Location"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/tutorChooseLocation"
+        android:layout_width="360sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="235sp"
+        android:background="@drawable/rounded_corner"
+        android:hint="Location"
+        android:inputType="text"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="275sp"
+        android:text="Select Level"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/tutorChooseLevel"
+        android:layout_width="360sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="310sp"
+        android:entries = "@array/LevelArrary"
+        android:background="@drawable/rounded_corner"
+        android:theme="@style/spinnerTheme"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="355sp"
+        android:text="Availability"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/tutorChooseAvailability"
+        android:layout_width="360sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="385sp"
+        android:background="@drawable/rounded_corner"
+        android:hint="Location"
+        android:inputType="text"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="430sp"
+        android:text="Description"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/tutorDescription"
+        android:layout_width="360sp"
+        android:layout_height="150sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="460sp"
+        android:background="@drawable/rounded_corner"
+        android:inputType="text"
+        />
+
+
+
+
+
+
+</RelativeLayout>

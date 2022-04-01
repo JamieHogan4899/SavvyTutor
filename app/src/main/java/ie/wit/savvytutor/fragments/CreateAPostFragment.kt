@@ -107,7 +107,6 @@ class CreateAPostFragment : Fragment() {
             "/ParentPosts/$key" to postValues,
 
             )
-
         database.updateChildren(childUpdates)
     }
 }

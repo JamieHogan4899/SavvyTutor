@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ).commit()
             navigationView.setCheckedItem(R.id.home)
         }
-
-
         setLoginButtonListener()
     }
 
@@ -77,13 +75,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.fragment_container,
                 CreateAPostFragment()
             ).commit()
-            R.id.login -> supportFragmentManager.beginTransaction().replace(
+            R.id.tutorCreate -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
-                LoginFragment()
-            ).commit()
-            R.id.register -> supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container,
-                RegisterFragment()
+                TutorCreatePostFragment()
             ).commit()
 
 

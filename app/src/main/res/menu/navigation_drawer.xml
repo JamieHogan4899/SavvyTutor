@@ -25,16 +25,13 @@
 
     </group>
 
-    <item android:title="Accounts">
+    <item android:title="Tutors">
         <menu>
             <item
-                android:id="@+id/login"
-                android:icon="@drawable/ic_baseline_login_24"
+                android:id="@+id/tutorCreate"
+                android:icon="@drawable/ic_baseline_post_add_24"
                 android:title="Login" />
-            <item
-                android:id="@+id/register"
-                android:icon="@drawable/ic_baseline_app_registration_24"
-                android:title="Register" />
+
 
         </menu>
     </item>
