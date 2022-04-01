@@ -1,7 +1,7 @@
 package ie.wit.savvytutor.fragments
 
+import ParentHomeFragment
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+
 
 
 private lateinit var mAuth: FirebaseAuth
@@ -52,6 +53,8 @@ class LoginFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+        (activity as AppCompatActivity?)!!.supportActionBar
+
     }
 
     override fun onStop() {
@@ -153,7 +156,7 @@ class LoginFragment : Fragment() {
                                 val usersRole = it.value
 
                                 if (usersRole == "Parent") {
-                                    val fragment = ChatFragment()
+                                    val fragment = ParentHomeFragment()
                                     activity?.supportFragmentManager?.beginTransaction()
                                         ?.replace(
                                             ie.wit.savvytutor.R.id.fragment_container,

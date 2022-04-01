@@ -70,6 +70,7 @@ class CreateAPostFragment : Fragment() {
             post.description = description.text.toString()
 
 
+
             writeNewPost(
                 PostModel(
                     title = post.title,

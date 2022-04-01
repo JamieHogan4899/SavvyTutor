@@ -10,16 +10,16 @@
         android:layout_margin="4dp">
 
         <ImageView
-            android:id="@+id/displayProfilePic"
+            android:id="@+id/displayTutorProfilePic"
             android:layout_width="80sp"
             android:layout_height="75sp"
             android:layout_marginTop="5sp"
             >
 
-            </ImageView>
+        </ImageView>
 
         <TextView
-            android:id="@+id/displayTitle"
+            android:id="@+id/displayTutorTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -30,37 +30,37 @@
             android:layout_marginLeft="100sp"/>
 
         <TextView
-            android:id="@+id/displaySubject"
+            android:id="@+id/displayTutorSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/displayTitle"
+            android:layout_below="@+id/displayTutorTitle"
             android:text="Subject"
             android:textSize="15sp"
             android:layout_marginLeft="100sp"
             />
         <TextView
-            android:id="@+id/displayLocation"
+            android:id="@+id/displayTutorLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/displaySubject"
+            android:layout_below="@+id/displayTutorSubject"
             android:text="Location"
             android:textSize="15sp"
             android:layout_marginLeft="100sp"
             />
         <TextView
-            android:id="@+id/displayLevel"
+            android:id="@+id/displayTutorLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/displayLocation"
+            android:layout_below="@+id/displayTutorLocation"
             android:text="Level"
             android:textSize="15sp"
             android:layout_marginLeft="100sp"
             />
         <TextView
-            android:id="@+id/displayDescription"
+            android:id="@+id/displayTutorDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/displayLevel"
+            android:layout_below="@+id/displayTutorLevel"
             android:text="Description"
             android:textSize="15sp"
             android:layout_marginLeft="100sp"

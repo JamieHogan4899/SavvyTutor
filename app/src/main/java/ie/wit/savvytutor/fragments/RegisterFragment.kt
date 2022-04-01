@@ -37,7 +37,6 @@ class RegisterFragment : Fragment() {
         // Initialize Firebase Auth
         mAuth = Firebase.auth
 
-
     }
 
     @Nullable
@@ -51,6 +50,7 @@ class RegisterFragment : Fragment() {
         setRegisterButtonListener(root)
         setAddProfilePicture(root)
         setBackToLogin(root)
+
         return root
 
 
@@ -162,7 +162,7 @@ class RegisterFragment : Fragment() {
     }
 
     //take in the image and get the path
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?, layout: View) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             IMAGE_REQUEST -> {

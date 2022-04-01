@@ -1,10 +1,14 @@
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.savvytutor.R
+import ie.wit.savvytutor.fragments.post
+import ie.wit.savvytutor.helpers.readImageFromPath
 import ie.wit.savvytutor.models.PostModel
+import ie.wit.savvytutor.models.UserModel
 
 class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerView.Adapter<DisplayPostAdapter.PostViewHolder>(){
 
@@ -17,11 +21,13 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
        val currentItem = postList[position]
 
+
         holder.title.text = currentItem.title
         holder.subject.text = currentItem.subject
         holder.location.text = currentItem.location
         holder.level.text = currentItem.level
         holder.description.text = currentItem.description
+
 
     }
 
@@ -36,11 +42,13 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         val location :TextView = itemView.findViewById(R.id.displayLocation)
         val level : TextView = itemView.findViewById(R.id.displayLevel)
         val description : TextView = itemView.findViewById(R.id.displayDescription)
+        var profilepic: ImageView = itemView.findViewById(R.id.displayProfilePic)
 
 
 
 
     }
+
 
 
 }
