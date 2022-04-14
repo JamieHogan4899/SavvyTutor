@@ -22,12 +22,14 @@ class TutorChatFragment : Fragment() {
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<UserModel>
     private lateinit var dbRef: DatabaseReference
+    private lateinit var mAuth: FirebaseAuth
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users").ref
+        mAuth = FirebaseAuth.getInstance()
     }
 
     @Nullable
@@ -55,11 +57,12 @@ class TutorChatFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (postSnapshot in snapshot.children) {
                     val currentUser = postSnapshot.getValue(UserModel::class.java)
+
+                    //BUG FIX 1.26.13
+
                     val email = currentUser?.email
-                    println(email)
                     if (email != null) {
                         userArrayList.add(currentUser)
-                        println(userArrayList)
                     }
 
                     userRecyclerView.adapter = UserAdapter(userArrayList)
