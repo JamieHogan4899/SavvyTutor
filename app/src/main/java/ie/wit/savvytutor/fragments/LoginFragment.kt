@@ -18,10 +18,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
-
+import ie.wit.savvytutor.main.SavvyTutor
 
 
 private lateinit var mAuth: FirebaseAuth
+
 
 
 class LoginFragment : Fragment() {
@@ -89,7 +90,6 @@ class LoginFragment : Fragment() {
                         if (mAuth.currentUser?.isEmailVerified == true) {
 
                             checkUserRole(layout)
-
 
                         } else (
                                 Toast.makeText(

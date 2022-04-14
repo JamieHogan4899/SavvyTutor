@@ -12,7 +12,6 @@ class SavvyTutor : Application() {
 
     lateinit var database: DatabaseReference
     lateinit var currentUser: FirebaseUser
-    lateinit var storage: StorageReference
 
 
 
