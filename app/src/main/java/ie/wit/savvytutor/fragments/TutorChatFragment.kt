@@ -16,6 +16,6 @@ class TutorChatFragment : Fragment() {
         @Nullable savedInstanceState: Bundle?
     ): View {
         //inflate the fragment layout
-        return inflater.inflate(ie.wit.savvytutor.R.layout.chat_fragment, container, false)
+        return inflater.inflate(ie.wit.savvytutor.R.layout.tutor_chat_fragment, container, false)
     }
 }

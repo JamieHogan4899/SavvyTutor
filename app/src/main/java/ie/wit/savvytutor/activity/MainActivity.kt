@@ -84,6 +84,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.fragment_container,
                 TutorCreatePostFragment()
             ).commit()
+            R.id.tutorChat -> supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_container,
+                TutorChatFragment()
+            ).commit()
 
 
         }
