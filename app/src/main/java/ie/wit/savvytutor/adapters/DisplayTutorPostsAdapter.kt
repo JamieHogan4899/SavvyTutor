@@ -12,8 +12,7 @@ import ie.wit.savvytutor.models.TutorPostModel
 class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostModel>) : RecyclerView.Adapter<DisplayTutorPostAdapter.TutorPostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TutorPostViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.display_tutor_posts, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.display_tutor_posts, parent, false)
         return TutorPostViewHolder(itemView)
     }
 

@@ -23,17 +23,6 @@
             app:popupTheme="@style/Theme.MainTheme"
             >
 
-            <Button
-                android:id="@+id/LoginToolbarBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Login"
-                android:textSize="15sp"
-                android:layout_marginLeft="200sp"
-                android:layout_marginRight="15sp"
-                />
-
-
         </androidx.appcompat.widget.Toolbar>
 
 

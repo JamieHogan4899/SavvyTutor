@@ -2,27 +2,32 @@ package ie.wit.savvytutor.activity
 
 
 import ParentHomeFragment
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.fragments.*
 
 
-
 lateinit var drawer: DrawerLayout
+private lateinit var mAuth: FirebaseAuth
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mAuth = Firebase.auth
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar) //use the new toolbar
         setSupportActionBar(toolbar) //set the new action bar to be my toolbar
@@ -53,7 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ).commit()
             navigationView.setCheckedItem(R.id.home)
         }
-        setLoginButtonListener()
+
     }
 
 
@@ -105,21 +110,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-    fun setLoginButtonListener() {
-        val loginBtn = findViewById<Button>(R.id.LoginToolbarBtn)
-        val fragment = LoginFragment()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_layout, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
-
-
-        loginBtn.setOnClickListener {
-
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
-
-            
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.logout) {
+            mAuth.signOut()
+            finish()
+            val intent = Intent(this@MainActivity, MainActivity::class.java)
+            startActivity(intent)
         }
-
-
+        return true
     }
 
 
