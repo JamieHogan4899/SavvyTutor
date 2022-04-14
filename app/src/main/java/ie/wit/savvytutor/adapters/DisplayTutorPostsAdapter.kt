@@ -21,7 +21,6 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
     override fun onBindViewHolder(holder: TutorPostViewHolder, position: Int) {
         val currentItem = tutorPostList[position]
 
-
         holder.title.text = currentItem.title
         holder.subject.text = currentItem.subject
         holder.location.text = currentItem.location
