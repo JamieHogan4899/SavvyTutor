@@ -18,6 +18,7 @@ import com.google.firebase.database.*
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.adapters.MessageAdapter
 import ie.wit.savvytutor.models.MessageModel
+import ie.wit.savvytutor.models.UserModel
 
 
 private lateinit var messageRecyclerView: RecyclerView
@@ -29,7 +30,7 @@ var reciverRoom: String? = null
 var senderRoom: String? = null
 var senderuid: String? = FirebaseAuth.getInstance().currentUser?.uid
 
-class ViewChatFragment : Fragment() {
+class ViewChatFragment : Fragment(){
     @Nullable
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,10 +54,10 @@ class ViewChatFragment : Fragment() {
         messageRecyclerView = root.findViewById(R.id.messageRecyclerView)
         messageBox = root.findViewById(R.id.messageBox)
 
-
         messageRecyclerView.layoutManager = LinearLayoutManager(context)
         messageRecyclerView.setHasFixedSize(true)
         messageArrayList = arrayListOf<MessageModel>()
+
 
 
 
@@ -72,6 +73,7 @@ class ViewChatFragment : Fragment() {
 
                 messageRecyclerView.adapter?.notifyDataSetChanged()
                 messageRecyclerView.adapter = context?.let { MessageAdapter(messageArrayList) }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -147,4 +149,9 @@ class ViewChatFragment : Fragment() {
 
         }
     }
+
+
 }
+
+
+
