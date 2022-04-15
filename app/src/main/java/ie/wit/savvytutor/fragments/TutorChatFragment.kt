@@ -11,11 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ie.wit.savvytutor.R
-import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
 import ie.wit.savvytutor.adapters.UserAdapter
-import ie.wit.savvytutor.models.TutorPostModel
 import ie.wit.savvytutor.models.UserModel
-import kotlinx.android.synthetic.main.tutor_chat_fragment.view.*
 
 class TutorChatFragment : Fragment() {
 
@@ -65,7 +62,9 @@ class TutorChatFragment : Fragment() {
                         userArrayList.add(currentUser)
                     }
 
-                    userRecyclerView.adapter = UserAdapter(userArrayList)
+                    userRecyclerView.adapter?.notifyDataSetChanged()
+                    userRecyclerView.adapter = context?.let { UserAdapter(userArrayList, it) }
+
                 }
             }
 
