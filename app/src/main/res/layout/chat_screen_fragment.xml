@@ -22,10 +22,10 @@
 
     <EditText
         android:id="@+id/messageBox"
-        android:layout_width="350sp"
+        android:layout_width="300sp"
         android:layout_height="40sp"
         android:hint="Type Here"
-        android:layout_marginTop="575sp"
+        android:layout_marginTop="600sp"
         android:layout_marginLeft="10sp"
         android:background="@drawable/message_box_backgroud"
         android:paddingLeft="15sp"
@@ -33,16 +33,21 @@
     
     <ImageView
         android:id="@+id/sendBtn"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
+        android:layout_width="25sp"
+        android:layout_height="25sp"
         android:src="@drawable/ic_baseline_send_24"
-        android:layout_marginTop="575sp"
-        android:layout_marginLeft="375sp"
+        android:layout_marginTop="610sp"
+        android:layout_marginLeft="315sp"
         />
 
-
-
-
+    <ImageView
+        android:id="@+id/callBtn"
+        android:layout_width="25sp"
+        android:layout_height="25sp"
+        android:src="@drawable/ic_baseline_call_24"
+        android:layout_marginTop="610sp"
+        android:layout_marginLeft="350sp"
+        />
 
 
 </RelativeLayout>

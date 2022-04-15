@@ -14,8 +14,7 @@ import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.fragments.ViewChatFragment
 import ie.wit.savvytutor.models.UserModel
 
-
-class UserAdapter(private val userList: ArrayList<UserModel>, val context: Context) :
+class UserAdapter(private val userList: ArrayList<UserModel>, val context: Context, ) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
 

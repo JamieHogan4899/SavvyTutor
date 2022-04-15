@@ -80,9 +80,9 @@ class RegisterFragment : Fragment() {
             user.email = email.text.toString()
             user.password = password.text.toString()
             user.role = role.selectedItem.toString()
-            user.username = username.text.toString()
+            user.phone = username.text.toString()
 
-            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty()  || user.role == "Choose Role" ||  user.username.isEmpty()) {
+            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty()  || user.role == "Choose Role" ||  user.phone.isEmpty()) {
                 Toast.makeText(getActivity(), "Please fill in all the details", Toast.LENGTH_SHORT)
                     .show()
             } else {
@@ -101,7 +101,7 @@ class RegisterFragment : Fragment() {
                                     password = user.password,
                                     role = user.role,
                                     profilepic = user.profilepic,
-                                    username = user.username,
+                                    phone = user.phone,
 
                                 )
                             )

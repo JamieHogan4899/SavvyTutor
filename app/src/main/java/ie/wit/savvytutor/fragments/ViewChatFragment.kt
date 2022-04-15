@@ -1,8 +1,8 @@
 package ie.wit.savvytutor.fragments
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +17,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.adapters.MessageAdapter
-import ie.wit.savvytutor.adapters.UserAdapter
 import ie.wit.savvytutor.models.MessageModel
-import ie.wit.savvytutor.models.UserModel
+
 
 private lateinit var messageRecyclerView: RecyclerView
 private lateinit var messageBox: EditText
@@ -29,7 +28,6 @@ private lateinit var dbRef: DatabaseReference
 var reciverRoom: String? = null
 var senderRoom: String? = null
 var senderuid: String? = FirebaseAuth.getInstance().currentUser?.uid
-
 
 class ViewChatFragment : Fragment() {
     @Nullable
@@ -62,7 +60,8 @@ class ViewChatFragment : Fragment() {
 
 
 
-        dbRef.child("Chat").child(senderRoom!!).child("messages").addValueEventListener(object: ValueEventListener{
+        dbRef.child("Chat").child(senderRoom!!).child("messages").addValueEventListener(object :
+            ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 messageArrayList.clear()
 
@@ -74,16 +73,18 @@ class ViewChatFragment : Fragment() {
                 messageRecyclerView.adapter?.notifyDataSetChanged()
                 messageRecyclerView.adapter = context?.let { MessageAdapter(messageArrayList) }
             }
+
             override fun onCancelled(error: DatabaseError) {
             }
 
 
-        } )
+        })
 
 
 
 
         sendBtnListener(root)
+        callBtnListener(root)
         return root
     }
 
@@ -106,5 +107,44 @@ class ViewChatFragment : Fragment() {
 
         }
 
+    }
+
+    fun getNumber(){
+        dbRef.child("Users").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                println(snapshot.value)
+
+                val uid = snapshot.children.first().key
+                println(uid)
+
+                val individualDb = uid?.let { dbRef.child("Users").child(it) }
+                if (individualDb != null) {
+                    individualDb.child("phone").get().addOnSuccessListener {
+                        if (it.exists()) {
+                            val phone = it.value
+                            println(phone)
+
+                            val intent = Intent(Intent.ACTION_DIAL)
+                            intent.setData(Uri.parse("tel:"+phone));
+                            startActivity(intent);
+
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
+    }
+
+    fun callBtnListener(layout: View){
+
+        val callBtn = layout.findViewById<ImageView>(R.id.callBtn)
+
+        callBtn.setOnClickListener(){
+
+            getNumber()
+
+        }
     }
 }
