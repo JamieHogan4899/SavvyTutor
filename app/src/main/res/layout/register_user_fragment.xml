@@ -77,6 +77,9 @@
 
 
 
+
+
+
     <Spinner
         android:id="@+id/chooseRole"
         android:layout_width="290sp"
@@ -98,6 +101,30 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60sp"
+        android:layout_marginTop="450sp"
+        android:text="Username"
+        android:textColor="@color/blackText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/registerUsername"
+        android:layout_width="290sp"
+        android:layout_height="35sp"
+        android:layout_marginLeft="60sp"
+        android:layout_marginTop="480sp"
+        android:background="@drawable/rounded_corner"
+        android:hint="Enter Username Here"
+        android:inputType="text" />
+
+
     <ImageView
         android:id="@+id/registershowprofilepic"
         android:layout_width="150sp"
@@ -112,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15sp"
-        android:layout_marginTop="460sp"
+        android:layout_marginTop="515sp"
         android:backgroundTint="@color/whiteText"
         android:text="Select Profile Picture "
         android:textColor="@color/blackText" />
@@ -123,7 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15sp"
-        android:layout_marginTop="510sp"
+        android:layout_marginTop="560sp"
         android:backgroundTint="@color/whiteText"
         android:text="Register"
         android:textColor="@color/blackText" />

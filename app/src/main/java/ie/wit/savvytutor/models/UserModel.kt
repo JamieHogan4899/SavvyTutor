@@ -11,7 +11,9 @@ data class UserModel(
     var email: String = "",
     var password: String = "",
     var role: String = "",
-    var profilepic: String = ""
+    var profilepic: String = "",
+    var username: String= ""
+
 
 ){
 
@@ -23,7 +25,8 @@ fun toMap(): Map<String, Any?> {
         "email" to email,
         "password" to password,
         "role" to role,
-        "profilepic" to profilepic
+        "profilepic" to profilepic,
+        "username" to username
 
     )
 }
