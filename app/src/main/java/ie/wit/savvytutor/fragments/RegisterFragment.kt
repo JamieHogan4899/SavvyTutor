@@ -72,6 +72,7 @@ class RegisterFragment : Fragment() {
         val email = layout.findViewById<EditText>(R.id.registerEmail)
         val password = layout.findViewById<EditText>(R.id.registerPassword)
         val role = layout.findViewById<Spinner>(R.id.chooseRole)
+        val username = layout.findViewById<EditText>(R.id.registerUsername)
         val displayprofilepic = layout.findViewById<ImageView>(R.id.registershowprofilepic)
 
         registerbtn.setOnClickListener {
@@ -79,13 +80,12 @@ class RegisterFragment : Fragment() {
             user.email = email.text.toString()
             user.password = password.text.toString()
             user.role = role.selectedItem.toString()
+            user.username = username.text.toString()
 
-            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty()  || user.role == "Choose Role") {
+            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty()  || user.role == "Choose Role" ||  user.username.isEmpty()) {
                 Toast.makeText(getActivity(), "Please fill in all the details", Toast.LENGTH_SHORT)
                     .show()
             } else {
-
-
                 mAuth.createUserWithEmailAndPassword(user.email, user.password)
                     .addOnCompleteListener() { task ->
                         if (task.isSuccessful) {
@@ -100,7 +100,8 @@ class RegisterFragment : Fragment() {
                                     email = user.email,
                                     password = user.password,
                                     role = user.role,
-                                    profilepic = user.profilepic
+                                    profilepic = user.profilepic,
+                                    username = user.username,
 
                                 )
                             )
