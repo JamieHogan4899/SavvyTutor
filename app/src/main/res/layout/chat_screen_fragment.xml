@@ -25,7 +25,7 @@
         android:layout_width="300sp"
         android:layout_height="40sp"
         android:hint="Type Here"
-        android:layout_marginTop="600sp"
+        android:layout_marginTop="615sp"
         android:layout_marginLeft="10sp"
         android:background="@drawable/message_box_backgroud"
         android:paddingLeft="15sp"
@@ -36,7 +36,7 @@
         android:layout_width="25sp"
         android:layout_height="25sp"
         android:src="@drawable/ic_baseline_send_24"
-        android:layout_marginTop="610sp"
+        android:layout_marginTop="625sp"
         android:layout_marginLeft="315sp"
         />
 
@@ -45,7 +45,7 @@
         android:layout_width="25sp"
         android:layout_height="25sp"
         android:src="@drawable/ic_baseline_call_24"
-        android:layout_marginTop="610sp"
+        android:layout_marginTop="625sp"
         android:layout_marginLeft="350sp"
         />
 
