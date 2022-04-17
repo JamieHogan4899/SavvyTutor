@@ -71,10 +71,14 @@ class TutorChatFragment : Fragment() {
                     val currentUser = postSnapshot.getValue(UserModel::class.java)
                     val email = currentUser?.email
 
+                    if (currentUser != null) {
+                        if (!mAuth.currentUser?.uid.equals(currentUser.uid))
                             if (email != null) {
                                 userArrayList.add(currentUser!!)
 
+
                             }
+                    }
                             userRecyclerView.adapter?.notifyDataSetChanged()
                             userRecyclerView.adapter =
                                 context?.let {

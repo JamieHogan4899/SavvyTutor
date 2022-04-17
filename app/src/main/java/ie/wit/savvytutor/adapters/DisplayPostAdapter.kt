@@ -21,7 +21,6 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
        val currentItem = postList[position]
 
-
         holder.title.text = currentItem.title
         holder.subject.text = currentItem.subject
         holder.location.text = currentItem.location
