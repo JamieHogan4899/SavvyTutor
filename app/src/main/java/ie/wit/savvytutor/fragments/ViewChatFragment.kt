@@ -39,15 +39,13 @@ class ViewChatFragment : Fragment(){
     ): View {
         //inflate the fragment layout
         val root = inflater.inflate(R.layout.chat_screen_fragment, container, false)
-        dbRef =
-            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
+        dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
 
         val name = "20084469@mail.wit.ie"
         val reciveruid = "-N-d1c1nKJ2fKq9BD6qG"
         senderRoom = reciveruid + senderuid
         reciverRoom = senderuid + reciveruid
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title = name
 
 
 
@@ -57,6 +55,7 @@ class ViewChatFragment : Fragment(){
         messageRecyclerView.layoutManager = LinearLayoutManager(context)
         messageRecyclerView.setHasFixedSize(true)
         messageArrayList = arrayListOf<MessageModel>()
+
 
 
 
@@ -114,17 +113,17 @@ class ViewChatFragment : Fragment(){
     fun getNumber(){
         dbRef.child("Users").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                println(snapshot.value)
+                //println(snapshot.value)
 
                 val uid = snapshot.children.first().key
-                println(uid)
+                //println(uid)
 
                 val individualDb = uid?.let { dbRef.child("Users").child(it) }
                 if (individualDb != null) {
                     individualDb.child("phone").get().addOnSuccessListener {
                         if (it.exists()) {
                             val phone = it.value
-                            println(phone)
+                            //println(phone)
 
                             val intent = Intent(Intent.ACTION_DIAL)
                             intent.setData(Uri.parse("tel:"+phone));
@@ -150,6 +149,10 @@ class ViewChatFragment : Fragment(){
         }
     }
 
+
+    // might be convenient to still do this in its own function
+    private fun handleUserData(data: UserModel) {
+    }
 
 }
 

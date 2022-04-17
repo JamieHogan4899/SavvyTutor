@@ -1,7 +1,6 @@
 package ie.wit.savvytutor.fragments
 
 
-
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -22,8 +21,10 @@ import ie.wit.savvytutor.main.SavvyTutor
 
 
 var post = PostModel()
+
 // Write a message to the database
-val database = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
+val database =
+    FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
 class CreateAPostFragment : Fragment() {
     @Nullable
@@ -54,29 +55,23 @@ class CreateAPostFragment : Fragment() {
     fun setAddButtonListener(layout: View) {
 
 
-            //assign the user input fields
-            val addBtn = layout.findViewById<Button>(R.id.createapostbtn)
-            val title = layout.findViewById<EditText>(R.id.postTitle)
-            val subject = layout.findViewById<Spinner>(R.id.chooseSubject)
-            val location = layout.findViewById<EditText>(R.id.chooseLocation)
-            val level = layout.findViewById<Spinner>(R.id.chooseLevel)
-            val description = layout.findViewById<EditText>(R.id.description)
+        //assign the user input fields
+        val addBtn = layout.findViewById<Button>(R.id.createapostbtn)
+        val title = layout.findViewById<EditText>(R.id.postTitle)
+        val subject = layout.findViewById<Spinner>(R.id.chooseSubject)
+        val location = layout.findViewById<EditText>(R.id.chooseLocation)
+        val level = layout.findViewById<Spinner>(R.id.chooseLevel)
+        val description = layout.findViewById<EditText>(R.id.description)
 
-            //take in user input and store in the model
-            addBtn.setOnClickListener {
+        //take in user input and store in the model
+        addBtn.setOnClickListener {
 
-                if (post.title.isEmpty() || post.subject.isEmpty()|| post.location.isEmpty()|| post.level.isEmpty() || post.description.isEmpty()){
-                    Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-
+            if (post.title.isEmpty() || post.subject.isEmpty() || post.location.isEmpty() || post.level.isEmpty() || post.description.isEmpty()) {
                 post.title = title.text.toString()
                 post.subject = subject.selectedItem.toString()
                 post.location = location.text.toString()
                 post.level = level.selectedItem.toString()
                 post.description = description.text.toString()
-
-
 
                 writeNewPost(
                     PostModel(
@@ -87,11 +82,12 @@ class CreateAPostFragment : Fragment() {
                         description = post.description
                     )
                 )
-
                 println(post)
                 Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
+            } else {
 
-
+                Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 

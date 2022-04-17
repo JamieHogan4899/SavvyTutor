@@ -4,15 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.models.MessageModel
+import ie.wit.savvytutor.models.UserModel
 import kotlinx.android.synthetic.main.send_layout.view.*
 
-class MessageAdapter(private val messgageList: ArrayList<MessageModel>) :
+class MessageAdapter(private val messgageList: ArrayList<MessageModel>, ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val Item_Recivce =1
@@ -49,6 +51,7 @@ class MessageAdapter(private val messgageList: ArrayList<MessageModel>) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentMessage = messgageList[position]
+       // println(currentMessage.senderId)
 
 
         if (holder.javaClass == sentViewHolder::class.java) {
@@ -76,4 +79,8 @@ class MessageAdapter(private val messgageList: ArrayList<MessageModel>) :
             return Item_Recivce
         }
     }
+
+
+
+
 }
