@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.Nullable
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +29,7 @@ var reciverRoom: String? = null
 var senderRoom: String? = null
 var senderuid: String? = FirebaseAuth.getInstance().currentUser?.uid
 
-class ViewChatFragment : Fragment(){
+class ViewChatFragment : Fragment() {
     @Nullable
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +38,8 @@ class ViewChatFragment : Fragment(){
     ): View {
         //inflate the fragment layout
         val root = inflater.inflate(R.layout.chat_screen_fragment, container, false)
-        dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
+        dbRef =
+            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
 
         val name = "20084469@mail.wit.ie"
@@ -57,7 +57,18 @@ class ViewChatFragment : Fragment(){
         messageArrayList = arrayListOf<MessageModel>()
 
 
+        val bundle = this.arguments
 
+        println(bundle)
+
+        if (bundle != null) {
+
+            println(bundle.getString("email"))
+            var email = bundle.getString("email")
+            var phone = bundle.getString("phone")
+
+            println(email +""+ phone+ " From View Chat Fragment")
+        }
 
 
         dbRef.child("Chat").child(senderRoom!!).child("messages").addValueEventListener(object :
@@ -106,11 +117,12 @@ class ViewChatFragment : Fragment(){
 
             messageBox.setText("")
 
+
         }
 
     }
 
-    fun getNumber(){
+    fun getNumber() {
         dbRef.child("Users").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //println(snapshot.value)
@@ -126,7 +138,7 @@ class ViewChatFragment : Fragment(){
                             //println(phone)
 
                             val intent = Intent(Intent.ACTION_DIAL)
-                            intent.setData(Uri.parse("tel:"+phone));
+                            intent.setData(Uri.parse("tel:" + phone));
                             startActivity(intent);
 
                         }
@@ -138,11 +150,11 @@ class ViewChatFragment : Fragment(){
         })
     }
 
-    fun callBtnListener(layout: View){
+    fun callBtnListener(layout: View) {
 
         val callBtn = layout.findViewById<ImageView>(R.id.callBtn)
 
-        callBtn.setOnClickListener(){
+        callBtn.setOnClickListener() {
 
             getNumber()
 

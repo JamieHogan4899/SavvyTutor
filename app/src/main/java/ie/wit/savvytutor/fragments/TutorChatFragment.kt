@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -90,13 +89,22 @@ class TutorChatFragment : Fragment() {
         email = data.email
         phone = data.phone
 
-        println(email + " from adapter")
-        println(phone + " from adapter")
+        println(email + " from class")
+        println(phone + " from class")
+
+        val bundle = Bundle()
+        bundle.putString("email", email) // Put anything what you want
+        bundle.putString("phone", phone) // Put anything what you want
+
+
 
         val optionsFrag = ViewChatFragment()
+        optionsFrag.setArguments(bundle);
+
         (context as MainActivity).getSupportFragmentManager().beginTransaction()
-            .replace(R.id.fragment_container, optionsFrag, "OptionsFragment",).addToBackStack(null)
+            .replace(R.id.fragment_container, optionsFrag, "OptionsFragment").addToBackStack(null)
             .commit()
+
 
     }
 
