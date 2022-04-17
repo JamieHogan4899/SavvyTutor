@@ -144,11 +144,14 @@ class LoginFragment : Fragment() {
 
                     println(dataSnapshot)
                     val uid = dataSnapshot.children.first().key
-                    println(uid)
+                    println("User Id: " + uid)
+
 
 
                     val individualDb = uid?.let { userDatabase.child("Users").child(it) }
                     println(individualDb)
+
+
 
                     if (individualDb != null) {
                         individualDb.child("role").get().addOnSuccessListener {

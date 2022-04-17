@@ -144,7 +144,7 @@ class RegisterFragment : Fragment() {
             return
         }
 
-        user.uid = key
+        user.uid = mAuth.currentUser?.uid
         val userValues = user.toMap()
 
         val childUpdates = hashMapOf<String, Any>(

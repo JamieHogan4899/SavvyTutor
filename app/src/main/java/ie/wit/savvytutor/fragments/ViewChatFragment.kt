@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,12 +26,16 @@ private lateinit var messageBox: EditText
 private lateinit var sendBtn: ImageView
 private lateinit var messageArrayList: ArrayList<MessageModel>
 private lateinit var dbRef: DatabaseReference
+private lateinit var mAuth: FirebaseAuth
 var reciverRoom: String? = null
 var senderRoom: String? = null
+var reciveruid: String? = null
 var senderuid: String? = FirebaseAuth.getInstance().currentUser?.uid
+
 
 var email:String = ""
 var phone:String = ""
+var uid:String = ""
 
 class ViewChatFragment : Fragment() {
     @Nullable
@@ -44,9 +49,27 @@ class ViewChatFragment : Fragment() {
         dbRef =
             FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
+        mAuth = FirebaseAuth.getInstance()
 
-        val name = "20084469@mail.wit.ie"
-        val reciveruid = "-N-d1c1nKJ2fKq9BD6qG"
+        val bundle = this.arguments
+
+        println(bundle)
+
+        if (bundle != null) {
+
+            println(bundle.getString("email"))
+            email = bundle.getString("email").toString()
+            phone = bundle.getString("phone").toString()
+            reciveruid = bundle.getString("uid").toString()
+            //println(email +" "+ phone+ " " + reciveruid +" From View Chat Fragment")
+        }
+
+        senderuid = mAuth.currentUser?.uid
+
+
+
+
+        println("Sender uid " + senderuid + " Recvier uid" + reciveruid)
         senderRoom = reciveruid + senderuid
         reciverRoom = senderuid + reciveruid
 
@@ -60,19 +83,8 @@ class ViewChatFragment : Fragment() {
         messageArrayList = arrayListOf<MessageModel>()
 
 
-        val bundle = this.arguments
 
-        println(bundle)
-
-        if (bundle != null) {
-
-            println(bundle.getString("email"))
-            email = bundle.getString("email").toString()
-            phone = bundle.getString("phone").toString()
-            println(email +" "+ phone+ " From View Chat Fragment")
-
-
-        }
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = email
 
 
         dbRef.child("Chat").child(senderRoom!!).child("messages").addValueEventListener(object :
@@ -95,9 +107,6 @@ class ViewChatFragment : Fragment() {
 
 
         })
-
-
-
 
         sendBtnListener(root)
         callBtnListener(root)

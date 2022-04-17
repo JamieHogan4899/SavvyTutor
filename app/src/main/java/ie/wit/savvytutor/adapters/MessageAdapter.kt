@@ -51,11 +51,9 @@ class MessageAdapter(private val messgageList: ArrayList<MessageModel>, ) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentMessage = messgageList[position]
-       // println(currentMessage.senderId)
 
 
         if (holder.javaClass == sentViewHolder::class.java) {
-
             val viewHolder = holder as sentViewHolder
             holder.sentMessage.text = currentMessage.message
 
@@ -79,7 +77,6 @@ class MessageAdapter(private val messgageList: ArrayList<MessageModel>, ) :
             return Item_Recivce
         }
     }
-
 
 
 

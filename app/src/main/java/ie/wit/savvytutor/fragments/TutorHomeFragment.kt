@@ -1,23 +1,22 @@
 package ie.wit.savvytutor.fragments
 
 import DisplayPostAdapter
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.*
-import ie.wit.savvytutor.R
-import ie.wit.savvytutor.activity.drawer
+import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.models.PostModel
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 private lateinit var dbRef: DatabaseReference
 private lateinit var  postRecyclerView: RecyclerView
@@ -37,15 +36,14 @@ class TutorHomeFragment : Fragment() {
         @Nullable savedInstanceState: Bundle?
     ): View {
         //inflate the fragment layout
-        val root = inflater.inflate(R.layout.home_fragment, container, false)
-        postRecyclerView = root.findViewById(R.id.displayPosts)
+        val root = inflater.inflate(ie.wit.savvytutor.R.layout.home_fragment, container, false)
+        postRecyclerView = root.findViewById(ie.wit.savvytutor.R.id.displayPosts)
         postRecyclerView.layoutManager = LinearLayoutManager(context)
         postRecyclerView.setHasFixedSize(true)
 
         postArrayList = arrayListOf<PostModel>()
         getParentPosts()
         //changeToolbar(root)
-
 
 
         return root
@@ -56,6 +54,7 @@ class TutorHomeFragment : Fragment() {
 //    private fun changeToolbar(layout: View){
 //        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
 //    }
+
 
 
     private fun getParentPosts(){
