@@ -29,6 +29,9 @@ var reciverRoom: String? = null
 var senderRoom: String? = null
 var senderuid: String? = FirebaseAuth.getInstance().currentUser?.uid
 
+var email:String = ""
+var phone:String = ""
+
 class ViewChatFragment : Fragment() {
     @Nullable
     override fun onCreateView(
@@ -64,10 +67,11 @@ class ViewChatFragment : Fragment() {
         if (bundle != null) {
 
             println(bundle.getString("email"))
-            var email = bundle.getString("email")
-            var phone = bundle.getString("phone")
+            email = bundle.getString("email").toString()
+            phone = bundle.getString("phone").toString()
+            println(email +" "+ phone+ " From View Chat Fragment")
 
-            println(email +""+ phone+ " From View Chat Fragment")
+
         }
 
 
@@ -122,33 +126,7 @@ class ViewChatFragment : Fragment() {
 
     }
 
-    fun getNumber() {
-        dbRef.child("Users").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                //println(snapshot.value)
 
-                val uid = snapshot.children.first().key
-                //println(uid)
-
-                val individualDb = uid?.let { dbRef.child("Users").child(it) }
-                if (individualDb != null) {
-                    individualDb.child("phone").get().addOnSuccessListener {
-                        if (it.exists()) {
-                            val phone = it.value
-                            //println(phone)
-
-                            val intent = Intent(Intent.ACTION_DIAL)
-                            intent.setData(Uri.parse("tel:" + phone));
-                            startActivity(intent);
-
-                        }
-                    }
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {}
-        })
-    }
 
     fun callBtnListener(layout: View) {
 
@@ -156,15 +134,14 @@ class ViewChatFragment : Fragment() {
 
         callBtn.setOnClickListener() {
 
-            getNumber()
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.setData(Uri.parse("tel:" + phone));
+            startActivity(intent);
+
 
         }
     }
 
-
-    // might be convenient to still do this in its own function
-    private fun handleUserData(data: UserModel) {
-    }
 
 }
 
