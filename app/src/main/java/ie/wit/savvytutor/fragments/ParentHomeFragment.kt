@@ -52,8 +52,6 @@ class ParentHomeFragment : Fragment() {
         navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorCreate).isVisible = false
         navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorChat).isVisible = false
 
-
-
     }
 
 

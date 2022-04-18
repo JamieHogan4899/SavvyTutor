@@ -48,6 +48,17 @@ class TutorHomeFragment : Fragment() {
 
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val activity: Activity = context as MainActivity
+        val navigationView = activity.findViewById(ie.wit.savvytutor.R.id.nav_view) as NavigationView
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.home).isVisible = false
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.createAPost).isVisible = false
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.chat).isVisible = false
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.aboutSavvyTutor).isVisible = false
+
+
+    }
 
     private fun getParentPosts(){
 
