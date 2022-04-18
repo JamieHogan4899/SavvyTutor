@@ -15,7 +15,7 @@
             android:icon="@drawable/ic_baseline_create_24"
             android:title="Create A Post" />
         <item
-            android:id="@+id/ParentsViewOwnPosts"
+            android:id="@+id/parentsViewOwnPosts"
             android:icon="@drawable/ic_baseline_rate_review_24"
             android:title="My Posts" />
         <item
