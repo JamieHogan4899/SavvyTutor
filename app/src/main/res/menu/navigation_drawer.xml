@@ -30,22 +30,22 @@
             <item
                 android:id="@+id/tutorHome"
                 android:icon="@drawable/ic_baseline_home_24"
-                android:title="Tutor Home" />
+                android:title="Home" />
 
             <item
                 android:id="@+id/tutorCreate"
                 android:icon="@drawable/ic_baseline_post_add_24"
-                android:title="Tutor Create Post" />
+                android:title="Create Post" />
 
             <item
                 android:id="@+id/tutorChat"
                 android:icon="@drawable/ic_baseline_chat_24"
-                android:title="Tutor Chat" />
+                android:title="Chat" />
 
             <item
                 android:id="@+id/tutorAbout"
-                android:icon="@drawable/ic_baseline_chat_24"
-                android:title="Tutor Chat" />
+                android:icon="@drawable/ic_baseline_info_24"
+                android:title="About SavvyTutor" />
 
 
 

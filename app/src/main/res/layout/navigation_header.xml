@@ -1,33 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="190dp"
+    android:layout_height="200dp"
     android:background="@color/main"
-    android:gravity="bottom"
     android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:id="@+id/nav_header">
 
     <ImageView
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_logo_round"
-        android:layout_marginBottom="30sp"/>
+      />
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SavvyTutor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/blackText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logged in with: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/blackText"
+        android:layout_marginTop="20sp"/>
+
 
     <TextView
         android:id="@+id/DisplayName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
         android:text="User Name Here"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/blackText" />
-
-
-
-
-
+        android:textColor="@color/blackText"
+        />
 
 
 </LinearLayout>
