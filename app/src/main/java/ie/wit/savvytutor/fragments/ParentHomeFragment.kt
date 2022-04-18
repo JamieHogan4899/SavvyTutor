@@ -41,19 +41,15 @@ class ParentHomeFragment : Fragment() {
     }
 
     private fun getTutorPosts() {
-
         dbRef =
             FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
                 .getReference(
                     "TutorPosts"
                 )
 
-
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-
-
                     for (postSnapshot in snapshot.children) {
 
                         val tutorPost = postSnapshot.getValue(TutorPostModel::class.java)
@@ -65,7 +61,6 @@ class ParentHomeFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
 
         })

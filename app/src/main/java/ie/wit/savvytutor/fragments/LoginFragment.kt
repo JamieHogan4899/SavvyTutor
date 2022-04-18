@@ -24,7 +24,6 @@ import ie.wit.savvytutor.main.SavvyTutor
 private lateinit var mAuth: FirebaseAuth
 
 
-
 class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,39 +79,40 @@ class LoginFragment : Fragment() {
                     .show()
             } else {
 
-            mAuth.signInWithEmailAndPassword(user.email, user.password)
-                .addOnCompleteListener() { task ->
-                    if (task.isSuccessful) {
-                        val Fuser: FirebaseUser? = mAuth.currentUser
-                        println(Fuser)
+                mAuth.signInWithEmailAndPassword(user.email, user.password)
+                    .addOnCompleteListener() { task ->
+                        if (task.isSuccessful) {
+                            val Fuser: FirebaseUser? = mAuth.currentUser
+                            println(Fuser)
 
 
-                        if (mAuth.currentUser?.isEmailVerified == true) {
+                            if (mAuth.currentUser?.isEmailVerified == true ||  mAuth.createUserWithEmailAndPassword(
+                                    user.email, user.password).isSuccessful) {
 
-                            checkUserRole(layout)
 
-                        } else (
-                                Toast.makeText(
-                                    getActivity(),
-                                    "You Must Verify Your Email Address Before Logging In",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                                )
+                                checkUserRole(layout)
 
-                    } else {
+                            } else (
+                                    Toast.makeText(
+                                        getActivity(),
+                                        "You Must Verify Your Email Address Before Logging In",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    )
 
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            getActivity(),
-                            "Error, Please check all details are filled in correctly",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        checkUserRole(layout)
+                        } else {
 
+                            Log.w(TAG, "signInWithEmail:failure", task.exception)
+                            Toast.makeText(
+                                getActivity(),
+                                "Error, Please check all details are filled in correctly",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                        }
                     }
-                }
 
-                }
+            }
 
         }
     }
@@ -145,7 +145,6 @@ class LoginFragment : Fragment() {
                     println(dataSnapshot)
                     val uid = dataSnapshot.children.first().key
                     println("User Id: " + uid)
-
 
 
                     val individualDb = uid?.let { userDatabase.child("Users").child(it) }
