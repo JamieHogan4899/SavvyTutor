@@ -1,4 +1,6 @@
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.*
+import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
 import ie.wit.savvytutor.models.TutorPostModel
 
@@ -39,6 +42,21 @@ class ParentHomeFragment : Fragment() {
         return root
 
     }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val activity: Activity = context as MainActivity
+        val navigationView = activity.findViewById(ie.wit.savvytutor.R.id.nav_view) as NavigationView
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorHome).isVisible = false
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorCreate).isVisible = false
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorChat).isVisible = false
+
+
+
+    }
+
+
 
     private fun getTutorPosts() {
         dbRef =

@@ -2,16 +2,15 @@ package ie.wit.savvytutor.fragments
 
 import DisplayPostAdapter
 import android.R
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.annotation.Nullable
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.*
 import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.models.PostModel
@@ -43,18 +42,11 @@ class TutorHomeFragment : Fragment() {
 
         postArrayList = arrayListOf<PostModel>()
         getParentPosts()
-        //changeToolbar(root)
 
 
         return root
 
     }
-
-
-//    private fun changeToolbar(layout: View){
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-//    }
-
 
 
     private fun getParentPosts(){
