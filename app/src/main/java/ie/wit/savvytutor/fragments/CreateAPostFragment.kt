@@ -14,6 +14,7 @@ import ie.wit.savvytutor.R
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.R.layout.createapost_fragment
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -21,14 +22,21 @@ import ie.wit.savvytutor.main.SavvyTutor
 
 
 var post = PostModel()
+private lateinit var mAuth: FirebaseAuth
+
+
 
 // Write a message to the database
 val database =
     FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
 class CreateAPostFragment : Fragment() {
-    @Nullable
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
+    }
 
+    @Nullable
     override fun onCreateView(
         inflater: LayoutInflater,
         @Nullable container: ViewGroup?,
@@ -99,14 +107,14 @@ class CreateAPostFragment : Fragment() {
     private fun writeNewPost(postModel: PostModel) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        val uid = post.uid
+
         val key = database.child("posts").push().key
         if (key == null) {
             Log.w(TAG, "Couldn't get push key for posts")
             return
         }
 
-        post.uid = key
+        post.uid = mAuth.currentUser?.uid
         val postValues = post.toMap()
 
         val childUpdates = hashMapOf<String, Any>(

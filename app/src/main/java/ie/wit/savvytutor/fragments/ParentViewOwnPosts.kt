@@ -65,9 +65,15 @@ class ParentViewOwnPosts : Fragment() {
                     for (postSnapshot in snapshot.children) {
                         val post = postSnapshot.getValue(PostModel::class.java)
 
+                        if (post != null) {
+                            if (post != null) {
+                                if (mAuth.currentUser?.uid.equals(post.uid))
+                                    if (post != null) {
 
-
-                        postArrayList.add(post!!)
+                                        postArrayList.add(post!!)
+                                    }
+                            }
+                        }
                     }
 
                     postRecyclerView.adapter = DisplayPostAdapter(postArrayList)
