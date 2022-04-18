@@ -42,6 +42,11 @@
                 android:icon="@drawable/ic_baseline_chat_24"
                 android:title="Tutor Chat" />
 
+            <item
+                android:id="@+id/tutorAbout"
+                android:icon="@drawable/ic_baseline_chat_24"
+                android:title="Tutor Chat" />
+
 
 
         </menu>
