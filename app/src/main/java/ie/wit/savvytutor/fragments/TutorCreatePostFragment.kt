@@ -56,30 +56,35 @@ class TutorCreatePostFragment : Fragment() {
 
 
         addBtn.setOnClickListener {
-            if(tutorPosts.title.isEmpty() || tutorPosts.subject.isEmpty() || tutorPosts.location.isEmpty()||
-                tutorPosts.level.isEmpty() || tutorPosts.availability.isEmpty()|| tutorPosts.description.isEmpty())
+            if (tutorPosts.title.isEmpty() || tutorPosts.subject.isEmpty() || tutorPosts.location.isEmpty() ||
+                tutorPosts.level.isEmpty() || tutorPosts.availability.isEmpty() || tutorPosts.description.isEmpty()
+            ) {
+                Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
 
-            tutorPosts.title = title.text.toString()
-            tutorPosts.subject = subject.selectedItem.toString()
-            tutorPosts.location = location.text.toString()
-            tutorPosts.level = level.selectedItem.toString()
-            tutorPosts.availability = availability.text.toString()
-            tutorPosts.description = description.text.toString()
+                tutorPosts.title = title.text.toString()
+                tutorPosts.subject = subject.selectedItem.toString()
+                tutorPosts.location = location.text.toString()
+                tutorPosts.level = level.selectedItem.toString()
+                tutorPosts.availability = availability.text.toString()
+                tutorPosts.description = description.text.toString()
 
-            writeNewTutorPost(
-                TutorPostModel(
-                    title = tutorPosts.title,
-                    subject = tutorPosts.subject,
-                    location = tutorPosts.location,
-                    level = tutorPosts.level,
-                    availability = tutorPosts.availability,
-                    description = tutorPosts.description
+                writeNewTutorPost(
+                    TutorPostModel(
+                        title = tutorPosts.title,
+                        subject = tutorPosts.subject,
+                        location = tutorPosts.location,
+                        level = tutorPosts.level,
+                        availability = tutorPosts.availability,
+                        description = tutorPosts.description
 
+                    )
                 )
-            )
 
-            println(tutorPosts)
-            Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
+                println(tutorPosts)
+                Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
