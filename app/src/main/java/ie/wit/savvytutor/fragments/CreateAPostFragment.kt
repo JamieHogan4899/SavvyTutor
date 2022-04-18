@@ -66,12 +66,17 @@ class CreateAPostFragment : Fragment() {
         //take in user input and store in the model
         addBtn.setOnClickListener {
 
+            post.title = title.text.toString()
+            post.subject = subject.selectedItem.toString()
+            post.location = location.text.toString()
+            post.level = level.selectedItem.toString()
+            post.description = description.text.toString()
+
             if (post.title.isEmpty() || post.subject.isEmpty() || post.location.isEmpty() || post.level.isEmpty() || post.description.isEmpty()) {
-                post.title = title.text.toString()
-                post.subject = subject.selectedItem.toString()
-                post.location = location.text.toString()
-                post.level = level.selectedItem.toString()
-                post.description = description.text.toString()
+
+                Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
 
                 writeNewPost(
                     PostModel(
@@ -84,10 +89,7 @@ class CreateAPostFragment : Fragment() {
                 )
                 println(post)
                 Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
-            } else {
 
-                Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
-                    .show()
             }
         }
 

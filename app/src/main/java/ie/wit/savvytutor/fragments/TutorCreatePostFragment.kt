@@ -56,19 +56,20 @@ class TutorCreatePostFragment : Fragment() {
 
 
         addBtn.setOnClickListener {
+
+            tutorPosts.title = title.text.toString()
+            tutorPosts.subject = subject.selectedItem.toString()
+            tutorPosts.location = location.text.toString()
+            tutorPosts.level = level.selectedItem.toString()
+            tutorPosts.availability = availability.text.toString()
+            tutorPosts.description = description.text.toString()
+
             if (tutorPosts.title.isEmpty() || tutorPosts.subject.isEmpty() || tutorPosts.location.isEmpty() ||
                 tutorPosts.level.isEmpty() || tutorPosts.availability.isEmpty() || tutorPosts.description.isEmpty()
             ) {
                 Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
                     .show()
             } else {
-
-                tutorPosts.title = title.text.toString()
-                tutorPosts.subject = subject.selectedItem.toString()
-                tutorPosts.location = location.text.toString()
-                tutorPosts.level = level.selectedItem.toString()
-                tutorPosts.availability = availability.text.toString()
-                tutorPosts.description = description.text.toString()
 
                 writeNewTutorPost(
                     TutorPostModel(
