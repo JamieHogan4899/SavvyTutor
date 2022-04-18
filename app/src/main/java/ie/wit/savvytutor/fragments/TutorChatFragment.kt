@@ -75,6 +75,8 @@ class TutorChatFragment : Fragment() {
                         if (!mAuth.currentUser?.uid.equals(currentUser.uid))
                             if (email != null) {
                                 userArrayList.add(currentUser!!)
+                                println(mAuth.currentUser?.uid)
+                                println(currentUser.uid)
 
 
                             }

@@ -12,17 +12,26 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.models.TutorPostModel
 
 
 var tutorPosts = TutorPostModel()
+private lateinit var mAuth: FirebaseAuth
+
 
 
 class TutorCreatePostFragment : Fragment() {
-    @Nullable
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        mAuth = FirebaseAuth.getInstance()
+    }
+
+    @Nullable
     override fun onCreateView(
         inflater: LayoutInflater,
         @Nullable container: ViewGroup?,
@@ -68,6 +77,7 @@ class TutorCreatePostFragment : Fragment() {
 
             writeNewTutorPost(
                 TutorPostModel(
+                    uid = mAuth.currentUser?.uid,
                     title = tutorPosts.title,
                     subject = tutorPosts.subject,
                     location = tutorPosts.location,
@@ -85,14 +95,15 @@ class TutorCreatePostFragment : Fragment() {
 
     private fun writeNewTutorPost(tutorPostModel: TutorPostModel) {
 
+
         val uid = tutorPosts.uid
-        val key = database.child("tutorPosts").push().key
+        val key = database.child("posts").push().key
         if (key == null) {
             Log.w(ContentValues.TAG, "Couldn't get push key for posts")
             return
         }
 
-        tutorPosts.uid = key
+        tutorPosts.uid = mAuth.currentUser?.uid
         val postValues = tutorPosts.toMap()
 
         val childUpdates = hashMapOf<String, Any>(

@@ -137,7 +137,8 @@ class RegisterFragment : Fragment() {
 
 
     private fun writeNewUser(userModel: UserModel) {
-        val key = rtdb.child("users").push().key
+
+        val key = mAuth.currentUser?.uid
         if (key == null) {
             Log.w(TAG, "Couldn't get push key for users")
             return

@@ -38,6 +38,11 @@
                 android:title="Create Post" />
 
             <item
+                android:id="@+id/tutorViewOwnPosts"
+                android:icon="@drawable/ic_baseline_rate_review_24"
+                android:title="My Posts" />
+
+            <item
                 android:id="@+id/tutorChat"
                 android:icon="@drawable/ic_baseline_chat_24"
                 android:title="Chat" />

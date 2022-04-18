@@ -2,6 +2,7 @@ package ie.wit.savvytutor.models
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
+import ie.wit.savvytutor.fragments.user
 
 @IgnoreExtraProperties
 data class TutorPostModel(

@@ -95,6 +95,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.fragment_container,
                 TutorCreatePostFragment()
             ).commit()
+            R.id.tutorViewOwnPosts -> supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_container,
+                TutorViewOwnPosts()
+            ).commit()
             R.id.tutorChat -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
                 TutorChatFragment()
@@ -103,6 +107,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.fragment_container,
                 AboutFragment()
             ).commit()
+
 
 
         }
