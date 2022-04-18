@@ -111,7 +111,6 @@ class RegisterFragment : Fragment() {
                             layout.findViewById<Spinner>(R.id.chooseRole).setSelection(0)
 
                             val user = FirebaseAuth.getInstance().currentUser
-
                             user!!.sendEmailVerification()
                                 .addOnCompleteListener { task ->
                                     if (task.isSuccessful) {

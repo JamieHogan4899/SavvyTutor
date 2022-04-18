@@ -3,6 +3,7 @@ package ie.wit.savvytutor.fragments
 import ParentHomeFragment
 import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -69,6 +70,8 @@ class LoginFragment : Fragment() {
         val password = layout.findViewById<EditText>(ie.wit.savvytutor.R.id.loginPassword)
         val loginbtn = layout.findViewById<Button>(ie.wit.savvytutor.R.id.loginbtn)
 
+        password.transformationMethod = PasswordTransformationMethod.getInstance();
+
         loginbtn.setOnClickListener {
 
             user.email = email.text.toString()
@@ -86,8 +89,7 @@ class LoginFragment : Fragment() {
                             println(Fuser)
 
 
-                            if (mAuth.currentUser?.isEmailVerified == true ||  mAuth.createUserWithEmailAndPassword(
-                                    user.email, user.password).isSuccessful) {
+                            if (mAuth.currentUser?.isEmailVerified == true) {
 
 
                                 checkUserRole(layout)
@@ -146,11 +148,8 @@ class LoginFragment : Fragment() {
                     val uid = dataSnapshot.children.first().key
                     println("User Id: " + uid)
 
-
                     val individualDb = uid?.let { userDatabase.child("Users").child(it) }
                     println(individualDb)
-
-
 
                     if (individualDb != null) {
                         individualDb.child("role").get().addOnSuccessListener {
@@ -164,6 +163,7 @@ class LoginFragment : Fragment() {
                                             ie.wit.savvytutor.R.id.fragment_container,
                                             fragment
                                         )?.commit()
+                                    println(it.value)
 
                                 } else {
 
@@ -173,7 +173,7 @@ class LoginFragment : Fragment() {
                                             ie.wit.savvytutor.R.id.fragment_container,
                                             fragment
                                         )?.commit()
-
+                                    println(it.value)
                                 }
                             }
 
