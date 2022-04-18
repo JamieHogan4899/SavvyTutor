@@ -11,18 +11,26 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
+import ie.wit.savvytutor.fragments.userEmail
 import ie.wit.savvytutor.models.TutorPostModel
 
 
 private lateinit var dbRef: DatabaseReference
 private lateinit var tutorPostRecyclerView: RecyclerView
 private lateinit var tutorPostArrayList: ArrayList<TutorPostModel>
-
+private lateinit var mAuth: FirebaseAuth
+var userEmail : String = ""
 
 class ParentHomeFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
+    }
 
 
     @SuppressLint("WrongViewCast")
@@ -39,18 +47,29 @@ class ParentHomeFragment : Fragment() {
 
         tutorPostArrayList = arrayListOf<TutorPostModel>()
         getTutorPosts()
+
+
+        userEmail = mAuth.currentUser?.email.toString()
+        context?.let { updateNavView(it) }
         return root
 
     }
 
 
-    override fun onAttach(context: Context) {
+    fun updateNavView(context: Context) {
         super.onAttach(context)
         val activity: Activity = context as MainActivity
         val navigationView = activity.findViewById(ie.wit.savvytutor.R.id.nav_view) as NavigationView
         navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorHome).isVisible = false
         navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorCreate).isVisible = false
         navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorChat).isVisible = false
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorViewOwnPosts).isVisible = false
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorAbout).isVisible = false
+
+        val navigationHeader = activity.findViewById(ie.wit.savvytutor.R.id.nav_view) as NavigationView
+        val txtProfileName =
+            navigationHeader.getHeaderView(0).findViewById<View>(ie.wit.savvytutor.R.id.DisplayName) as TextView
+        txtProfileName.setText(userEmail)
 
     }
 
