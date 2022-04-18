@@ -42,9 +42,40 @@ class ParentViewOwnPosts : Fragment() {
         postRecyclerView.layoutManager = LinearLayoutManager(context)
         postRecyclerView.setHasFixedSize(true)
         postArrayList = arrayListOf<PostModel>()
+        getUserPosts()
 
         return root
 
     }
+
+
+    private fun getUserPosts(){
+
+        dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference(
+            "ParentPosts"
+        )
+
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+
+
+                    for (postSnapshot in snapshot.children) {
+
+                        val post = postSnapshot.getValue(PostModel::class.java)
+                        postArrayList.add(post!!)
+                    }
+
+                    postRecyclerView.adapter = DisplayPostAdapter(postArrayList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
 
 }
