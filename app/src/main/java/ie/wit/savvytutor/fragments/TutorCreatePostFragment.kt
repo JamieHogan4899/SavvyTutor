@@ -12,26 +12,17 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.models.TutorPostModel
 
 
 var tutorPosts = TutorPostModel()
-private lateinit var mAuth: FirebaseAuth
-
 
 
 class TutorCreatePostFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        mAuth = FirebaseAuth.getInstance()
-    }
-
     @Nullable
+
     override fun onCreateView(
         inflater: LayoutInflater,
         @Nullable container: ViewGroup?,
@@ -65,10 +56,6 @@ class TutorCreatePostFragment : Fragment() {
 
 
         addBtn.setOnClickListener {
-            if(tutorPosts.title.isEmpty() || tutorPosts.subject.isEmpty() || tutorPosts.location.isEmpty()||
-                tutorPosts.level.isEmpty() || tutorPosts.availability.isEmpty()|| tutorPosts.description.isEmpty()) {
-
-            }
 
             tutorPosts.title = title.text.toString()
             tutorPosts.subject = subject.selectedItem.toString()
@@ -77,35 +64,41 @@ class TutorCreatePostFragment : Fragment() {
             tutorPosts.availability = availability.text.toString()
             tutorPosts.description = description.text.toString()
 
-            writeNewTutorPost(
-                TutorPostModel(
-                    uid = mAuth.currentUser?.uid,
-                    title = tutorPosts.title,
-                    subject = tutorPosts.subject,
-                    location = tutorPosts.location,
-                    level = tutorPosts.level,
-                    availability = tutorPosts.availability,
-                    description = tutorPosts.description
+            if (tutorPosts.title.isEmpty() || tutorPosts.subject.isEmpty() || tutorPosts.location.isEmpty() ||
+                tutorPosts.level.isEmpty() || tutorPosts.availability.isEmpty() || tutorPosts.description.isEmpty()
+            ) {
+                Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
 
+                writeNewTutorPost(
+                    TutorPostModel(
+                        title = tutorPosts.title,
+                        subject = tutorPosts.subject,
+                        location = tutorPosts.location,
+                        level = tutorPosts.level,
+                        availability = tutorPosts.availability,
+                        description = tutorPosts.description
+
+                    )
                 )
-            )
 
-            println(tutorPosts)
-            Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
+                println(tutorPosts)
+                Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
     private fun writeNewTutorPost(tutorPostModel: TutorPostModel) {
 
-
         val uid = tutorPosts.uid
-        val key = database.child("posts").push().key
+        val key = database.child("tutorPosts").push().key
         if (key == null) {
             Log.w(ContentValues.TAG, "Couldn't get push key for posts")
             return
         }
 
-        tutorPosts.uid = mAuth.currentUser?.uid
+        tutorPosts.uid = key
         val postValues = tutorPosts.toMap()
 
         val childUpdates = hashMapOf<String, Any>(

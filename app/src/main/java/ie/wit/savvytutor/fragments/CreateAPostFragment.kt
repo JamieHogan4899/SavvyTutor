@@ -14,7 +14,6 @@ import ie.wit.savvytutor.R
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.R.layout.createapost_fragment
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -22,21 +21,14 @@ import ie.wit.savvytutor.main.SavvyTutor
 
 
 var post = PostModel()
-private lateinit var mAuth: FirebaseAuth
 
 // Write a message to the database
 val database =
     FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
 class CreateAPostFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mAuth = FirebaseAuth.getInstance()
-
-    }
-
-
     @Nullable
+
     override fun onCreateView(
         inflater: LayoutInflater,
         @Nullable container: ViewGroup?,
@@ -74,21 +66,20 @@ class CreateAPostFragment : Fragment() {
         //take in user input and store in the model
         addBtn.setOnClickListener {
 
+            post.title = title.text.toString()
+            post.subject = subject.selectedItem.toString()
+            post.location = location.text.toString()
+            post.level = level.selectedItem.toString()
+            post.description = description.text.toString()
+
             if (post.title.isEmpty() || post.subject.isEmpty() || post.location.isEmpty() || post.level.isEmpty() || post.description.isEmpty()) {
 
                 Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
                     .show()
             } else {
 
-                post.title = title.text.toString()
-                post.subject = subject.selectedItem.toString()
-                post.location = location.text.toString()
-                post.level = level.selectedItem.toString()
-                post.description = description.text.toString()
-
                 writeNewPost(
                     PostModel(
-                        uid = mAuth.currentUser?.uid,
                         title = post.title,
                         subject = post.subject,
                         location = post.location,
@@ -98,8 +89,10 @@ class CreateAPostFragment : Fragment() {
                 )
                 println(post)
                 Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
+
             }
         }
+
     }
 
 
@@ -113,7 +106,7 @@ class CreateAPostFragment : Fragment() {
             return
         }
 
-        post.uid = mAuth.currentUser?.uid
+        post.uid = key
         val postValues = post.toMap()
 
         val childUpdates = hashMapOf<String, Any>(
