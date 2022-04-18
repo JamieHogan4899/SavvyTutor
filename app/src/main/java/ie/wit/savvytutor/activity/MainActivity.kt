@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.fragment_container,
                 CreateAPostFragment()
             ).commit()
-            R.id.parentOwnPosts -> supportFragmentManager.beginTransaction().replace(
+            R.id.parentsViewOwnPosts -> supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
                 ParentViewOwnPosts()
             ).commit()

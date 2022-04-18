@@ -38,11 +38,12 @@ class ParentViewOwnPosts : Fragment() {
     ): View {
         //inflate the fragment layout
         val root = inflater.inflate(ie.wit.savvytutor.R.layout.parent_view_own_post, container, false)
-        postRecyclerView = root.findViewById(ie.wit.savvytutor.R.id.displayPosts)
+        postRecyclerView = root.findViewById(ie.wit.savvytutor.R.id.parentOwnPosts)
         postRecyclerView.layoutManager = LinearLayoutManager(context)
         postRecyclerView.setHasFixedSize(true)
         postArrayList = arrayListOf<PostModel>()
         getUserPosts()
+        println("here")
 
         return root
 
@@ -60,10 +61,19 @@ class ParentViewOwnPosts : Fragment() {
                 if (snapshot.exists()) {
 
 
-                    for (postSnapshot in snapshot.children) {
 
+                    for (postSnapshot in snapshot.children) {
                         val post = postSnapshot.getValue(PostModel::class.java)
-                        postArrayList.add(post!!)
+
+                        if (post != null) {
+                            if (post != null) {
+                                if (mAuth.currentUser?.uid.equals(post.uid))
+                                    if (post != null) {
+
+                                        postArrayList.add(post!!)
+                                    }
+                            }
+                        }
                     }
 
                     postRecyclerView.adapter = DisplayPostAdapter(postArrayList)
