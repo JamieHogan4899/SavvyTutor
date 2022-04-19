@@ -1,25 +1,25 @@
 package ie.wit.savvytutor.fragments
 
 import DisplayPostAdapter
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
+import ie.wit.savvytutor.helpers.SwipeToDelete
 import ie.wit.savvytutor.models.PostModel
-import ie.wit.savvytutor.models.TutorPostModel
 
 private lateinit var dbRef: DatabaseReference
 private lateinit var  postRecyclerView: RecyclerView
 private lateinit var  postArrayList : ArrayList<PostModel>
 private lateinit var mAuth: FirebaseAuth
+
 
 
 
@@ -77,6 +77,9 @@ class ParentViewOwnPosts : Fragment() {
                     }
 
                     postRecyclerView.adapter = DisplayPostAdapter(postArrayList)
+
+                    var itemTouchHelper =ItemTouchHelper(SwipeToDelete(postRecyclerView.adapter as DisplayPostAdapter))
+                    itemTouchHelper.attachToRecyclerView(postRecyclerView)
                 }
             }
 

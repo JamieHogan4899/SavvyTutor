@@ -42,10 +42,12 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         val level : TextView = itemView.findViewById(R.id.displayLevel)
         val description : TextView = itemView.findViewById(R.id.displayDescription)
         var profilepic: ImageView = itemView.findViewById(R.id.displayProfilePic)
+    }
 
 
-
-
+    fun deleteItem(pos:Int){
+        postList.removeAt(pos)
+        notifyItemRemoved(pos)
     }
 
 
