@@ -115,6 +115,7 @@ class CreateAPostFragment : Fragment() {
         }
 
         post.uid = mAuth.currentUser?.uid
+        post.postId = key
         val postValues = post.toMap()
 
         val childUpdates = hashMapOf<String, Any>(

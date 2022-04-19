@@ -46,6 +46,10 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
 
 
     fun deleteItem(pos:Int){
+        val currentItem = postList[pos]
+        val postId = currentItem.postId
+        println("post id from adapter = " + postId)
+
         postList.removeAt(pos)
         notifyItemRemoved(pos)
     }

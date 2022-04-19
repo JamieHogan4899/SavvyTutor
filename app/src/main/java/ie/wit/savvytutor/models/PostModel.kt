@@ -11,7 +11,8 @@ data class PostModel(
     var subject: String = "",
     var location: String = "",
     var level: String = "",
-    var description: String = ""
+    var description: String = "",
+    var postId: String = ""
 ){
 
 @Exclude
@@ -22,7 +23,8 @@ fun toMap(): Map<String, Any?> {
         "subject" to subject,
         "location" to location,
         "level" to level,
-        "description" to description
+        "description" to description,
+        "postId" to postId
     )
 }
 }
