@@ -10,7 +10,10 @@ import ie.wit.savvytutor.helpers.readImageFromPath
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.models.UserModel
 
+
 class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerView.Adapter<DisplayPostAdapter.PostViewHolder>(){
+
+    public var postId:String = ""
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -42,17 +45,25 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         val level : TextView = itemView.findViewById(R.id.displayLevel)
         val description : TextView = itemView.findViewById(R.id.displayDescription)
         var profilepic: ImageView = itemView.findViewById(R.id.displayProfilePic)
+
     }
+
+    fun test(position: Int){
+
+        val currentItem = postList[position]
+        postId = currentItem.postId
+       // println("post id from adapter = " + postId)
+    }
+
 
 
     fun deleteItem(pos:Int){
-        val currentItem = postList[pos]
-        val postId = currentItem.postId
-        println("post id from adapter = " + postId)
-
+        //send this postid to the handler
+        test(pos)
         postList.removeAt(pos)
         notifyItemRemoved(pos)
     }
+
 
 
 

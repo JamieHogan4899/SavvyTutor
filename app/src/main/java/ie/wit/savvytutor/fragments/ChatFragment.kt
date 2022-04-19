@@ -15,6 +15,7 @@ import com.google.firebase.database.*
 import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.adapters.UserAdapter
 import ie.wit.savvytutor.adapters.UserData
+import ie.wit.savvytutor.helpers.SwipeToDelete
 import ie.wit.savvytutor.models.UserModel
 
 class ChatFragment : Fragment() {
