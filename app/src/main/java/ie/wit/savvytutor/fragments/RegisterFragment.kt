@@ -69,7 +69,8 @@ class RegisterFragment : Fragment() {
         val root = inflater.inflate(R.layout.register_user_fragment, container, false)
         setRegisterButtonListener(root)
         selectProfilePicture(root)
-        setBackToLogin(root)
+        goToLogin(root)
+
 
         return root
 
@@ -89,14 +90,15 @@ class RegisterFragment : Fragment() {
 
 
 
-    fun setBackToLogin(layout: View) {
-        val backToLogin = layout.findViewById<Button>(ie.wit.savvytutor.R.id.BackToLoginBtn)
+    fun goToLogin(layout: View){
+        val backToLogin = layout.findViewById<TextView>(ie.wit.savvytutor.R.id.goToLogin)
 
         backToLogin.setOnClickListener {
 
             val fragment = LoginFragment()
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(ie.wit.savvytutor.R.id.fragment_container, fragment)?.commit()
+
         }
 
     }
