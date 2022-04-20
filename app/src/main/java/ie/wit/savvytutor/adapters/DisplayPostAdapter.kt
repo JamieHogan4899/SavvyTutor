@@ -1,21 +1,33 @@
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory.decodeFile
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.R
+import ie.wit.savvytutor.fragments.post
+import ie.wit.savvytutor.fragments.uid
 import ie.wit.savvytutor.fragments.user
 import ie.wit.savvytutor.models.PostModel
+import ie.wit.savvytutor.models.UserModel
 import java.io.File
 
 
 class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerView.Adapter<DisplayPostAdapter.PostViewHolder>(){
 
     public var postId:String = ""
+    public var profilepic:String = ""
+    private lateinit var mAuth: FirebaseAuth
+    var usersProfilePic:String = ""
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -36,8 +48,55 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         holder.level.text = currentItem.level
         holder.description.text = currentItem.description
         holder.username.text = currentItem.email
-        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/savvytutor-ab3d2.appspot.com/o/images%2F31eeb0d0-82a3-4454-8194-1b741e426f3e?alt=media&token=519a1a0d-9b5b-437d-8892-ae404fae0fc7").into(holder.profilepic);
 
+        for(post in postList){
+            var user = post.uid
+            println("post user : " + user)
+
+            val dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
+            mAuth = FirebaseAuth.getInstance()
+
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (userSnapshot in snapshot.children) {
+                        val users = userSnapshot.getValue(UserModel::class.java)
+                        val uid = users?.uid
+                        //println("Users ID " + uid)
+
+                        val individualDb = uid?.let { dbRef.child(it) }
+                       // println("indavidual users database " + individualDb)
+
+                        if (individualDb != null) {
+                            individualDb.child("profilepic").get().addOnSuccessListener {
+                                if (it.exists()) {
+                                    usersProfilePic = it.value.toString()
+
+                                   // println("users profile pic: " + usersProfilePic )
+
+                                    println("These should be different " + usersProfilePic)
+
+                                    Picasso.get().load(usersProfilePic.toString()).into(holder.displayProfilePic)
+
+
+
+                                }
+                            }
+                        }
+
+
+
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        }
+
+        //for each post get uid for the post, then get the link to the image and set the image
     }
 
     override fun getItemCount(): Int {
@@ -51,7 +110,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         val location :TextView = itemView.findViewById(R.id.displayLocation)
         val level : TextView = itemView.findViewById(R.id.displayLevel)
         val description : TextView = itemView.findViewById(R.id.displayDescription)
-        var profilepic: ImageView = itemView.findViewById(R.id.displayProfilePic)
+        var displayProfilePic: ImageView = itemView.findViewById(R.id.displayProfilePic)
         val username: TextView = itemView.findViewById(R.id.displayParentName)
 
     }
@@ -72,12 +131,41 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         notifyItemRemoved(pos)
     }
 
-    fun getProfilePicture(){
-
-
-    }
-
-
-
-
+//    fun getProfilePicture(){
+//        val dbRef =
+//            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
+//
+//        mAuth = FirebaseAuth.getInstance()
+//
+//        dbRef.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                if (snapshot.exists()) {
+//                    for (userSnapshot in snapshot.children) {
+//                        val users = userSnapshot.getValue(UserModel::class.java)
+//                        //val userProfilePic = users?.profilepic
+//                        //println(userProfilePic)
+//                        val uid = users?.uid
+//
+//
+//                        if (uid.equals(mAuth.currentUser?.uid)){
+//                            if (users != null) {
+//                                profilepic = users.profilepic
+//                            }
+//                           profilepic = user.profilepic
+//                        }
+//
+//                    }
+//                }
+//
+//        println("Profile Picture: " + profilepic)
+//
+//    }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//
+//        })
+//    }
 }
