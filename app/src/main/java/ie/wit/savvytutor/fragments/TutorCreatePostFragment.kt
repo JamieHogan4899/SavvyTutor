@@ -106,6 +106,7 @@ class TutorCreatePostFragment : Fragment() {
         }
 
         tutorPosts.uid = mAuth.currentUser?.uid
+        tutorPosts.postId = key
         val postValues = tutorPosts.toMap()
 
         val childUpdates = hashMapOf<String, Any>(

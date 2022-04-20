@@ -61,6 +61,9 @@ class TutorViewOwnPosts : Fragment() {
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+
+                    tutorPostArrayList.clear()
+
                     for (postSnapshot in snapshot.children) {
                         val tutorPost = postSnapshot.getValue(TutorPostModel::class.java)
 
@@ -76,8 +79,7 @@ class TutorViewOwnPosts : Fragment() {
 
                     tutorPostRecyclerView.adapter = DisplayTutorPostAdapter(tutorPostArrayList)
 
-                    var itemTouchHelper =
-                        ItemTouchHelper(TutorSwipeToDelete(tutorPostRecyclerView.adapter as DisplayTutorPostAdapter))
+                    var itemTouchHelper = ItemTouchHelper(TutorSwipeToDelete(tutorPostRecyclerView.adapter as DisplayTutorPostAdapter))
                     itemTouchHelper.attachToRecyclerView(tutorPostRecyclerView)
                 }
             }

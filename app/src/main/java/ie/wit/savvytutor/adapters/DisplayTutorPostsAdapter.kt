@@ -11,6 +11,8 @@ import ie.wit.savvytutor.models.TutorPostModel
 
 class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostModel>) : RecyclerView.Adapter<DisplayTutorPostAdapter.TutorPostViewHolder>() {
 
+    public var postId:String = ""
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TutorPostViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.display_tutor_posts, parent, false)
         return TutorPostViewHolder(itemView)
@@ -46,8 +48,20 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
         var profilepic: ImageView = itemView.findViewById(R.id.displayTutorProfilePic)
     }
 
+
+
+    fun getPostId(position: Int){
+
+        val currentItem = tutorPostList[position]
+        postId = currentItem.postId
+
+        // println("post id from adapter = " + postId)
+    }
+
+
     fun deleteItem(pos:Int){
-        //send this postid to the handler
+        //send this postid to the handler and remove from array list
+        getPostId(pos)
         tutorPostList.removeAt(pos)
         notifyItemRemoved(pos)
     }
