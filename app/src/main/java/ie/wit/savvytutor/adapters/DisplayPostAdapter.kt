@@ -101,6 +101,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) :
         var displayProfilePic: ImageView = itemView.findViewById(R.id.displayProfilePic)
         val username: TextView = itemView.findViewById(R.id.displayParentName)
 
+
     }
 
     fun test(position: Int) {

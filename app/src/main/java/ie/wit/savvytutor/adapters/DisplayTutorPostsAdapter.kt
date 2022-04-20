@@ -36,6 +36,7 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
         holder.level.text = currentItem.level
         holder.availability.text = currentItem.availability
         holder.description.text = currentItem.description
+        holder.username.text = currentItem.email
 
 
         val dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
@@ -72,9 +73,6 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
         })
 
 
-
-
-
     }
 
 
@@ -94,6 +92,7 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
         val availability: TextView = itemView.findViewById(R.id.displayTutorAva)
         val description: TextView = itemView.findViewById(R.id.displayTutorDescription)
         var profilepic: ImageView = itemView.findViewById(R.id.displayTutorProfilePic)
+        val username: TextView = itemView.findViewById(R.id.displayTutorName)
     }
 
 

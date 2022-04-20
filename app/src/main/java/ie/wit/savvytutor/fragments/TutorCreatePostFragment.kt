@@ -107,7 +107,14 @@ class TutorCreatePostFragment : Fragment() {
 
         tutorPosts.uid = mAuth.currentUser?.uid
         tutorPosts.postId = key
+
+        var userEmail = mAuth.currentUser?.email.toString()
+        val substring: String = userEmail.substring(0, userEmail.indexOf("@"))
+        tutorPosts.email = substring
         val postValues = tutorPosts.toMap()
+
+
+
 
         val childUpdates = hashMapOf<String, Any>(
             "/TutorPosts/$key" to postValues,

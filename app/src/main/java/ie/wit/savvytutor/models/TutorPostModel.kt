@@ -13,7 +13,9 @@ data class TutorPostModel(
     var level: String = "",
     var availability: String = "",
     var description: String = "",
-    var postId: String = ""
+    var postId: String = "",
+    var email: String = ""
+
 ){
 
     @Exclude
@@ -26,7 +28,8 @@ data class TutorPostModel(
             "level" to level,
             "availability" to availability,
             "description" to description,
-            "postId" to postId
+            "postId" to postId,
+            "email" to email
         )
     }
 }
