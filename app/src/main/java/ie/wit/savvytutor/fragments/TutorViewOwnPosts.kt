@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
+import ie.wit.savvytutor.helpers.SwipeToDelete
+import ie.wit.savvytutor.helpers.TutorSwipeToDelete
 import ie.wit.savvytutor.models.TutorPostModel
 
 private lateinit var tutorPostRecyclerView: RecyclerView
@@ -72,6 +75,10 @@ class TutorViewOwnPosts : Fragment() {
                     }
 
                     tutorPostRecyclerView.adapter = DisplayTutorPostAdapter(tutorPostArrayList)
+
+                    var itemTouchHelper =
+                        ItemTouchHelper(TutorSwipeToDelete(tutorPostRecyclerView.adapter as DisplayTutorPostAdapter))
+                    itemTouchHelper.attachToRecyclerView(tutorPostRecyclerView)
                 }
             }
 

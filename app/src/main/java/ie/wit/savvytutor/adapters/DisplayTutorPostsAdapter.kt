@@ -45,4 +45,12 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
         val description: TextView = itemView.findViewById(R.id.displayTutorDescription)
         var profilepic: ImageView = itemView.findViewById(R.id.displayTutorProfilePic)
     }
+
+    fun deleteItem(pos:Int){
+        //send this postid to the handler
+        tutorPostList.removeAt(pos)
+        notifyItemRemoved(pos)
+    }
+
+
 }
