@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
@@ -14,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.models.PostModel
+import ie.wit.savvytutor.models.UserModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -49,7 +52,6 @@ class TutorHomeFragment : Fragment() {
         userEmail= mAuth.currentUser?.email.toString()
         println(userEmail)
         context?.let { updateNavView(it) }
-
 
 
         return root

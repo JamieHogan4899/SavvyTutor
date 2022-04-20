@@ -22,12 +22,13 @@ import ie.wit.savvytutor.models.UserModel
 import java.io.File
 
 
-class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerView.Adapter<DisplayPostAdapter.PostViewHolder>(){
+class DisplayPostAdapter(private val postList: ArrayList<PostModel>) :
+    RecyclerView.Adapter<DisplayPostAdapter.PostViewHolder>() {
 
-    public var postId:String = ""
-    public var profilepic:String = ""
+    public var postId: String = ""
+    public var profilepic: String = ""
     private lateinit var mAuth: FirebaseAuth
-    var usersProfilePic:String = ""
+    var usersProfilePic: String = ""
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -40,7 +41,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-       val currentItem = postList[position]
+        val currentItem = postList[position]
 
         holder.title.text = currentItem.title
         holder.subject.text = currentItem.subject
@@ -49,41 +50,30 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         holder.description.text = currentItem.description
         holder.username.text = currentItem.email
 
-        for(post in postList){
-            var user = post.uid
-            println("post user : " + user)
 
-            val dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
-            mAuth = FirebaseAuth.getInstance()
+        val dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference("Users")
+        mAuth = FirebaseAuth.getInstance()
 
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
                         val users = userSnapshot.getValue(UserModel::class.java)
-                        val uid = users?.uid
-                        //println("Users ID " + uid)
-
-                        val individualDb = uid?.let { dbRef.child(it) }
-                       // println("indavidual users database " + individualDb)
-
+                        val individualDb = currentItem.uid?.let { dbRef.child(it) }
+                        //println("indavidual users database " + individualDb)
+                        var user: String = ""
                         if (individualDb != null) {
                             individualDb.child("profilepic").get().addOnSuccessListener {
                                 if (it.exists()) {
-                                    usersProfilePic = it.value.toString()
-
-                                   // println("users profile pic: " + usersProfilePic )
-
-                                    println("These should be different " + usersProfilePic)
-
-                                    Picasso.get().load(usersProfilePic.toString()).into(holder.displayProfilePic)
-
-
-
+                                    var link = it.value
+                                    //println("THIS IS LINK    " + link)
+                                    Picasso.get().load(link.toString())
+                                        .into(holder.displayProfilePic);
                                 }
                             }
-                        }
 
+                        }
 
 
                     }
@@ -94,37 +84,34 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
             }
         })
 
-        }
-
-        //for each post get uid for the post, then get the link to the image and set the image
     }
+
 
     override fun getItemCount(): Int {
-       return postList.size
+        return postList.size
     }
 
-    class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val title : TextView = itemView.findViewById(R.id.displayTitle)
-        val subject : TextView = itemView.findViewById(R.id.displaySubject)
-        val location :TextView = itemView.findViewById(R.id.displayLocation)
-        val level : TextView = itemView.findViewById(R.id.displayLevel)
-        val description : TextView = itemView.findViewById(R.id.displayDescription)
+        val title: TextView = itemView.findViewById(R.id.displayTitle)
+        val subject: TextView = itemView.findViewById(R.id.displaySubject)
+        val location: TextView = itemView.findViewById(R.id.displayLocation)
+        val level: TextView = itemView.findViewById(R.id.displayLevel)
+        val description: TextView = itemView.findViewById(R.id.displayDescription)
         var displayProfilePic: ImageView = itemView.findViewById(R.id.displayProfilePic)
         val username: TextView = itemView.findViewById(R.id.displayParentName)
 
     }
 
-    fun test(position: Int){
+    fun test(position: Int) {
 
         val currentItem = postList[position]
         postId = currentItem.postId
-       // println("post id from adapter = " + postId)
+        // println("post id from adapter = " + postId)
     }
 
 
-
-    fun deleteItem(pos: Int){
+    fun deleteItem(pos: Int) {
         //send this postid to the handler
         test(pos)
         postList.removeAt(pos)
