@@ -60,7 +60,7 @@ class ParentViewOwnPosts : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
 
-
+                    postArrayList.clear()
 
                     for (postSnapshot in snapshot.children) {
                         val post = postSnapshot.getValue(PostModel::class.java)
