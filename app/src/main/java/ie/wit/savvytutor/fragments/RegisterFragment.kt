@@ -5,6 +5,7 @@ import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -20,12 +21,16 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.helpers.readImage
 import ie.wit.savvytutor.helpers.showImagePicker
+import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.models.UserModel
 import kotlinx.android.synthetic.main.register_user_fragment.*
 import kotlinx.android.synthetic.main.register_user_fragment.view.*
@@ -239,6 +244,7 @@ class RegisterFragment : Fragment() {
 
         database.updateChildren(childUpdates)
     }
+
 
 }
 

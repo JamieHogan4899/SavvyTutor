@@ -11,10 +11,14 @@ import android.widget.*
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.R.layout.createapost_fragment
 import ie.wit.savvytutor.models.PostModel
+import ie.wit.savvytutor.models.UserModel
 
 
 var post = PostModel()
@@ -124,4 +128,7 @@ class CreateAPostFragment : Fragment() {
             )
         database.updateChildren(childUpdates)
     }
+
+
+
 }

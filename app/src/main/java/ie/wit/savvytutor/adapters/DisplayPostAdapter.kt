@@ -1,16 +1,16 @@
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory.decodeFile
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.R
-import ie.wit.savvytutor.fragments.post
 import ie.wit.savvytutor.fragments.user
-import ie.wit.savvytutor.helpers.readImageFromPath
 import ie.wit.savvytutor.models.PostModel
-import ie.wit.savvytutor.models.UserModel
-import org.w3c.dom.Text
+import java.io.File
 
 
 class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerView.Adapter<DisplayPostAdapter.PostViewHolder>(){
@@ -19,7 +19,11 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.displaypost_view,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.displaypost_view,
+            parent,
+            false
+        )
         return PostViewHolder(itemView)
     }
 
@@ -32,7 +36,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         holder.level.text = currentItem.level
         holder.description.text = currentItem.description
         holder.username.text = currentItem.email
-        holder.profilepic.setImageResource(user.profilepic)
+        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/savvytutor-ab3d2.appspot.com/o/images%2F31eeb0d0-82a3-4454-8194-1b741e426f3e?alt=media&token=519a1a0d-9b5b-437d-8892-ae404fae0fc7").into(holder.profilepic);
 
     }
 
@@ -40,7 +44,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
        return postList.size
     }
 
-    class PostViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         val title : TextView = itemView.findViewById(R.id.displayTitle)
         val subject : TextView = itemView.findViewById(R.id.displaySubject)
@@ -49,6 +53,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         val description : TextView = itemView.findViewById(R.id.displayDescription)
         var profilepic: ImageView = itemView.findViewById(R.id.displayProfilePic)
         val username: TextView = itemView.findViewById(R.id.displayParentName)
+
     }
 
     fun test(position: Int){
@@ -60,17 +65,18 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
 
 
 
-    fun deleteItem(pos:Int){
+    fun deleteItem(pos: Int){
         //send this postid to the handler
         test(pos)
         postList.removeAt(pos)
         notifyItemRemoved(pos)
     }
 
-    fun getProfilePic(){
+    fun getProfilePicture(){
 
 
     }
+
 
 
 
