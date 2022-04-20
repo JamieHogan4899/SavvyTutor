@@ -1,5 +1,6 @@
 package ie.wit.savvytutor.fragments
 
+import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
@@ -191,6 +192,7 @@ class RegisterFragment : Fragment() {
         }
 
     }
+
 
 
 
