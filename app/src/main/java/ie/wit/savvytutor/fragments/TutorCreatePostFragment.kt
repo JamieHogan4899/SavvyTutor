@@ -93,6 +93,13 @@ class TutorCreatePostFragment : Fragment() {
 
                 println(tutorPosts)
                 Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
+
+                val fragment = TutorViewOwnPosts()
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(
+                        ie.wit.savvytutor.R.id.fragment_container,
+                        fragment
+                    )?.commit()
             }
         }
     }

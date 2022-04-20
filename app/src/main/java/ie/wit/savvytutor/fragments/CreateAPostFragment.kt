@@ -98,6 +98,13 @@ class CreateAPostFragment : Fragment() {
                 println(post)
                 Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
 
+                val fragment = ParentViewOwnPosts()
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(
+                        R.id.fragment_container,
+                        fragment
+                    )?.commit()
+
             }
         }
 
