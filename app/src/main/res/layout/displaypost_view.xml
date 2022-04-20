@@ -14,9 +14,8 @@
             android:layout_width="80sp"
             android:layout_height="75sp"
             android:layout_marginTop="5sp"
-            >
+            />
 
-            </ImageView>
 
         <TextView
             android:id="@+id/displayTitle"

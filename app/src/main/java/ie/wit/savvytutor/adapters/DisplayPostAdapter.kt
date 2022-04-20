@@ -32,8 +32,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         holder.level.text = currentItem.level
         holder.description.text = currentItem.description
         holder.username.text = currentItem.email
-        holder.profilepic.setImageBitmap(readImageFromPath(holder.profilepic.context, user.profilepic))
-
+        holder.profilepic.setImageResource(user.profilepic)
 
     }
 
@@ -50,7 +49,6 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         val description : TextView = itemView.findViewById(R.id.displayDescription)
         var profilepic: ImageView = itemView.findViewById(R.id.displayProfilePic)
         val username: TextView = itemView.findViewById(R.id.displayParentName)
-
     }
 
     fun test(position: Int){
@@ -69,6 +67,10 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         notifyItemRemoved(pos)
     }
 
+    fun getProfilePic(){
+
+
+    }
 
 
 

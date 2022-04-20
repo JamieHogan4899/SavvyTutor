@@ -1,9 +1,14 @@
 package ie.wit.savvytutor.fragments
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,21 +22,30 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.helpers.readImage
 import ie.wit.savvytutor.helpers.showImagePicker
 import ie.wit.savvytutor.models.UserModel
 import kotlinx.android.synthetic.main.register_user_fragment.*
 import kotlinx.android.synthetic.main.register_user_fragment.view.*
+import java.net.URI
+import java.util.*
 
 
 private lateinit var mAuth: FirebaseAuth
 var user = UserModel()
-val rtdb = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
+val rtdb =
+    FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 val IMAGE_REQUEST = 1
+
+var profilePicUrl: String = ""
+
 
 
 class RegisterFragment : Fragment() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -49,7 +63,7 @@ class RegisterFragment : Fragment() {
         //inflate the fragment layout
         val root = inflater.inflate(R.layout.register_user_fragment, container, false)
         setRegisterButtonListener(root)
-        setAddProfilePicture(root)
+        selectProfilePicture(root)
         setBackToLogin(root)
 
         return root
@@ -68,6 +82,84 @@ class RegisterFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
     }
 
+
+
+    fun setBackToLogin(layout: View) {
+        val backToLogin = layout.findViewById<Button>(ie.wit.savvytutor.R.id.BackToLoginBtn)
+
+        backToLogin.setOnClickListener {
+
+            val fragment = LoginFragment()
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(ie.wit.savvytutor.R.id.fragment_container, fragment)?.commit()
+        }
+
+    }
+
+    fun selectProfilePicture(layout: View){
+        var selectProfilePicBtn = layout.findViewById<Button>(R.id.addprofilepic)
+        selectProfilePicBtn.setOnClickListener{
+
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, 0)
+        }
+    }
+
+    var selectedPhotoUri: Uri? = null
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 0 ||  requestCode == RESULT_OK  ||  data !=null){
+
+            println("photo selected")
+
+            selectedPhotoUri = data?.data
+            val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, selectedPhotoUri )
+            val bitmapDrawable = BitmapDrawable(bitmap)
+
+
+
+        }
+    }
+
+    private fun uploadImageToDb(){
+        if(selectedPhotoUri ==null) return
+
+        val filename = UUID.randomUUID().toString()
+        val ssRef = FirebaseStorage.getInstance().getReference("/images/$filename")
+
+        ssRef.putFile(selectedPhotoUri!!)
+            .addOnSuccessListener {
+                println("uploading image to db")
+
+                ssRef.downloadUrl.addOnSuccessListener {
+                    val selectedPicUrl = it.toString()
+                    profilePicUrl = selectedPicUrl
+
+
+                    writeNewUser(
+                        UserModel(
+                            email = user.email,
+                            password = user.password,
+                            profilepic = profilePicUrl,
+                            role = user.role,
+                            phone = user.phone,
+
+                            )
+                    )
+
+
+
+                }
+
+            }
+
+    }
+
+
+
     fun setRegisterButtonListener(layout: View) {
         val registerbtn = layout.findViewById<Button>(R.id.registerbtn)
         val email = layout.findViewById<EditText>(R.id.registerEmail)
@@ -83,7 +175,7 @@ class RegisterFragment : Fragment() {
             user.role = role.selectedItem.toString()
             user.phone = username.text.toString()
 
-            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty()  || user.role == "Choose Role" ||  user.phone.isEmpty()) {
+            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty() || user.role == "Choose Role" || user.phone.isEmpty()) {
                 Toast.makeText(getActivity(), "Please fill in all the details", Toast.LENGTH_SHORT)
                     .show()
             } else {
@@ -96,20 +188,12 @@ class RegisterFragment : Fragment() {
                             println(Fuser)
 
 
-                            writeNewUser(
-                                UserModel(
-                                    email = user.email,
-                                    password = user.password,
-                                    role = user.role,
-                                    profilepic = user.profilepic,
-                                    phone = user.phone,
-
-                                )
-                            )
-
                             layout.findViewById<EditText>(R.id.registerEmail).text.clear()
                             layout.findViewById<EditText>(R.id.registerPassword).text.clear()
                             layout.findViewById<Spinner>(R.id.chooseRole).setSelection(0)
+
+                            uploadImageToDb()
+
 
                             val user = FirebaseAuth.getInstance().currentUser
                             user!!.sendEmailVerification()
@@ -136,7 +220,6 @@ class RegisterFragment : Fragment() {
 
     }
 
-
     private fun writeNewUser(userModel: UserModel) {
 
         val key = mAuth.currentUser?.uid
@@ -146,6 +229,7 @@ class RegisterFragment : Fragment() {
         }
 
         user.uid = mAuth.currentUser?.uid
+        user.profilepic = profilePicUrl
         val userValues = user.toMap()
 
         val childUpdates = hashMapOf<String, Any>(
@@ -155,46 +239,6 @@ class RegisterFragment : Fragment() {
 
         database.updateChildren(childUpdates)
     }
-
-
-    fun setAddProfilePicture(layout: View) {
-        layout.addprofilepic.setOnClickListener {
-            showImagePicker(this, IMAGE_REQUEST)
-        }
-    }
-
-    //take in the image and get the path
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            IMAGE_REQUEST -> {
-                if (data != null) {
-                    user.profilepic = data.getData().toString()
-                    registershowprofilepic.setImageBitmap(readImage(this, resultCode, data))
-
-
-                }
-            }
-
-
-        }
-    }
-
-
-    fun setBackToLogin(layout: View){
-        val backToLogin = layout.findViewById<Button>(ie.wit.savvytutor.R.id.BackToLoginBtn)
-
-        backToLogin.setOnClickListener {
-
-            val fragment = LoginFragment()
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(ie.wit.savvytutor.R.id.fragment_container, fragment)?.commit()
-        }
-
-    }
-
-
-
 
 }
 
