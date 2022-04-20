@@ -9,6 +9,7 @@
     android:id="@+id/nav_header">
 
     <ImageView
+        android:id="@+id/headerProfilePic"
         android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,23 +17,13 @@
       />
 
 
-
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SavvyTutor"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/blackText" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logged in with: "
+        android:text="Logged in as: "
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/blackText"
-        android:layout_marginTop="20sp"/>
+        />
 
 
     <TextView

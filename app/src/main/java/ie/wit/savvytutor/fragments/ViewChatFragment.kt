@@ -66,9 +66,6 @@ class ViewChatFragment : Fragment() {
 
         senderuid = mAuth.currentUser?.uid
 
-
-
-
         println("Sender uid " + senderuid + " Recvier uid" + reciveruid)
         senderRoom = reciveruid + senderuid
         reciverRoom = senderuid + reciveruid
@@ -91,12 +88,10 @@ class ViewChatFragment : Fragment() {
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 messageArrayList.clear()
-
                 for (postSnapshot in snapshot.children) {
                     val message = postSnapshot.getValue(MessageModel::class.java)
                     messageArrayList.add(message!!)
                 }
-
                 messageRecyclerView.adapter?.notifyDataSetChanged()
                 messageRecyclerView.adapter = context?.let { MessageAdapter(messageArrayList) }
 

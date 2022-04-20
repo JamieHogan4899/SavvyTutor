@@ -63,10 +63,9 @@ class TutorChatFragment : Fragment() {
 
     private fun getUserList() {
 
-        userArrayList.clear()
-
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                userArrayList.clear()
                 for (postSnapshot in snapshot.children) {
                     val currentUser = postSnapshot.getValue(UserModel::class.java)
                     val email = currentUser?.email
