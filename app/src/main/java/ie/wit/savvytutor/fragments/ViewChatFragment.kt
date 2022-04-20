@@ -19,6 +19,7 @@ import ie.wit.savvytutor.R
 import ie.wit.savvytutor.adapters.MessageAdapter
 import ie.wit.savvytutor.models.MessageModel
 import ie.wit.savvytutor.models.UserModel
+import kotlinx.android.synthetic.main.chat_screen_fragment.view.*
 
 
 private lateinit var messageRecyclerView: RecyclerView
@@ -78,6 +79,7 @@ class ViewChatFragment : Fragment() {
         messageRecyclerView.layoutManager = LinearLayoutManager(context)
         messageRecyclerView.setHasFixedSize(true)
         messageArrayList = arrayListOf<MessageModel>()
+        (messageRecyclerView.layoutManager as LinearLayoutManager).setStackFromEnd(true)
 
 
 

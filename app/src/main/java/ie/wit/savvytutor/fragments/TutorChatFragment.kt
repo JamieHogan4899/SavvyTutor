@@ -50,6 +50,7 @@ class TutorChatFragment : Fragment() {
         userRecyclerView.layoutManager = LinearLayoutManager(context)
         userRecyclerView.setHasFixedSize(true)
 
+
         userArrayList = arrayListOf<UserModel>()
         getUserList()
 

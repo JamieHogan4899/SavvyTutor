@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
+import ie.wit.savvytutor.adapters.MessageAdapter
 import ie.wit.savvytutor.helpers.SwipeToDelete
 import ie.wit.savvytutor.helpers.TutorSwipeToDelete
 import ie.wit.savvytutor.models.TutorPostModel
