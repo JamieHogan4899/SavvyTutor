@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.fragments.post
+import ie.wit.savvytutor.fragments.user
 import ie.wit.savvytutor.helpers.readImageFromPath
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.models.UserModel
@@ -31,6 +32,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         holder.level.text = currentItem.level
         holder.description.text = currentItem.description
         holder.username.text = currentItem.email
+        holder.profilepic.setImageBitmap(readImageFromPath(holder.profilepic.context, user.profilepic))
 
 
     }
