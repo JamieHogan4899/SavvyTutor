@@ -10,15 +10,11 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import ie.wit.savvytutor.R
-import ie.wit.savvytutor.models.PostModel
-import ie.wit.savvytutor.R.layout.createapost_fragment
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import ie.wit.savvytutor.main.SavvyTutor
+import ie.wit.savvytutor.R
+import ie.wit.savvytutor.R.layout.createapost_fragment
+import ie.wit.savvytutor.models.PostModel
 
 
 var post = PostModel()
@@ -116,6 +112,10 @@ class CreateAPostFragment : Fragment() {
 
         post.uid = mAuth.currentUser?.uid
         post.postId = key
+        var userEmail = mAuth.currentUser?.email.toString()
+        val substring: String = userEmail.substring(0, userEmail.indexOf("@"))
+        post.email = substring
+
         val postValues = post.toMap()
 
         val childUpdates = hashMapOf<String, Any>(

@@ -27,7 +27,7 @@
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginLeft="100sp"/>
+            android:layout_marginLeft="125sp"/>
 
         <TextView
             android:id="@+id/displaySubject"
@@ -36,7 +36,7 @@
             android:layout_below="@+id/displayTitle"
             android:text="Subject"
             android:textSize="15sp"
-            android:layout_marginLeft="100sp"
+            android:layout_marginLeft="125sp"
             />
         <TextView
             android:id="@+id/displayLocation"
@@ -45,7 +45,7 @@
             android:layout_below="@+id/displaySubject"
             android:text="Location"
             android:textSize="15sp"
-            android:layout_marginLeft="100sp"
+            android:layout_marginLeft="125sp"
             />
         <TextView
             android:id="@+id/displayLevel"
@@ -54,7 +54,7 @@
             android:layout_below="@+id/displayLocation"
             android:text="Level"
             android:textSize="15sp"
-            android:layout_marginLeft="100sp"
+            android:layout_marginLeft="125sp"
             />
         <TextView
             android:id="@+id/displayDescription"
@@ -63,7 +63,16 @@
             android:layout_below="@+id/displayLevel"
             android:text="Description"
             android:textSize="15sp"
-            android:layout_marginLeft="100sp"
+            android:layout_marginLeft="125sp"
+            />
+
+        <TextView
+            android:id="@+id/displayParentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="15sp"
+            android:layout_marginTop="90sp"
             />
 
     </RelativeLayout>

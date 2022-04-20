@@ -9,6 +9,7 @@ import ie.wit.savvytutor.fragments.post
 import ie.wit.savvytutor.helpers.readImageFromPath
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.models.UserModel
+import org.w3c.dom.Text
 
 
 class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerView.Adapter<DisplayPostAdapter.PostViewHolder>(){
@@ -29,6 +30,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         holder.location.text = currentItem.location
         holder.level.text = currentItem.level
         holder.description.text = currentItem.description
+        holder.username.text = currentItem.email
 
 
     }
@@ -45,6 +47,7 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) : RecyclerV
         val level : TextView = itemView.findViewById(R.id.displayLevel)
         val description : TextView = itemView.findViewById(R.id.displayDescription)
         var profilepic: ImageView = itemView.findViewById(R.id.displayProfilePic)
+        val username: TextView = itemView.findViewById(R.id.displayParentName)
 
     }
 
