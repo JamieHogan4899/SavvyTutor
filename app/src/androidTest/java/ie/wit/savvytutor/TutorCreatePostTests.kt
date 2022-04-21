@@ -82,8 +82,6 @@ class TutorCreatePostTests {
         ); //Type in Description
         TimeUnit.SECONDS.sleep(2)
 
-
-        onView(withId(R.id.TutorCreateSV)).perform(ViewActions.swipeUp())
         onView(withId(R.id.tutorcreateapostbtn)).perform(click()) //hit post!
         TimeUnit.SECONDS.sleep(2)
     }

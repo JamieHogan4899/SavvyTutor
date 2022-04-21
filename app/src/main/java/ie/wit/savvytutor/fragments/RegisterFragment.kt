@@ -146,19 +146,6 @@ class RegisterFragment : Fragment() {
                     profilePicUrl = selectedPicUrl
 
 
-                    writeNewUser(
-                        UserModel(
-                            email = user.email,
-                            password = user.password,
-                            profilepic = profilePicUrl,
-                            role = user.role,
-                            phone = user.phone,
-
-                            )
-                    )
-
-
-
                 }
 
             }
@@ -200,7 +187,16 @@ class RegisterFragment : Fragment() {
                             layout.findViewById<Spinner>(R.id.chooseRole).setSelection(0)
 
                             uploadImageToDb()
+                            writeNewUser(
+                                UserModel(
+                                    email = user.email,
+                                    password = user.password,
+                                    profilepic = profilePicUrl,
+                                    role = user.role,
+                                    phone = user.phone,
 
+                                    )
+                            )
 
                             val user = FirebaseAuth.getInstance().currentUser
                             user!!.sendEmailVerification()
