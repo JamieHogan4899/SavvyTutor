@@ -46,6 +46,8 @@ class LoginFragment : Fragment() {
         setLoginButtonListener(root)
         setOnCreateAccount(root)
 
+
+
         return root
 
 
