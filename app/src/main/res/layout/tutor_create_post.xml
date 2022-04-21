@@ -1,4 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:id="@+id/TutorCreateSV"> <!--IMPORTANT otherwise backgrnd img. will not fill the whole screen -->
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tutorcreateapost_fragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -59,19 +67,6 @@
         android:theme="@style/spinnerTheme"
 
         />
-
-    <Button
-        android:id="@+id/tutorcreateapostbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15sp"
-        android:layout_marginTop="630sp"
-        android:text="Post"
-        android:textColor="@color/blackText"
-        android:backgroundTint="@color/main"
-        />
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -161,5 +156,17 @@
 
 
 
+        <Button
+            android:id="@+id/tutorcreateapostbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15sp"
+            android:layout_marginTop="630sp"
+            android:text="Post"
+            android:textColor="@color/blackText"
+            android:backgroundTint="@color/main"
+            />
 
 </RelativeLayout>
+</ScrollView>

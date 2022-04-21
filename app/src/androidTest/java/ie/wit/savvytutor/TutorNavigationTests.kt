@@ -33,12 +33,9 @@ class TutorNavigationTests {
 
         login()
         TimeUnit.SECONDS.sleep(7)
-        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout))
-            .perform(DrawerActions.open()) //open nav drawer
-        Espresso.onView(ViewMatchers.withId(R.id.nav_view))
-            .perform(NavigationViewActions.navigateTo(R.id.tutorCreate)) //click into create a post
-        Espresso.onView(ViewMatchers.withId(R.id.tutorcreateapost_fragment))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed())) //check does it display correct fragment
+        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open()) //open nav drawer
+        Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.tutorCreate)) //click into create a post
+        Espresso.onView(ViewMatchers.withId(R.id.tutorcreateapost_fragment)).check(ViewAssertions.matches(ViewMatchers.isDisplayed())) //check does it display correct fragment
 
         TimeUnit.SECONDS.sleep(3)
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open()) //open nav drawer
@@ -59,7 +56,6 @@ class TutorNavigationTests {
         Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.tutorViewOwnPosts)) //click into view own posts
         Espresso.onView(ViewMatchers.withId(R.id.tutorOwnPosts_Fragment)).check(ViewAssertions.matches(ViewMatchers.isDisplayed())) //check does it display correct fragment
         TimeUnit.SECONDS.sleep(3)
-
     }
 
 

@@ -4,6 +4,7 @@ import android.widget.EditText
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.DrawerActions
@@ -21,7 +22,16 @@ import java.util.concurrent.TimeUnit
 class ParentPostsTests {
 
     @Test
+    fun login(){
+        ActivityScenario.launch(MainActivity::class.java) //Open the app
+        onView(withId(R.id.loginEmail)).perform(ViewActions.typeText("jamiehogan4848@gmail.com"), ViewActions.closeSoftKeyboard());//type in email field
+        onView(withId(R.id.loginPassword)).perform(ViewActions.typeText("Test123"), ViewActions.closeSoftKeyboard());//type in email field
+        onView(withId(R.id.loginbtn)).perform(ViewActions.longClick()) //hit login
+    }
+
+    @Test
     fun addingAPostTest(){
+        login()
         ActivityScenario.launch(MainActivity::class.java) //Open the app
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()) //open nav drawer
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.createAPost)) //click into create a post
