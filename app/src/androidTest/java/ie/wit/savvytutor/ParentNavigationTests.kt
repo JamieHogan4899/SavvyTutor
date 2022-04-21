@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class NavigationTests {
+class ParentNavigationTests {
     @Test
     fun homeScreenTest() {
         ActivityScenario.launch(MainActivity::class.java) //Open the app
@@ -44,6 +44,13 @@ class NavigationTests {
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.chat)) //click into chat
         onView(withId(R.id.chat_fragment)).check(matches(isDisplayed())) //check does it display correct fragment
         TimeUnit.SECONDS.sleep(3)
+
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()) //open nav drawer
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.parentsViewOwnPosts)) //click into view own posts
+        onView(withId(R.id.parentViewTheirPostsPage)).check(matches(isDisplayed())) //check does it display correct fragment
+        TimeUnit.SECONDS.sleep(3)
+
+
 
     }
 
