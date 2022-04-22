@@ -9,10 +9,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.R
+import ie.wit.savvytutor.adapters.DisplayCommentAdapter
+import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
+import ie.wit.savvytutor.models.CommentModel
+import ie.wit.savvytutor.models.TutorPostModel
 import ie.wit.savvytutor.models.UserModel
 import kotlinx.android.synthetic.main.comment_fragment.*
 
@@ -29,6 +35,8 @@ private lateinit var dbRef: DatabaseReference
 private lateinit var mAuth: FirebaseAuth
 private lateinit var sendComment: ImageView
 private lateinit var CommentBox: EditText
+private lateinit var commentRecyclerView: RecyclerView
+private lateinit var commentArrayList: ArrayList<CommentModel>
 
 
 class CommentFragment : Fragment() {
@@ -78,6 +86,15 @@ class CommentFragment : Fragment() {
         root.findViewById<TextView>(R.id.commentDescription).setText(RpostDescription)
         root.findViewById<TextView>(R.id.commentPosterId).setText(RposterEmail)
 
+        commentRecyclerView = root.findViewById(ie.wit.savvytutor.R.id.commentSectionRecylerView)
+        commentRecyclerView.layoutManager = LinearLayoutManager(context)
+        commentRecyclerView.setHasFixedSize(true)
+
+        commentArrayList = arrayListOf<CommentModel>()
+        getComments()
+
+
+
 
 
         return root
@@ -115,6 +132,15 @@ class CommentFragment : Fragment() {
 
 
     }
+
+    fun getComments(){
+        commentArrayList.add(CommentModel("123", "456", "Jamie Hogan", "This is the comment"))
+        commentArrayList.add(CommentModel("123", "456", "Jamie Hogan", "This is the comment"))
+        commentArrayList.add(CommentModel("123", "456", "Jamie Hogan", "This is the comment"))
+        commentRecyclerView.adapter = DisplayCommentAdapter(commentArrayList)
+    }
+
+
 
     fun commentBtnListener(layout: View){
         sendComment.setOnClickListener {

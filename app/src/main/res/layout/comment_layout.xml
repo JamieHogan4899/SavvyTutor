@@ -15,9 +15,9 @@
         android:id="@+id/comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sent Message"
+        android:text="Comment"
         android:padding="10sp"
-        android:textSize="20sp"
+        android:textSize="17sp"
         />
 
 
