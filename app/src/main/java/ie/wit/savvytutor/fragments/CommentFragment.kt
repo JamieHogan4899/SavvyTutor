@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Nullable
@@ -26,6 +27,9 @@ var RposterEmail: String = ""
 var posterProfilePicture = ""
 private lateinit var dbRef: DatabaseReference
 private lateinit var mAuth: FirebaseAuth
+private lateinit var sendComment: ImageView
+private lateinit var CommentBox: EditText
+
 
 class CommentFragment : Fragment() {
 
@@ -33,6 +37,7 @@ class CommentFragment : Fragment() {
         super.onCreate(savedInstanceState)
         dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
         mAuth = FirebaseAuth.getInstance()
+
     }
 
     @Nullable
@@ -43,7 +48,14 @@ class CommentFragment : Fragment() {
     ): View {
         //inflate the fragment layout
         val root = inflater.inflate(ie.wit.savvytutor.R.layout.comment_fragment, container, false)
-        getProfilePicture(root)
+
+        sendComment = root.findViewById(R.id.commentBtn)
+        CommentBox = root.findViewById(R.id.commentBox)
+
+            getProfilePicture(root)
+        commentBtnListener(root)
+
+
 
 
 
@@ -104,7 +116,17 @@ class CommentFragment : Fragment() {
 
     }
 
+    fun commentBtnListener(layout: View){
+        sendComment.setOnClickListener {
+
+            val comment = CommentBox.text.toString()
+            println(comment)
+
+        }
 
 
-}
+
+        }
+
+    }
 

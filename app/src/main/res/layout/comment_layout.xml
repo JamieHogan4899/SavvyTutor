@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/sendChat"
+    android:id="@+id/sendComment"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/recive_message"
+    android:background="@drawable/comment"
     android:layout_marginLeft="5sp"
     android:layout_marginTop="5sp"
     >
@@ -12,7 +12,7 @@
 
 
     <TextView
-        android:id="@+id/txtReciveMessage"
+        android:id="@+id/comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sent Message"
