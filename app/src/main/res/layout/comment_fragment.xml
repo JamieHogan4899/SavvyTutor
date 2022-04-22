@@ -6,13 +6,67 @@
     android:layout_height="match_parent"
     android:id="@+id/commentFragment">
 
+    <ImageView
+        android:id="@+id/CommentPosterProfilePicutre"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="15sp" />
+
     <TextView
+        android:id="@+id/commentPosterId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
         android:textSize="20sp"
         android:layout_marginTop="140sp"
         android:layout_marginLeft="10sp"/>
+
+    <TextView
+        android:id="@+id/commentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="20sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginLeft="160sp"/>
+
+    <TextView
+        android:id="@+id/commentSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject"
+        android:textSize="15sp"
+        android:layout_marginTop="35sp"
+        android:layout_marginLeft="160sp"/>
+
+    <TextView
+        android:id="@+id/commentLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textSize="15sp"
+        android:layout_marginTop="55sp"
+        android:layout_marginLeft="160sp"/>
+
+    <TextView
+        android:id="@+id/commentLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level"
+        android:textSize="15sp"
+        android:layout_marginTop="75sp"
+        android:layout_marginLeft="160sp"/>
+
+    <TextView
+        android:id="@+id/commentDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="15sp"
+        android:layout_marginTop="95sp"
+        android:layout_marginLeft="160sp"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentSectionRecylerView"
