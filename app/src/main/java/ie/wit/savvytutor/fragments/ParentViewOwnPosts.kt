@@ -17,8 +17,8 @@ import ie.wit.savvytutor.helpers.SwipeToDelete
 import ie.wit.savvytutor.models.PostModel
 
 private lateinit var dbRef: DatabaseReference
-private lateinit var  postRecyclerView: RecyclerView
-private lateinit var  postArrayList : ArrayList<PostModel>
+private lateinit var postRecyclerView: RecyclerView
+private lateinit var postArrayList : ArrayList<PostModel>
 private lateinit var mAuth: FirebaseAuth
 
 
@@ -104,7 +104,19 @@ class ParentViewOwnPosts : Fragment() {
 
         println("This is the view Fragment: " + postSubject + "" + postDescription + "" + postId)
 
+        val bundle = Bundle()
+        bundle.putString("userId", userId)
+        bundle.putString("Title", postTitle)
+        bundle.putString("subject", postSubject)
+        bundle.putString("location", postLocation)
+        bundle.putString("level", postLevel)
+        bundle.putString("description", postDescription)
+        bundle.putString("postId", postId)
+        bundle.putString("posterEmail", posterEmail)
+
+
         val optionsFrag = CommentFragment()
+        optionsFrag.setArguments(bundle)
         (context as MainActivity).getSupportFragmentManager().beginTransaction()
             .replace(ie.wit.savvytutor.R.id.fragment_container, optionsFrag, "OptionsFragment")
             .addToBackStack(null)
