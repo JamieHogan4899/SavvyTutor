@@ -17,10 +17,13 @@ import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.R
 import ie.wit.savvytutor.adapters.DisplayCommentAdapter
 import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
+import ie.wit.savvytutor.adapters.MessageAdapter
 import ie.wit.savvytutor.models.CommentModel
+import ie.wit.savvytutor.models.MessageModel
 import ie.wit.savvytutor.models.TutorPostModel
 import ie.wit.savvytutor.models.UserModel
 import kotlinx.android.synthetic.main.comment_fragment.*
+import kotlinx.android.synthetic.main.tutor_create_post.*
 
 var RuserId: String = ""
 var RpostTitle: String = ""
@@ -31,12 +34,15 @@ var RpostDescription: String = ""
 var RpostId: String = ""
 var RposterEmail: String = ""
 var posterProfilePicture = ""
+var commentRoom: String? = null
 private lateinit var dbRef: DatabaseReference
 private lateinit var mAuth: FirebaseAuth
 private lateinit var sendComment: ImageView
 private lateinit var CommentBox: EditText
 private lateinit var commentRecyclerView: RecyclerView
 private lateinit var commentArrayList: ArrayList<CommentModel>
+
+
 
 
 class CommentFragment : Fragment() {
@@ -60,12 +66,9 @@ class CommentFragment : Fragment() {
         sendComment = root.findViewById(R.id.commentBtn)
         CommentBox = root.findViewById(R.id.commentBox)
 
-            getProfilePicture(root)
+
+        getProfilePicture(root)
         commentBtnListener(root)
-
-
-
-
 
         val bundle = this.arguments
         //println(bundle)
@@ -79,7 +82,9 @@ class CommentFragment : Fragment() {
         RpostId =  bundle?.getString("postId").toString()
         RposterEmail =  bundle?.getString("posterEmail").toString()
 
-        root.findViewById<TextView>(R.id.commentTitle).setText(RpostTitle)
+        commentRoom = RpostId + RuserId
+
+            root.findViewById<TextView>(R.id.commentTitle).setText(RpostTitle)
         root.findViewById<TextView>(R.id.commentSubject).setText(RpostSubject)
         root.findViewById<TextView>(R.id.commentLocation).setText(RpostLocation)
         root.findViewById<TextView>(R.id.commentLevel).setText(RpostLevel)
@@ -92,10 +97,6 @@ class CommentFragment : Fragment() {
 
         commentArrayList = arrayListOf<CommentModel>()
         getComments()
-
-
-
-
 
         return root
     }
@@ -134,10 +135,23 @@ class CommentFragment : Fragment() {
     }
 
     fun getComments(){
-        commentArrayList.add(CommentModel("123", "456", "Jamie Hogan", "This is the comment"))
-        commentArrayList.add(CommentModel("123", "456", "Jamie Hogan", "This is the comment"))
-        commentArrayList.add(CommentModel("123", "456", "Jamie Hogan", "This is the comment"))
-        commentRecyclerView.adapter = DisplayCommentAdapter(commentArrayList)
+        dbRef.child("Comments").child(commentRoom!!).child("comments").addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                commentArrayList.clear()
+                for (postSnapshot in snapshot.children) {
+                    val comment = postSnapshot.getValue(CommentModel::class.java)
+                    println("Comments: " + comment)
+                    commentArrayList.add(comment!!)
+                }
+                commentRecyclerView.adapter?.notifyDataSetChanged()
+                commentRecyclerView.adapter = context?.let { DisplayCommentAdapter(commentArrayList) }
+                println("This: " + commentArrayList )
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
 
 
@@ -146,13 +160,13 @@ class CommentFragment : Fragment() {
         sendComment.setOnClickListener {
 
             val comment = CommentBox.text.toString()
-            println(comment)
+            val commentObject = CommentModel(mAuth.currentUser?.uid, RpostId, mAuth.currentUser?.email.toString(), comment)
+            //write comment to database
+            dbRef.child("Comments").child(commentRoom!!).child("comments").push().setValue(commentObject)
 
         }
-
-
-
+        CommentBox.setText("")
         }
 
-    }
+}
 

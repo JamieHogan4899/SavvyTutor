@@ -79,10 +79,7 @@ class ViewChatFragment : Fragment() {
         messageArrayList = arrayListOf<MessageModel>()
         (messageRecyclerView.layoutManager as LinearLayoutManager).setStackFromEnd(true)
 
-
-
         (activity as AppCompatActivity?)!!.supportActionBar?.title = email
-
 
         dbRef.child("Chat").child(senderRoom!!).child("messages").addValueEventListener(object :
             ValueEventListener {
