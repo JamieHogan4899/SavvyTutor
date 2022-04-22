@@ -11,16 +11,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
-import ie.wit.savvytutor.adapters.MessageAdapter
-import ie.wit.savvytutor.helpers.SwipeToDelete
 import ie.wit.savvytutor.helpers.TutorSwipeToDelete
 import ie.wit.savvytutor.models.TutorPostModel
+import postAvailability
 
 private lateinit var tutorPostRecyclerView: RecyclerView
 private lateinit var tutorPostArrayList: ArrayList<TutorPostModel>
 private lateinit var dbRef: DatabaseReference
 private lateinit var mAuth: FirebaseAuth
+
+
+
 
 
 class TutorViewOwnPosts : Fragment() {
@@ -78,7 +81,7 @@ class TutorViewOwnPosts : Fragment() {
                         }
                     }
 
-                    tutorPostRecyclerView.adapter = DisplayTutorPostAdapter(tutorPostArrayList)
+                    tutorPostRecyclerView.adapter = DisplayTutorPostAdapter(tutorPostArrayList, ::handlePostData)
 
                     var itemTouchHelper = ItemTouchHelper(TutorSwipeToDelete(tutorPostRecyclerView.adapter as DisplayTutorPostAdapter))
                     itemTouchHelper.attachToRecyclerView(tutorPostRecyclerView)
@@ -90,4 +93,43 @@ class TutorViewOwnPosts : Fragment() {
 
         })
     }
+
+    private fun handlePostData(data:TutorPostModel){
+
+        userId = data.uid.toString()
+        postTitle = data.title
+        postSubject = data.subject
+        postLocation = data.location
+        postLevel = data.level
+        postAvailability = data.availability
+        postDescription = data.description
+        postId = data.postId
+        posterEmail = data.email
+
+        println("This is the view Fragment: " + postSubject + "" + postDescription + "" + postId)
+
+        val bundle = Bundle()
+        bundle.putString("userId", userId)
+        bundle.putString("Title", postTitle)
+        bundle.putString("subject", postSubject)
+        bundle.putString("location", postLocation)
+        bundle.putString("level", postLevel)
+        bundle.putString("availability", postAvailability)
+        bundle.putString("description", postDescription)
+        bundle.putString("postId", postId)
+        bundle.putString("posterEmail", posterEmail)
+
+
+        val optionsFrag = CommentFragment()
+        optionsFrag.setArguments(bundle)
+        (context as MainActivity).getSupportFragmentManager().beginTransaction()
+            .replace(ie.wit.savvytutor.R.id.fragment_container, optionsFrag, "OptionsFragment")
+            .addToBackStack(null)
+            .commit()
+
+
+
+    }
+
+
 }

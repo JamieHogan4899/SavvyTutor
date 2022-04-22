@@ -13,19 +13,24 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.R
+import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.models.TutorPostModel
 import ie.wit.savvytutor.models.UserModel
 
-class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostModel>) : RecyclerView.Adapter<DisplayTutorPostAdapter.TutorPostViewHolder>() {
+class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostModel>, val handler: (TutorPostModel) -> Unit) : RecyclerView.Adapter<DisplayTutorPostAdapter.TutorPostViewHolder>() {
 
     public var postId:String = ""
+
+
+    private fun getPost(uid:String, title:String, subject:String, location:String, level:String, availability:String, description:String, postId:String, email:String) {
+        // call the handler function with your data (you can write handler.invoke() if you prefer)
+        handler(TutorPostModel(uid, title, subject, location, level, availability, description, postId, email))
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TutorPostViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.display_tutor_posts, parent, false)
         return TutorPostViewHolder(itemView)
     }
-
-
 
     override fun onBindViewHolder(holder: TutorPostViewHolder, position: Int) {
         val currentItem = tutorPostList[position]
@@ -36,46 +41,64 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
         holder.level.text = currentItem.level
         holder.availability.text = currentItem.availability
         holder.description.text = currentItem.description
-//        holder.username.text = currentItem.email
-//
-//
-//        val dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
-//            .getReference("Users")
-//
-//
-//        dbRef.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if (snapshot.exists()) {
-//                    for (userSnapshot in snapshot.children) {
-//                        val users = userSnapshot.getValue(UserModel::class.java)
-//                        val individualDb = currentItem.uid?.let { dbRef.child(it) }
-//                        //println("indavidual users database " + individualDb)
-//                        var user: String = ""
-//                        if (individualDb != null) {
-//                            individualDb.child("profilepic").get().addOnSuccessListener {
-//                                if (it.exists()) {
-//                                    var link = it.value
-//                                    //println("THIS IS LINK    " + link)
-//                                    Picasso.get().load(link.toString())
-//                                        .into(holder.profilepic);
-//                                }
-//                            }
-//
-//                        }
-//
-//
-//                    }
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//            }
-//        })
-//
+        holder.username.text = currentItem.email
+
+
+        val dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
+            .getReference("Users")
+
+
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (userSnapshot in snapshot.children) {
+                        val users = userSnapshot.getValue(UserModel::class.java)
+                        val individualDb = currentItem.uid?.let { dbRef.child(it) }
+                        //println("indavidual users database " + individualDb)
+                        var user: String = ""
+                        if (individualDb != null) {
+                            individualDb.child("profilepic").get().addOnSuccessListener {
+                                if (it.exists()) {
+                                    var link = it.value
+                                    //println("THIS IS LINK    " + link)
+                                    Picasso.get().load(link.toString())
+                                        .into(holder.profilepic);
+                                }
+                            }
+
+                        }
+
+
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+
+
+        holder.itemView.setOnClickListener{
+            println("Item clicked, Item is :" + currentItem.title + " By: " + currentItem.email)
+            val uid = currentItem.uid
+            val title = currentItem.title
+            val subject = currentItem.subject
+            val location = currentItem.subject
+            val level = currentItem.level
+            val availability = currentItem.availability
+            val description = currentItem.description
+            val postId = currentItem.postId
+            val email = currentItem.email
+
+            if (uid != null) {
+                getPost(uid, title, subject, location, level, availability, description, postId, email)
+            }
+
+        }
+
 
     }
-
-
 
 
     override fun getItemCount(): Int {
