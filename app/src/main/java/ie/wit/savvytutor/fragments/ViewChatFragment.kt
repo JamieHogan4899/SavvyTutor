@@ -53,9 +53,7 @@ class ViewChatFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
 
         val bundle = this.arguments
-
         println(bundle)
-
         if (bundle != null) {
 
             println(bundle.getString("email"))
@@ -135,15 +133,11 @@ class ViewChatFragment : Fragment() {
 
 
     fun callBtnListener(layout: View) {
-
         val callBtn = layout.findViewById<ImageView>(R.id.callBtn)
-
         callBtn.setOnClickListener() {
-
             val intent = Intent(Intent.ACTION_DIAL)
             intent.setData(Uri.parse("tel:" + phone));
             startActivity(intent);
-
 
         }
     }

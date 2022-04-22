@@ -36,42 +36,42 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
         holder.level.text = currentItem.level
         holder.availability.text = currentItem.availability
         holder.description.text = currentItem.description
-        holder.username.text = currentItem.email
-
-
-        val dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
-            .getReference("Users")
-
-
-        dbRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (userSnapshot in snapshot.children) {
-                        val users = userSnapshot.getValue(UserModel::class.java)
-                        val individualDb = currentItem.uid?.let { dbRef.child(it) }
-                        //println("indavidual users database " + individualDb)
-                        var user: String = ""
-                        if (individualDb != null) {
-                            individualDb.child("profilepic").get().addOnSuccessListener {
-                                if (it.exists()) {
-                                    var link = it.value
-                                    //println("THIS IS LINK    " + link)
-                                    Picasso.get().load(link.toString())
-                                        .into(holder.profilepic);
-                                }
-                            }
-
-                        }
-
-
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
+//        holder.username.text = currentItem.email
+//
+//
+//        val dbRef = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
+//            .getReference("Users")
+//
+//
+//        dbRef.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                if (snapshot.exists()) {
+//                    for (userSnapshot in snapshot.children) {
+//                        val users = userSnapshot.getValue(UserModel::class.java)
+//                        val individualDb = currentItem.uid?.let { dbRef.child(it) }
+//                        //println("indavidual users database " + individualDb)
+//                        var user: String = ""
+//                        if (individualDb != null) {
+//                            individualDb.child("profilepic").get().addOnSuccessListener {
+//                                if (it.exists()) {
+//                                    var link = it.value
+//                                    //println("THIS IS LINK    " + link)
+//                                    Picasso.get().load(link.toString())
+//                                        .into(holder.profilepic);
+//                                }
+//                            }
+//
+//                        }
+//
+//
+//                    }
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//            }
+//        })
+//
 
     }
 

@@ -74,7 +74,6 @@ class ChatFragment : Fragment() {
                             if (email != null) {
                                 userArrayList.add(currentUser!!)
 
-
                             }
                     }
                     userRecyclerView.adapter?.notifyDataSetChanged()

@@ -160,7 +160,7 @@ class RegisterFragment : Fragment() {
         val password = layout.findViewById<EditText>(R.id.registerPassword)
         val role = layout.findViewById<Spinner>(R.id.chooseRole)
         val username = layout.findViewById<EditText>(R.id.registerUsername)
-        val displayprofilepic = layout.findViewById<ImageView>(R.id.registershowprofilepic)
+           val displayprofilepic = layout.findViewById<ImageView>(R.id.registershowprofilepic)
 
         registerbtn.setOnClickListener {
 
