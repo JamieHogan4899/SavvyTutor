@@ -1,6 +1,3 @@
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory.decodeFile
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,22 +11,24 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.R
-import ie.wit.savvytutor.fragments.post
-import ie.wit.savvytutor.fragments.uid
-import ie.wit.savvytutor.fragments.user
+import ie.wit.savvytutor.adapters.UserData
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.models.UserModel
 import java.io.File
+import kotlin.reflect.KFunction0
 
 
-class DisplayPostAdapter(private val postList: ArrayList<PostModel>) :
+class DisplayPostAdapter(private val postList: ArrayList<PostModel>, val handler: (PostModel) -> Unit) :
     RecyclerView.Adapter<DisplayPostAdapter.PostViewHolder>() {
 
     public var postId: String = ""
-    public var profilepic: String = ""
     private lateinit var mAuth: FirebaseAuth
-    var usersProfilePic: String = ""
 
+
+    private fun getPost(uid:String, title:String, subject:String, location:String, level:String, description:String, postId:String, email:String) {
+        // call the handler function with your data (you can write handler.invoke() if you prefer)
+        handler(PostModel(uid, title, subject, location, level, description, postId, email))
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
@@ -83,6 +82,23 @@ class DisplayPostAdapter(private val postList: ArrayList<PostModel>) :
             override fun onCancelled(error: DatabaseError) {
             }
         })
+
+        holder.itemView.setOnClickListener{
+            println("Item clicked, Item is :" + currentItem.title + " By: " + currentItem.email)
+            val uid = currentItem.uid
+            val title = currentItem.title
+            val subject = currentItem.subject
+            val location = currentItem.subject
+            val level = currentItem.level
+            val description = currentItem.description
+            val postId = currentItem.postId
+            val email = currentItem.email
+
+            if (uid != null) {
+                getPost(uid, title, subject, location, level, description, postId, email)
+            }
+
+        }
 
     }
 

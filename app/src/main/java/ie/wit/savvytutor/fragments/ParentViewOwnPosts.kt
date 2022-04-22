@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.helpers.SwipeToDelete
 import ie.wit.savvytutor.models.PostModel
 
@@ -76,7 +77,7 @@ class ParentViewOwnPosts : Fragment() {
                         }
                     }
 
-                    postRecyclerView.adapter = DisplayPostAdapter(postArrayList)
+                    postRecyclerView.adapter = DisplayPostAdapter(postArrayList, ::handlePostData)
 
                     var itemTouchHelper =ItemTouchHelper(SwipeToDelete(postRecyclerView.adapter as DisplayPostAdapter))
                     itemTouchHelper.attachToRecyclerView(postRecyclerView)
@@ -88,6 +89,29 @@ class ParentViewOwnPosts : Fragment() {
             }
 
         })
+    }
+
+    private fun handlePostData(data : PostModel){
+
+        userId = data.uid.toString()
+        postTitle = data.title
+        postSubject = data.subject
+        postLocation = data.location
+        postLevel = data.level
+        postDescription = data.description
+        postId = data.postId
+        posterEmail = data.email
+
+        println("This is the view Fragment: " + postSubject + "" + postDescription + "" + postId)
+
+        val optionsFrag = CommentFragment()
+        (context as MainActivity).getSupportFragmentManager().beginTransaction()
+            .replace(ie.wit.savvytutor.R.id.fragment_container, optionsFrag, "OptionsFragment")
+            .addToBackStack(null)
+            .commit()
+
+
+
     }
 
 

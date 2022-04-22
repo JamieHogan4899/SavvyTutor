@@ -1,12 +1,10 @@
 package ie.wit.savvytutor.fragments
 
 import DisplayPostAdapter
-import android.R
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
@@ -15,11 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.models.PostModel
-import ie.wit.savvytutor.models.UserModel
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 private lateinit var dbRef: DatabaseReference
@@ -27,6 +22,15 @@ private lateinit var  postRecyclerView: RecyclerView
 private lateinit var  postArrayList : ArrayList<PostModel>
 private lateinit var mAuth: FirebaseAuth
 var userEmail : String = ""
+
+var userId: String = ""
+var postTitle: String = ""
+var postSubject: String = ""
+var postLocation: String = ""
+var postLevel: String = ""
+var postDescription: String = ""
+var postId: String = ""
+var posterEmail: String = ""
 
 
 class TutorHomeFragment : Fragment() {
@@ -90,7 +94,7 @@ class TutorHomeFragment : Fragment() {
                         postArrayList.add(post!!)
                     }
 
-                    postRecyclerView.adapter = DisplayPostAdapter(postArrayList)
+                    postRecyclerView.adapter = DisplayPostAdapter(postArrayList, ::handlePostData)
                 }
             }
 
@@ -99,6 +103,29 @@ class TutorHomeFragment : Fragment() {
             }
 
         })
+    }
+
+    private fun handlePostData(data : PostModel){
+
+        userId = data.uid.toString()
+        postTitle = data.title
+        postSubject = data.subject
+        postLocation = data.location
+        postLevel = data.level
+        postDescription = data.description
+        postId = data.postId
+        posterEmail = data.email
+
+        println("This is the view Fragment: " + postSubject + "" + postDescription + "" + postId)
+
+        val optionsFrag = CommentFragment()
+        (context as MainActivity).getSupportFragmentManager().beginTransaction()
+            .replace(ie.wit.savvytutor.R.id.fragment_container, optionsFrag, "OptionsFragment")
+            .addToBackStack(null)
+            .commit()
+
+
+
     }
 
 
