@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
-import ie.wit.savvytutor.main.SavvyTutor
 
 private lateinit var mAuth: FirebaseAuth
 
@@ -56,8 +55,6 @@ class LoginFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-        (activity as AppCompatActivity?)!!.supportActionBar
-
     }
 
     override fun onStop() {

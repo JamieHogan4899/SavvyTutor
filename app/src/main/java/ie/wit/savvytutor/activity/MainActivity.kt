@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this) //pass in listener for click in drawer
 
-
         val toggle = ActionBarDrawerToggle(
             this,
             drawer,
