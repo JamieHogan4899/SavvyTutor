@@ -6,21 +6,25 @@
     android:layout_height="match_parent"
     android:id="@+id/commentFragment">
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/CommentPosterProfilePicutre"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="15sp" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:civ_border_width="2dp"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="2sp"
+        app:civ_border_color="@color/whiteText"/>
 
     <TextView
         android:id="@+id/commentPosterId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:layout_marginTop="120sp"
-        android:layout_marginLeft="10sp"/>
+        android:layout_marginLeft="5sp"/>
 
     <TextView
         android:id="@+id/commentTitle"
@@ -67,6 +71,15 @@
         android:layout_marginTop="95sp"
         android:layout_marginLeft="140sp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comments:"
+        android:textSize="17sp"
+        android:layout_marginTop="160sp"
+        android:layout_marginLeft="5sp"
+        android:textStyle="bold"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentSectionRecylerView"
@@ -74,7 +87,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="190sp"
         android:layout_marginBottom="150dp"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical"
+        android:layout_marginLeft="5sp"/>
 
     <EditText
         android:id="@+id/commentBox"
