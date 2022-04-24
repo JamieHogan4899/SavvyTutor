@@ -169,8 +169,8 @@ class RegisterFragment : Fragment() {
             user.role = role.selectedItem.toString()
             user.phone = username.text.toString()
 
-            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty() || user.role == "Choose Role" || user.phone.isEmpty()) {
-                Toast.makeText(getActivity(), "Please fill in all the details", Toast.LENGTH_SHORT)
+            if (user.email.isEmpty() || user.password.isEmpty() || user.role.isEmpty() || user.role == "Choose Role" || user.phone.isEmpty() || user.profilepic.isEmpty()) {
+                Toast.makeText(getActivity(), "Please fill in all the details and add a profile picture", Toast.LENGTH_SHORT)
                     .show()
             } else {
                 mAuth.createUserWithEmailAndPassword(user.email, user.password)
