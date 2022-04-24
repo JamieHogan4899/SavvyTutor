@@ -9,11 +9,11 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/loginFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
->
+    android:background="@drawable/gradient">
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="175sp"
+        android:layout_marginLeft="165sp"
         android:layout_marginTop="175sp"
         android:singleLine="false"
         android:text="@string/login"
@@ -93,8 +93,7 @@
         android:layout_marginTop="400sp"
         android:backgroundTint="@color/whiteText"
         android:text="Login"
-        android:textColor="@color/blackText"/>
-
+        android:textColor="@color/blackText" />
 
 
     <TextView
@@ -104,8 +103,7 @@
         android:layout_marginTop="620sp"
         android:text="Dont have a account? Create one here!"
         android:textColor="@color/blackText"
-        android:textSize="15sp"
-         />
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/createAccountBtn"
@@ -116,9 +114,7 @@
         android:layout_marginTop="650sp"
         android:backgroundTint="@color/whiteText"
         android:text="Create Account"
-        android:textColor="@color/blackText"/>
-
-
+        android:textColor="@color/blackText" />
 
 
 </RelativeLayout>
