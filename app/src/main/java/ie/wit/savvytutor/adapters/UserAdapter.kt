@@ -5,11 +5,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.R
-import ie.wit.savvytutor.fragments.ViewChatFragment
-import ie.wit.savvytutor.fragments.user
+import ie.wit.savvytutor.fragments.*
 import ie.wit.savvytutor.models.UserModel
 import kotlin.reflect.KFunction0
 
@@ -36,6 +37,7 @@ class UserAdapter(private val userList: ArrayList<UserModel>, val context: Conte
 
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val username: TextView = itemView.findViewById(R.id.userNameView)
+        val profilepic: ImageView = itemView.findViewById(R.id.userProfilePicture)
 
     }
 
@@ -43,7 +45,15 @@ class UserAdapter(private val userList: ArrayList<UserModel>, val context: Conte
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val currentItem = userList[position]
 
-        holder.username.text = currentItem.email
+
+        val thisemail = currentItem.email
+        val substring: String = thisemail.substring(0, thisemail.indexOf("@"))
+        post.email = substring
+        holder.username.text = substring
+        Picasso.get().load(currentItem.profilepic.toString()).into(holder.profilepic)
+
+
+
         holder.itemView.setOnClickListener {
 
            // println(getValues("jamiehogan4848@gmail.com", currentItem.phone))

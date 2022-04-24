@@ -10,11 +10,10 @@
 
     <ImageView
         android:id="@+id/headerProfilePic"
-        android:layout_marginTop="15dp"
-        android:layout_width="wrap_content"
+        android:layout_width="61dp"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_logo_round"
-      />
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/ic_logo_round" />
 
 
     <TextView
@@ -34,6 +33,5 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/blackText"
         />
-
 
 </LinearLayout>

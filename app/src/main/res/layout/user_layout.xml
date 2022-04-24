@@ -2,26 +2,42 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="3100sp"
     android:layout_height="wrap_content"
-    android:layout_margin="5sp">
+    android:layout_margin="5sp"
+    android:id="@+id/userCardView"
+    >
 
     <RelativeLayout
         android:layout_width="375sp"
         android:layout_height="wrap_content"
         android:layout_margin="4dp">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/userProfilePicture"
+            android:paddingTop="15sp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="2sp"
+            />
+
         <TextView
             android:id="@+id/userNameView"
-            android:layout_width="wrap_content"
+            android:layout_width="250sp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="83sp"
+            android:paddingTop="24sp"
             android:text="DummyUser"
-            android:textSize="25sp"
+            android:textSize="22sp"
             />
+
+
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
             android:background="@color/blackText"
             android:layout_marginTop="3sp"
+            android:backgroundTint="@color/whiteText"
             />
 
 

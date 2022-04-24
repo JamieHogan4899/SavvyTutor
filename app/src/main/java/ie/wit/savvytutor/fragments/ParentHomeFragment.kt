@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
 import ie.wit.savvytutor.fragments.*
@@ -26,6 +28,7 @@ private lateinit var tutorPostRecyclerView: RecyclerView
 private lateinit var tutorPostArrayList: ArrayList<TutorPostModel>
 private lateinit var mAuth: FirebaseAuth
 var userEmail : String = ""
+var userRole : String = ""
 
 var userId: String = ""
 var postTitle: String = ""
@@ -63,6 +66,8 @@ class ParentHomeFragment : Fragment() {
 
 
         userEmail = mAuth.currentUser?.email.toString()
+        userRole = user.role
+
         context?.let { updateNavView(it) }
         return root
 
@@ -80,8 +85,7 @@ class ParentHomeFragment : Fragment() {
         navigationView.menu.findItem(ie.wit.savvytutor.R.id.tutorAbout).isVisible = false
 
         val navigationHeader = activity.findViewById(ie.wit.savvytutor.R.id.nav_view) as NavigationView
-        val txtProfileName =
-            navigationHeader.getHeaderView(0).findViewById<View>(ie.wit.savvytutor.R.id.DisplayName) as TextView
+        val txtProfileName = navigationHeader.getHeaderView(0).findViewById<View>(ie.wit.savvytutor.R.id.DisplayName) as TextView
         txtProfileName.setText(userEmail)
 
     }
@@ -112,6 +116,11 @@ class ParentHomeFragment : Fragment() {
             }
 
         })
+    }
+
+    fun getProfile(){
+
+
     }
 
 

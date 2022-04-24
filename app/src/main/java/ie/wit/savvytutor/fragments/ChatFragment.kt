@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -73,6 +74,7 @@ class ChatFragment : Fragment() {
                         if (!mAuth.currentUser?.uid.equals(currentUser.uid))
                             if (email != null) {
                                 userArrayList.add(currentUser!!)
+
 
                             }
                     }
