@@ -110,7 +110,6 @@ class CommentFragment : Fragment() {
                     for (userSnapshot in snapshot.children) {
                         val users = userSnapshot.getValue(UserModel::class.java)
                        // println(users)
-
                         //check does any uid match the posters id
                         if(RuserId.equals(users?.uid)){
                             if (users != null) {
@@ -119,7 +118,6 @@ class CommentFragment : Fragment() {
                                 val imageview = layout.findViewById<ImageView>(R.id.CommentPosterProfilePicutre)
                                 //println("Users Picture: " + posterProfilePicture)
                                 Picasso.get().load(posterProfilePicture.toString()).into(imageview);
-
                             }
                         }
                     }
@@ -141,7 +139,6 @@ class CommentFragment : Fragment() {
                 commentArrayList.clear()
                 for (postSnapshot in snapshot.children) {
                     val comment = postSnapshot.getValue(CommentModel::class.java)
-                    println("Comments: " + comment)
                     commentArrayList.add(comment!!)
                 }
                 commentRecyclerView.adapter?.notifyDataSetChanged()
