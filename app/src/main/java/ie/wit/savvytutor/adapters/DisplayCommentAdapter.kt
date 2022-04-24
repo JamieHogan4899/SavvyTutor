@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.savvytutor.R
+import ie.wit.savvytutor.fragments.post
 import ie.wit.savvytutor.models.CommentModel
 
 class DisplayCommentAdapter(private val commentList: ArrayList<CommentModel>) : RecyclerView.Adapter<DisplayCommentAdapter.CommentViewHolder>(){
@@ -15,6 +16,7 @@ class DisplayCommentAdapter(private val commentList: ArrayList<CommentModel>) : 
     class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val comment: TextView = itemView.findViewById(R.id.comment)
+        val username: TextView = itemView.findViewById(R.id.username)
     }
 
 
@@ -32,6 +34,10 @@ class DisplayCommentAdapter(private val commentList: ArrayList<CommentModel>) : 
         val currentItem = commentList[position]
 
         holder.comment.text = currentItem.comment
+
+        val email = currentItem.commenter
+        val substring: String = email.substring(0, email.indexOf("@"))
+        holder.username.text = substring
 
     }
 

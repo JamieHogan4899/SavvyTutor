@@ -113,6 +113,7 @@ class ParentHomeFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
+                
             }
 
         })

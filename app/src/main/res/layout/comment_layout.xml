@@ -4,7 +4,6 @@
     android:id="@+id/sendComment"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/comment"
     android:layout_marginLeft="5sp"
     android:layout_marginTop="5sp"
     >
@@ -18,7 +17,19 @@
         android:text="Comment"
         android:padding="10sp"
         android:textSize="17sp"
+        android:background="@drawable/comment"
         />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="username"
+        android:padding="10sp"
+        android:textSize="12sp"
+        android:layout_marginTop="30sp"
+        />
+
 
 
 
