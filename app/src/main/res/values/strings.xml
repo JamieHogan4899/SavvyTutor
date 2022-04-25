@@ -11,21 +11,32 @@
     <string name="select_profile_picture">Select Profile Picture</string>
 
 
-
-
-
     <!--    Arrays for Spinner-->
     <string-array name= "SubjectArrary">
         <item>Choose</item>
         <item>Maths</item>
         <item>English</item>
-        <item>Irish</item>
+        <item>Art</item>
+        <item>Home Ec</item>
+        <item>Business Studies</item>
+        <item>Accounting</item>
+        <item>French</item>
+        <item>German</item>
+        <item>History</item>
+        <item>Geography</item>
+        <item>Music</item>
+        <item>Physics</item>
+        <item>Biology</item>
+        <item>Ag Science</item>
+        <item>Chemistry</item>
+
     </string-array>
 
     <string-array name= "LevelArrary">
         <item>Choose</item>
         <item>Junior Cert</item>
         <item>Leaving Cert</item>
+        <item>Junior Cert + Leaving Cert</item>
         <item>Other</item>
     </string-array>
 

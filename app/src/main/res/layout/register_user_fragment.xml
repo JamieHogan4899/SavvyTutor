@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="60sp"
         android:layout_marginTop="240sp"
-        android:text="E-Mail"
+        android:text="E-Mail*"
         android:textColor="@color/blackText"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="60sp"
         android:layout_marginTop="310sp"
-        android:text="Password"
+        android:text="Password*"
         android:textColor="@color/blackText"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="60sp"
         android:layout_marginTop="380sp"
-        android:text="Select Role"
+        android:text="Select Role*"
         android:textColor="@color/blackText"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="60sp"
         android:layout_marginTop="450sp"
-        android:text="Phone Number"
+        android:text="Phone Number*"
         android:textColor="@color/blackText"
         android:textSize="20sp"
         android:textStyle="bold" />

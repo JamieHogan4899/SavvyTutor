@@ -80,7 +80,7 @@ class CreateAPostFragment : Fragment() {
             post.level = level.selectedItem.toString()
             post.description = description.text.toString()
 
-            if (post.title.isEmpty() || post.subject.isEmpty() || post.location.isEmpty() || post.level.isEmpty() || post.description.isEmpty()) {
+            if (post.title.isEmpty() || post.subject.isEmpty() || post.location.isEmpty() || post.level.isEmpty()) {
 
                 Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
                     .show()
