@@ -13,7 +13,8 @@
 
 
 
-<!--    Arrays for Spinner-->
+
+    <!--    Arrays for Spinner-->
     <string-array name= "SubjectArrary">
         <item>Choose</item>
         <item>Maths</item>

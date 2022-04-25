@@ -49,7 +49,6 @@ val IMAGE_REQUEST = 1
 var profilePicUrl: String = ""
 
 
-
 class RegisterFragment : Fragment() {
 
 
