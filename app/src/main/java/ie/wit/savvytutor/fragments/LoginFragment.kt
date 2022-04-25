@@ -35,8 +35,6 @@ class LoginFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = Firebase.auth
-
-
     }
 
 
@@ -50,7 +48,6 @@ class LoginFragment : Fragment() {
         val root = inflater.inflate(ie.wit.savvytutor.R.layout.login_fragment, container, false)
         setLoginButtonListener(root)
         setOnCreateAccount(root)
-
 
         return root
     }

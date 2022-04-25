@@ -149,7 +149,8 @@
         android:layout_marginLeft="15sp"
         android:layout_marginTop="460sp"
         android:background="@drawable/rounded_corner"
-        android:inputType="text"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
         />
 
 
