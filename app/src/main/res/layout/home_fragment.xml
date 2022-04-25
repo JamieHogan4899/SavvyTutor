@@ -7,11 +7,12 @@
 
 
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/displayPosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="70sp"
         android:padding="4dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/displaypost_view"

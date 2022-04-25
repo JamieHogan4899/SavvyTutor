@@ -15,12 +15,14 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import ie.wit.savvytutor.R
 import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.adapters.DisplayTutorPostAdapter
 import ie.wit.savvytutor.fragments.*
 import ie.wit.savvytutor.fragments.userEmail
 import ie.wit.savvytutor.models.PostModel
 import ie.wit.savvytutor.models.TutorPostModel
+import ie.wit.savvytutor.models.UserModel
 
 
 private lateinit var dbRef: DatabaseReference
@@ -28,7 +30,6 @@ private lateinit var tutorPostRecyclerView: RecyclerView
 private lateinit var tutorPostArrayList: ArrayList<TutorPostModel>
 private lateinit var mAuth: FirebaseAuth
 var userEmail : String = ""
-var userRole : String = ""
 
 var userId: String = ""
 var postTitle: String = ""
@@ -39,6 +40,8 @@ var postAvailability: String = ""
 var postDescription: String = ""
 var postId: String = ""
 var posterEmail: String = ""
+var userProfilePic: String = ""
+var userRole:String = ""
 
 
 class ParentHomeFragment : Fragment() {
@@ -63,10 +66,10 @@ class ParentHomeFragment : Fragment() {
 
         tutorPostArrayList = arrayListOf<TutorPostModel>()
         getTutorPosts()
+        getProfile(root)
 
 
         userEmail = mAuth.currentUser?.email.toString()
-        userRole = user.role
 
         context?.let { updateNavView(it) }
         return root
@@ -87,6 +90,13 @@ class ParentHomeFragment : Fragment() {
         val navigationHeader = activity.findViewById(ie.wit.savvytutor.R.id.nav_view) as NavigationView
         val txtProfileName = navigationHeader.getHeaderView(0).findViewById<View>(ie.wit.savvytutor.R.id.DisplayName) as TextView
         txtProfileName.setText(userEmail)
+
+        val txtRole = navigationHeader.getHeaderView(0).findViewById<View>(ie.wit.savvytutor.R.id.DisplayRole) as TextView
+        txtRole.append("Parent")
+
+
+
+
 
     }
 
@@ -119,9 +129,26 @@ class ParentHomeFragment : Fragment() {
         })
     }
 
-    fun getProfile(){
+    fun getProfile(layout:View){
+        dbRef =
+            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference(
+                    "Users"
+                )
 
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (postSnapshot in snapshot.children) {
+                        val users = postSnapshot.getValue(UserModel::class.java)
+                    }
+                }
+            }
 
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 
 
