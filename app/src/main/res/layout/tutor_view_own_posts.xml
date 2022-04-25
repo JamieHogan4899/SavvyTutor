@@ -7,12 +7,22 @@
     android:id="@+id/tutorOwnPosts_Fragment">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="10sp"
+        android:text="My Posts"
+        android:textColor="@color/blackText"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tutorOwnPosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
+        android:layout_marginTop="60sp"
         android:scrollbars="vertical"
         tools:listitem="@layout/display_tutor_posts"
 

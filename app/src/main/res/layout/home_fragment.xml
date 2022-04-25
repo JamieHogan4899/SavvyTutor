@@ -5,6 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/whiteText">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="10sp"
+        android:text="Post From Parents"
+        android:textColor="@color/blackText"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 
 
@@ -12,7 +21,7 @@
         android:id="@+id/displayPosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70sp"
+        android:layout_marginTop="60sp"
         android:padding="4dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/displaypost_view"

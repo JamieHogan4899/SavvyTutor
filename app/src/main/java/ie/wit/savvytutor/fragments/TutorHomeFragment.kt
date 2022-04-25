@@ -77,6 +77,9 @@ class TutorHomeFragment : Fragment() {
         val txtProfileName =
             navigationHeader.getHeaderView(0).findViewById<View>(ie.wit.savvytutor.R.id.DisplayName) as TextView
         txtProfileName.setText(userEmail)
+
+        val txtRole = navigationHeader.getHeaderView(0).findViewById<View>(ie.wit.savvytutor.R.id.DisplayRole) as TextView
+        txtRole.append("Tutor")
     }
 
     private fun getParentPosts(){
