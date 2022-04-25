@@ -1,11 +1,10 @@
 package ie.wit.savvytutor.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +16,8 @@ import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.adapters.UserAdapter
 import ie.wit.savvytutor.adapters.UserData
 import ie.wit.savvytutor.models.UserModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TutorChatFragment : Fragment() {
@@ -25,6 +26,7 @@ class TutorChatFragment : Fragment() {
     private lateinit var userArrayList: ArrayList<UserModel>
     private lateinit var dbRef: DatabaseReference
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var tempArrayList: ArrayList<UserModel>
     var email: String = ""
     var phone: String = ""
     var uid: String = ""
@@ -36,6 +38,7 @@ class TutorChatFragment : Fragment() {
             FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
                 .getReference("Users").ref
         mAuth = FirebaseAuth.getInstance()
+        setHasOptionsMenu(true)
     }
 
     @Nullable
@@ -52,6 +55,7 @@ class TutorChatFragment : Fragment() {
 
 
         userArrayList = arrayListOf<UserModel>()
+        tempArrayList= arrayListOf<UserModel>()
         getUserList()
 
 
@@ -60,6 +64,53 @@ class TutorChatFragment : Fragment() {
 
         return root
     }
+
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(ie.wit.savvytutor.R.menu.menu_chat, menu)
+        val item = menu?.findItem(ie.wit.savvytutor.R.id.search_action)
+        val searchView = item?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                tempArrayList.clear()
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+                if(searchText.isNotEmpty()){
+
+                    userArrayList.forEach{
+
+                        if (it.email.toLowerCase(Locale.getDefault()).contains(searchText)){
+
+                            tempArrayList.add(it)
+                        }
+                    }
+
+                    userRecyclerView.adapter?.notifyDataSetChanged()
+                }    else {
+
+                    tempArrayList.clear()
+                    tempArrayList.addAll(userArrayList)
+                    userRecyclerView.adapter?.notifyDataSetChanged()
+
+                }
+
+
+                return false
+            }
+
+
+        })
+
+        return super.onCreateOptionsMenu(menu, inflater)
+
+
+    }
+
 
 
     private fun getUserList() {
@@ -75,8 +126,7 @@ class TutorChatFragment : Fragment() {
                         if (!mAuth.currentUser?.uid.equals(currentUser.uid))
                             if (email != null) {
                                 userArrayList.add(currentUser!!)
-                                println(mAuth.currentUser?.uid)
-                                println(currentUser.uid)
+                                tempArrayList.add(currentUser!!)
 
 
                             }
@@ -85,7 +135,7 @@ class TutorChatFragment : Fragment() {
                             userRecyclerView.adapter =
                                 context?.let {
                                     UserAdapter(
-                                        userArrayList,
+                                        tempArrayList,
                                         it,
                                         ::handleUserData,
                                     )

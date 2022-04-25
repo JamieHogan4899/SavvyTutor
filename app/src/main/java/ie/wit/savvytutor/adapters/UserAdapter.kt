@@ -37,7 +37,7 @@ class UserAdapter(private val userList: ArrayList<UserModel>, val context: Conte
 
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val username: TextView = itemView.findViewById(R.id.userNameView)
-        val profilepic: ImageView = itemView.findViewById(R.id.userProfilePicture)
+        val profilepic: ImageView = itemView.findViewById(R.id.chatProfilePicture)
 
     }
 

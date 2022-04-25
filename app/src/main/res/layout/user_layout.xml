@@ -13,7 +13,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/userProfilePicture"
+            android:id="@+id/chatProfilePicture"
             android:paddingTop="15sp"
             android:layout_width="75dp"
             android:layout_height="75dp"

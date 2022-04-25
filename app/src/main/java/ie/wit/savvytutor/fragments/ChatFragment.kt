@@ -2,11 +2,10 @@ package ie.wit.savvytutor.fragments
 
 import android.R
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,11 +17,14 @@ import ie.wit.savvytutor.adapters.UserAdapter
 import ie.wit.savvytutor.adapters.UserData
 import ie.wit.savvytutor.helpers.SwipeToDelete
 import ie.wit.savvytutor.models.UserModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ChatFragment : Fragment() {
 
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<UserModel>
+    private lateinit var tempArrayList: ArrayList<UserModel>
     private lateinit var dbRef: DatabaseReference
     private lateinit var mAuth: FirebaseAuth
     var email: String = ""
@@ -36,6 +38,7 @@ class ChatFragment : Fragment() {
             FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/")
                 .getReference("Users").ref
         mAuth = FirebaseAuth.getInstance()
+        setHasOptionsMenu(true)
     }
     @Nullable
     override fun onCreateView(
@@ -50,14 +53,64 @@ class ChatFragment : Fragment() {
         userRecyclerView.setHasFixedSize(true)
 
         userArrayList = arrayListOf<UserModel>()
+        tempArrayList = arrayListOf<UserModel>()
         getUserList()
+        setHasOptionsMenu(true)
+
+
 
 
         (activity as AppCompatActivity?)!!.supportActionBar?.title = "SavvyTutor"
 
-
         return root
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(ie.wit.savvytutor.R.menu.menu_chat, menu)
+        val item = menu?.findItem(ie.wit.savvytutor.R.id.search_action)
+        val searchView = item?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                tempArrayList.clear()
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+                if(searchText.isNotEmpty()){
+
+                    userArrayList.forEach{
+
+                        if (it.email.toLowerCase(Locale.getDefault()).contains(searchText)){
+
+                            tempArrayList.add(it)
+                        }
+                    }
+
+                    userRecyclerView.adapter?.notifyDataSetChanged()
+                }    else {
+
+                    tempArrayList.clear()
+                    tempArrayList.addAll(userArrayList)
+                    userRecyclerView.adapter?.notifyDataSetChanged()
+
+                }
+
+
+                return false
+            }
+
+
+        })
+
+        return super.onCreateOptionsMenu(menu, inflater)
+
+
+    }
+
+
+
 
 
     private fun getUserList() {
@@ -74,15 +127,16 @@ class ChatFragment : Fragment() {
                         if (!mAuth.currentUser?.uid.equals(currentUser.uid))
                             if (email != null) {
                                 userArrayList.add(currentUser!!)
-
+                                tempArrayList.add(currentUser!!)
 
                             }
+
                     }
                     userRecyclerView.adapter?.notifyDataSetChanged()
                     userRecyclerView.adapter =
                         context?.let {
                             UserAdapter(
-                                userArrayList,
+                                tempArrayList,
                                 it,
                                 ::handleUserData,
                             )
