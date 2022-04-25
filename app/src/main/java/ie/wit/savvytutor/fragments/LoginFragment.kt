@@ -8,17 +8,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import ie.wit.savvytutor.activity.MainActivity
+import ie.wit.savvytutor.activity.drawer
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 private lateinit var mAuth: FirebaseAuth
 
@@ -28,8 +34,8 @@ class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         mAuth = Firebase.auth
+
 
     }
 
@@ -46,20 +52,22 @@ class LoginFragment : Fragment() {
         setOnCreateAccount(root)
 
 
-
         return root
-
-
     }
 
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+
     }
 
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
     }
 
 
@@ -92,6 +100,8 @@ class LoginFragment : Fragment() {
 
 
                                 checkUserRole(layout)
+                                loginbtn.onEditorAction(EditorInfo.IME_ACTION_DONE)
+
 
                             } else (
                                     Toast.makeText(
@@ -162,7 +172,6 @@ class LoginFragment : Fragment() {
                                             ie.wit.savvytutor.R.id.fragment_container,
                                             fragment
                                         )?.commit()
-                                    println(it.value)
 
                                 } else {
 
@@ -172,7 +181,7 @@ class LoginFragment : Fragment() {
                                             ie.wit.savvytutor.R.id.fragment_container,
                                             fragment
                                         )?.commit()
-                                    println(it.value)
+
                                 }
                             }
 

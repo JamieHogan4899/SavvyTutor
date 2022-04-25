@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -28,6 +29,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import ie.wit.savvytutor.R
+import ie.wit.savvytutor.activity.drawer
 import ie.wit.savvytutor.helpers.readImage
 import ie.wit.savvytutor.helpers.showImagePicker
 import ie.wit.savvytutor.models.PostModel
@@ -81,14 +83,17 @@ class RegisterFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+
     }
 
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
     }
-
-
 
     fun goToLogin(layout: View){
         val backToLogin = layout.findViewById<TextView>(ie.wit.savvytutor.R.id.goToLogin)
