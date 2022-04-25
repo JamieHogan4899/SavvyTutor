@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
@@ -84,7 +85,14 @@ class CreateAPostFragment : Fragment() {
 
                 Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
                     .show()
-            } else {
+            }
+
+            else {
+
+                if(post.description.isEmpty()){
+
+                    layout.findViewById<EditText>(R.id.description).setText("")
+                }
 
                 writeNewPost(
                     PostModel(
@@ -95,6 +103,8 @@ class CreateAPostFragment : Fragment() {
                         description = post.description
                     )
                 )
+
+                addBtn.onEditorAction(EditorInfo.IME_ACTION_DONE)
                 println(post)
                 Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
 
