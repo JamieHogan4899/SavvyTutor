@@ -3,6 +3,7 @@ package ie.wit.savvytutor.helpers
 import DisplayPostAdapter
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,31 +22,9 @@ class SwipeToDelete(var adapter: DisplayPostAdapter) :ItemTouchHelper.SimpleCall
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         var pos = viewHolder.adapterPosition
-        adapter.deleteItem(pos)
+        adapter.alertDialog(pos)
 
 
-
-        val dbRef =
-            FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference("ParentPosts")
-        dbRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (postSnapshot in snapshot.children) {
-                        val post = postSnapshot.getValue(PostModel::class.java)
-                        val selectedId = post?.postId
-                        if(selectedId.equals(adapter.postId)) {
-                            postSnapshot.getRef().removeValue();
-                            break
-                        }
-                    }
-
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
     }
-
 
 }

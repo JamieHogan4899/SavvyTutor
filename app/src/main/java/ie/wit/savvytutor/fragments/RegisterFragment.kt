@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
@@ -194,7 +195,7 @@ class RegisterFragment : Fragment() {
 
                             uploadImageToDb()
 
-                            Timer("SettingUp", false).schedule(3000) {
+                            Timer("SettingUp", false).schedule(6000) {
                                 writeNewUser(
                                     UserModel(
                                         email = user.email,
@@ -213,6 +214,7 @@ class RegisterFragment : Fragment() {
 
                                     }
                             }
+                            registerbtn.onEditorAction(EditorInfo.IME_ACTION_DONE)
 
                             val fragment = LoginFragment()
                             activity?.supportFragmentManager?.beginTransaction()

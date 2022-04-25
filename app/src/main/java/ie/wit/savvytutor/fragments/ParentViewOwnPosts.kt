@@ -15,6 +15,7 @@ import com.google.firebase.database.*
 import ie.wit.savvytutor.activity.MainActivity
 import ie.wit.savvytutor.helpers.SwipeToDelete
 import ie.wit.savvytutor.models.PostModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 private lateinit var dbRef: DatabaseReference
 private lateinit var postRecyclerView: RecyclerView
@@ -24,7 +25,9 @@ private lateinit var mAuth: FirebaseAuth
 
 
 
+
 class ParentViewOwnPosts : Fragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
@@ -38,7 +41,11 @@ class ParentViewOwnPosts : Fragment() {
         @Nullable savedInstanceState: Bundle?
     ): View {
         //inflate the fragment layout
-        val root = inflater.inflate(ie.wit.savvytutor.R.layout.parent_view_own_post, container, false)
+        val root = inflater.inflate(
+            ie.wit.savvytutor.R.layout.parent_view_own_post,
+            container,
+            false
+        )
         postRecyclerView = root.findViewById(ie.wit.savvytutor.R.id.parentOwnPosts)
         postRecyclerView.layoutManager = LinearLayoutManager(context)
         postRecyclerView.setHasFixedSize(true)
@@ -79,7 +86,8 @@ class ParentViewOwnPosts : Fragment() {
 
                     postRecyclerView.adapter = DisplayPostAdapter(postArrayList, ::handlePostData)
 
-                    var itemTouchHelper =ItemTouchHelper(SwipeToDelete(postRecyclerView.adapter as DisplayPostAdapter))
+                    var itemTouchHelper =
+                        ItemTouchHelper(SwipeToDelete(postRecyclerView.adapter as DisplayPostAdapter))
                     itemTouchHelper.attachToRecyclerView(postRecyclerView)
                 }
             }
@@ -91,7 +99,7 @@ class ParentViewOwnPosts : Fragment() {
         })
     }
 
-    private fun handlePostData(data : PostModel){
+    private fun handlePostData(data: PostModel){
 
         userId = data.uid.toString()
         postTitle = data.title
@@ -114,17 +122,15 @@ class ParentViewOwnPosts : Fragment() {
         bundle.putString("postId", postId)
         bundle.putString("posterEmail", posterEmail)
 
-
         val optionsFrag = CommentFragment()
         optionsFrag.setArguments(bundle)
         (context as MainActivity).getSupportFragmentManager().beginTransaction()
             .replace(ie.wit.savvytutor.R.id.fragment_container, optionsFrag, "OptionsFragment")
             .addToBackStack(null)
             .commit()
-
-
-
     }
+
+
 
 
 }
