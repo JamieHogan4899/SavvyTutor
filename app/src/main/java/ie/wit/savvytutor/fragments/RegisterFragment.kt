@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,6 +39,7 @@ import kotlinx.android.synthetic.main.register_user_fragment.*
 import kotlinx.android.synthetic.main.register_user_fragment.view.*
 import java.net.URI
 import java.util.*
+import kotlin.concurrent.schedule
 
 
 private lateinit var mAuth: FirebaseAuth
@@ -45,7 +47,6 @@ var user = UserModel()
 val rtdb =
     FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 val IMAGE_REQUEST = 1
-
 var profilePicUrl: String = ""
 
 
@@ -149,6 +150,8 @@ class RegisterFragment : Fragment() {
                     val selectedPicUrl = it.toString()
                     profilePicUrl = selectedPicUrl
 
+                    println("Pictured URL: " + profilePicUrl)
+
 
                 }
 
@@ -164,7 +167,7 @@ class RegisterFragment : Fragment() {
         val password = layout.findViewById<EditText>(R.id.registerPassword)
         val role = layout.findViewById<Spinner>(R.id.chooseRole)
         val username = layout.findViewById<EditText>(R.id.registerUsername)
-           val displayprofilepic = layout.findViewById<ImageView>(R.id.registershowprofilepic)
+        val displayprofilepic = layout.findViewById<ImageView>(R.id.registershowprofilepic)
 
         registerbtn.setOnClickListener {
 
@@ -185,36 +188,38 @@ class RegisterFragment : Fragment() {
                                 .show()
                             println(Fuser)
 
-
                             layout.findViewById<EditText>(R.id.registerEmail).text.clear()
                             layout.findViewById<EditText>(R.id.registerPassword).text.clear()
                             layout.findViewById<Spinner>(R.id.chooseRole).setSelection(0)
 
                             uploadImageToDb()
-                            writeNewUser(
-                                UserModel(
-                                    email = user.email,
-                                    password = user.password,
-                                    profilepic = profilePicUrl,
-                                    role = user.role,
-                                    phone = user.phone,
 
+                            Timer("SettingUp", false).schedule(3000) {
+                                writeNewUser(
+                                    UserModel(
+                                        email = user.email,
+                                        password = user.password,
+                                        profilepic = profilePicUrl,
+                                        role = user.role,
+                                        phone = user.phone,
                                     )
-                            )
+                                )
+                                val user = FirebaseAuth.getInstance().currentUser
+                                user!!.sendEmailVerification()
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            Log.d(TAG, "Email sent.")
+                                        }
 
-                            val user = FirebaseAuth.getInstance().currentUser
-                            user!!.sendEmailVerification()
-                                .addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        Log.d(TAG, "Email sent.")
                                     }
-                                }
-
+                            }
 
                             val fragment = LoginFragment()
                             activity?.supportFragmentManager?.beginTransaction()
                                 ?.replace(R.id.fragment_container, fragment)?.commit()
 
+
+                            println("Profile Pictur about to add :" + profilePicUrl)
 
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -237,6 +242,7 @@ class RegisterFragment : Fragment() {
 
         user.uid = mAuth.currentUser?.uid
         user.profilepic = profilePicUrl
+        println("Profile Picture Here: " + profilePicUrl)
         val userValues = user.toMap()
 
         val childUpdates = hashMapOf<String, Any>(
