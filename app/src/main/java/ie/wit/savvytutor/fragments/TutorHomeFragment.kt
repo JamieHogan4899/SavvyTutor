@@ -71,6 +71,7 @@ class TutorHomeFragment : Fragment() {
         navigationView.menu.findItem(ie.wit.savvytutor.R.id.createAPost).isVisible = false
         navigationView.menu.findItem(ie.wit.savvytutor.R.id.chat).isVisible = false
         navigationView.menu.findItem(ie.wit.savvytutor.R.id.aboutSavvyTutor).isVisible = false
+        navigationView.menu.findItem(ie.wit.savvytutor.R.id.parentsViewOwnPosts).isVisible = false
 
         val navigationHeader = activity.findViewById(ie.wit.savvytutor.R.id.nav_view) as NavigationView
         val txtProfileName =
