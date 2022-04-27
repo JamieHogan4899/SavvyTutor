@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.TextView
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -58,6 +59,8 @@ class TutorHomeFragment : Fragment() {
         println(userEmail)
         context?.let { updateNavView(it) }
 
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "SavvyTutor"
+
 
         return root
 
@@ -79,7 +82,8 @@ class TutorHomeFragment : Fragment() {
         txtProfileName.setText(userEmail)
 
         val txtRole = navigationHeader.getHeaderView(0).findViewById<View>(ie.wit.savvytutor.R.id.DisplayRole) as TextView
-        txtRole.append("Tutor")
+        txtRole.setText("")
+        txtRole.append("Role : Tutor")
     }
 
     private fun getParentPosts(){

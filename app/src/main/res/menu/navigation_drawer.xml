@@ -29,7 +29,7 @@
 
     </group>
 
-    <item android:title="Tutors">
+    <item android:title="Welcome Tutor">
         <menu>
             <item
                 android:id="@+id/tutorHome"

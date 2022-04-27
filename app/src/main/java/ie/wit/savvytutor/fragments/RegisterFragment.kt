@@ -73,6 +73,7 @@ class RegisterFragment : Fragment() {
         setRegisterButtonListener(root)
         selectProfilePicture(root)
         goToLogin(root)
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "SavvyTutor"
 
 
         return root

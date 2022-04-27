@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -47,6 +48,8 @@ class CreateAPostFragment : Fragment() {
 
         val root = inflater.inflate(createapost_fragment, container, false)
         setAddButtonListener(root)
+
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "SavvyTutor"
         return root
 
 
@@ -81,7 +84,7 @@ class CreateAPostFragment : Fragment() {
             post.level = level.selectedItem.toString()
             post.description = description.text.toString()
 
-            if (post.title.isEmpty() || post.subject.isEmpty() || post.location.isEmpty() || post.level.isEmpty()) {
+            if (post.title.isEmpty() || post.subject == "Choose subject" || post.location.isEmpty() || post.level ==  "Choose level") {
 
                 Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
                     .show()

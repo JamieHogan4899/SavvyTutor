@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -84,12 +85,6 @@ class CommentFragment : Fragment() {
 
         commentRoom = RpostId + RuserId
 
-            root.findViewById<TextView>(R.id.commentTitle).setText(RpostTitle)
-        root.findViewById<TextView>(R.id.commentSubject).setText(RpostSubject)
-        root.findViewById<TextView>(R.id.commentLocation).setText(RpostLocation)
-        root.findViewById<TextView>(R.id.commentLevel).setText(RpostLevel)
-        root.findViewById<TextView>(R.id.commentDescription).setText(RpostDescription)
-        root.findViewById<TextView>(R.id.commentPosterId).setText(RposterEmail)
 
         commentRecyclerView = root.findViewById(ie.wit.savvytutor.R.id.commentSectionRecylerView)
         commentRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -98,6 +93,18 @@ class CommentFragment : Fragment() {
         commentArrayList = arrayListOf<CommentModel>()
         getComments()
 
+
+
+
+        root.findViewById<TextView>(R.id.commentTitle).setText(RpostTitle)
+        root.findViewById<TextView>(R.id.commentSubject).setText(RpostSubject)
+        root.findViewById<TextView>(R.id.commentLocation).setText(RpostLocation)
+        root.findViewById<TextView>(R.id.commentLevel).setText(RpostLevel)
+        root.findViewById<TextView>(R.id.commentDescription).setText(RpostDescription)
+        root.findViewById<TextView>(R.id.commentPosterId).setText(RposterEmail)
+
+
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "SavvyTutor"
         return root
     }
 

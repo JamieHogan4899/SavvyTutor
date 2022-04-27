@@ -24,7 +24,7 @@ class TutorNavigationTests {
         Espresso.onView(ViewMatchers.withId(R.id.loginEmail))
             .perform(ViewActions.typeText("zaragunner@hotmail.com"), ViewActions.closeSoftKeyboard());//type in email field
         Espresso.onView(ViewMatchers.withId(R.id.loginPassword))
-            .perform(ViewActions.typeText("Test123"), ViewActions.closeSoftKeyboard());//type in email field
+            .perform(ViewActions.typeText("17Briot"), ViewActions.closeSoftKeyboard());//type in email field
         Espresso.onView(ViewMatchers.withId(R.id.loginbtn)).perform(ViewActions.longClick()) //hit login
     }
 

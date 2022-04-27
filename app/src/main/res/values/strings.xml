@@ -13,9 +13,10 @@
 
     <!--    Arrays for Spinner-->
     <string-array name= "SubjectArrary">
-        <item>Choose</item>
+        <item>Choose subject</item>
         <item>Maths</item>
         <item>English</item>
+        <item>Irish</item>
         <item>Art</item>
         <item>Home Ec</item>
         <item>Business Studies</item>
@@ -33,7 +34,7 @@
     </string-array>
 
     <string-array name= "LevelArrary">
-        <item>Choose</item>
+        <item>Choose level</item>
         <item>Junior Cert</item>
         <item>Leaving Cert</item>
         <item>Junior Cert + Leaving Cert</item>

@@ -49,6 +49,8 @@ class LoginFragment : Fragment() {
         setLoginButtonListener(root)
         setOnCreateAccount(root)
 
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "SavvyTutor"
+
         return root
     }
 

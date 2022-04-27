@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.klinker.android.link_builder.Link
 import com.klinker.android.link_builder.applyLinks
@@ -25,6 +26,8 @@ class AboutFragment : Fragment() {
        val root = inflater.inflate(ie.wit.savvytutor.R.layout.about_fragment, container, false)
 
         linkToGithub(root)
+
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "SavvyTutor"
         return root
     }
 

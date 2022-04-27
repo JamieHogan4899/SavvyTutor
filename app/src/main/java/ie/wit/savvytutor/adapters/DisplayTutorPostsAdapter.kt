@@ -90,7 +90,7 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
             val uid = currentItem.uid
             val title = currentItem.title
             val subject = currentItem.subject
-            val location = currentItem.subject
+            val location = currentItem.location
             val level = currentItem.level
             val availability = currentItem.availability
             val description = currentItem.description

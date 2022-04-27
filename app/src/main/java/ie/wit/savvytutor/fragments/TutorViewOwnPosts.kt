@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,7 +51,7 @@ class TutorViewOwnPosts : Fragment() {
         tutorPostArrayList = arrayListOf<TutorPostModel>()
         getUsersPosts()
 
-
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "SavvyTutor"
         return root
     }
 
