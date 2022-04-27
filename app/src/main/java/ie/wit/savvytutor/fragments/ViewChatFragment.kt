@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.Nullable
@@ -62,6 +63,9 @@ class ViewChatFragment : Fragment() {
             reciveruid = bundle.getString("uid").toString()
             //println(email +" "+ phone+ " " + reciveruid +" From View Chat Fragment")
         }
+        val substring: String = email.substring(0, email.indexOf("@"))
+        email = substring
+
 
         senderuid = mAuth.currentUser?.uid
 
@@ -110,6 +114,8 @@ class ViewChatFragment : Fragment() {
         sendBtn = layout.findViewById(R.id.sendBtn)
 
         sendBtn.setOnClickListener {
+
+
 
             val message = messageBox.text.toString()
             val messageObject = MessageModel(message, senderuid)

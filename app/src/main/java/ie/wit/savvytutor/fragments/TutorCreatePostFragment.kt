@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -73,11 +74,16 @@ class TutorCreatePostFragment : Fragment() {
             tutorPosts.description = description.text.toString()
 
             if (tutorPosts.title.isEmpty() || tutorPosts.subject.isEmpty() || tutorPosts.location.isEmpty() ||
-                tutorPosts.level.isEmpty() || tutorPosts.availability.isEmpty() || tutorPosts.description.isEmpty()
+                tutorPosts.level.isEmpty() || tutorPosts.availability.isEmpty()
             ) {
                 Toast.makeText(getActivity(), "Please enter all the details", Toast.LENGTH_SHORT)
                     .show()
             } else {
+
+                if(tutorPosts.description.isEmpty()){
+
+                    layout.findViewById<EditText>(R.id.tutorDescription).setText("")
+                }
 
                 writeNewTutorPost(
                     TutorPostModel(
@@ -91,7 +97,7 @@ class TutorCreatePostFragment : Fragment() {
                     )
                 )
 
-                println(tutorPosts)
+                addBtn.onEditorAction(EditorInfo.IME_ACTION_DONE)
                 Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_LONG).show();
 
                 val fragment = TutorViewOwnPosts()

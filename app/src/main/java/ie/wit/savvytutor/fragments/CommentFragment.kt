@@ -160,9 +160,8 @@ class CommentFragment : Fragment() {
             val commentObject = CommentModel(mAuth.currentUser?.uid, RpostId, mAuth.currentUser?.email.toString(), comment)
             //write comment to database
             dbRef.child("Comments").child(commentRoom!!).child("comments").push().setValue(commentObject)
-
+            CommentBox.setText("")
         }
-        CommentBox.setText("")
         }
 
 }

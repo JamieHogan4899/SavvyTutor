@@ -137,8 +137,7 @@ class DisplayPostAdapter(
 
     }
 
-    fun test(position: Int) {
-
+    fun getPostId(position: Int) {
         val currentItem = postList[position]
         postId = currentItem.postId
         // println("post id from adapter = " + postId)
@@ -158,7 +157,7 @@ class DisplayPostAdapter(
 
             }
             ?.setPositiveButton("yes"){ dialogInterface: DialogInterface, i: Int ->
-                test(position)
+                getPostId(position)
                 postList.removeAt(position)
                 notifyItemRemoved(position)
 

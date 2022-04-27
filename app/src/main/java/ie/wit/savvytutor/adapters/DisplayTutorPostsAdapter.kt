@@ -1,11 +1,14 @@
 package ie.wit.savvytutor.adapters
 
+import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,6 +23,8 @@ import ie.wit.savvytutor.models.UserModel
 class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostModel>, val handler: (TutorPostModel) -> Unit) : RecyclerView.Adapter<DisplayTutorPostAdapter.TutorPostViewHolder>() {
 
     public var postId:String = ""
+    private var context: Context? = null
+
 
 
     private fun getPost(uid:String, title:String, subject:String, location:String, level:String, availability:String, description:String, postId:String, email:String) {
@@ -29,6 +34,7 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TutorPostViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.display_tutor_posts, parent, false)
+        context = parent.getContext();
         return TutorPostViewHolder(itemView)
     }
 
@@ -129,11 +135,47 @@ class DisplayTutorPostAdapter(private val tutorPostList: ArrayList<TutorPostMode
     }
 
 
-    fun deleteItem(pos:Int){
-        //send this postid to the handler and remove from array list
-        getPostId(pos)
-        tutorPostList.removeAt(pos)
-        notifyItemRemoved(pos)
+
+    fun alertDialog(position: Int){
+        val currentItem = tutorPostList[position]
+
+        context?.let { MaterialAlertDialogBuilder(it) }
+            ?.setTitle("Alert")
+            ?.setMessage("Are you sure you want to delete this post")
+            ?.setNegativeButton("no"){ dialogInterface: DialogInterface, i: Int ->
+                tutorPostList.add(currentItem)
+                notifyDataSetChanged()
+                tutorPostList.remove(currentItem)
+
+            }
+            ?.setPositiveButton("yes"){ dialogInterface: DialogInterface, i: Int ->
+                getPostId(position)
+                tutorPostList.removeAt(position)
+                notifyItemRemoved(position)
+                notifyDataSetChanged()
+
+                val dbRef =
+                    FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").getReference("TutorPosts")
+                dbRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            for (postSnapshot in snapshot.children) {
+                                val post = postSnapshot.getValue(PostModel::class.java)
+                                val selectedId = post?.postId
+                                if(selectedId.equals(currentItem.postId)) {
+                                    postSnapshot.getRef().removeValue();
+                                    break
+                                }
+                            }
+
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
+            }
+            ?.show()
     }
 
 

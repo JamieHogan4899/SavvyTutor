@@ -33,7 +33,7 @@
         android:background="@drawable/message_box_backgroud"
         android:paddingLeft="15sp"
         />
-    
+
     <ImageView
         android:id="@+id/sendBtn"
         android:layout_width="25sp"

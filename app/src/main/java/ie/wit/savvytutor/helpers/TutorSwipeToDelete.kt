@@ -23,7 +23,7 @@ class TutorSwipeToDelete(var adapter: DisplayTutorPostAdapter) :
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         var pos = viewHolder.adapterPosition
-        adapter.deleteItem(pos)
+        adapter.alertDialog(pos)
 
 
 

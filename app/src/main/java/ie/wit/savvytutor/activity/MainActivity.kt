@@ -24,7 +24,6 @@ import ie.wit.savvytutor.fragments.*
 lateinit var drawer: DrawerLayout
 private lateinit var mAuth: FirebaseAuth
 
-
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +37,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer = findViewById(R.id.drawer_layout)
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this) //pass in listener for click in drawer
-
 
         val toggle = ActionBarDrawerToggle(
             this,

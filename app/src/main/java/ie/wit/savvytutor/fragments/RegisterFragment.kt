@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -45,8 +46,7 @@ import kotlin.concurrent.schedule
 
 private lateinit var mAuth: FirebaseAuth
 var user = UserModel()
-val rtdb =
-    FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
+val rtdb = FirebaseDatabase.getInstance("https://savvytutor-ab3d2-default-rtdb.europe-west1.firebasedatabase.app/").reference
 val IMAGE_REQUEST = 1
 var profilePicUrl: String = ""
 
@@ -135,6 +135,9 @@ class RegisterFragment : Fragment() {
 
 
         }
+
+
+
     }
 
     private fun uploadImageToDb(){
@@ -169,6 +172,8 @@ class RegisterFragment : Fragment() {
         val role = layout.findViewById<Spinner>(R.id.chooseRole)
         val username = layout.findViewById<EditText>(R.id.registerUsername)
         val displayprofilepic = layout.findViewById<ImageView>(R.id.registershowprofilepic)
+
+        password.transformationMethod = PasswordTransformationMethod.getInstance();
 
         registerbtn.setOnClickListener {
 

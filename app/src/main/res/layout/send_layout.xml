@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/sent_message_backgroud"
-    android:layout_marginLeft="288sp"
+    android:layout_marginLeft="270sp"
     android:layout_marginTop="5sp"
     >
 
